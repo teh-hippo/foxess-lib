@@ -564,6 +564,8 @@ export interface paths {
                   deviceType: string;
                   /** @description Type of product */
                   productType: string;
+                  /** @description Name of power station */
+                  stationName: string;
                 }[];
               };
             };

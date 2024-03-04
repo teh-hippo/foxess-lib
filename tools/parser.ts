@@ -1,3 +1,5 @@
+#!/usr/bin/env ts-node
+
 /* eslint-disable no-extend-native */
 import { parse, type HTMLElement } from "node-html-parser";
 import { rmSync, existsSync } from "fs";
@@ -155,6 +157,7 @@ function indent(table: HTMLElement, path: string): FoxESSField[] {
 }
 
 (async () => {
+  console.log("Downloading API");
   const fileName = "dist/foxess-api.json";
   if (existsSync(fileName)) rmSync(fileName);
   const data = await downloadApi();
