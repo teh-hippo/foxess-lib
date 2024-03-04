@@ -9,6 +9,15 @@
             "args": [ "${relativeFile}"],
             "cwd": "${workspaceRoot}",
             "internalConsoleOptions": "openOnSessionStart"
+        },
+        {
+            "name": "Generate OpenAPI Spec",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceRoot}/node_modules/tsx/dist/cli.cjs",
+            "args": [ "${relativeFile}"],
+            "cwd": "${workspaceRoot}",
+            "internalConsoleOptions": "openOnSessionStart"
         }
     ]
 }

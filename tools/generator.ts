@@ -160,9 +160,7 @@ function indent(table: HTMLElement, path: string): FoxESSField[] {
 (async () => {
   const script = process.argv[1];
   if (script === undefined) throw new Error("Unable to determine script");
-  const targetFileName = process.argv[2];
-  if (targetFileName === undefined) throw new Error("Unable to determine targetFileName");
-  const fileName = path.join(path.dirname(script), targetFileName);
+  const fileName = path.join(path.dirname(path.dirname(script)), "foxess-api.json");
   if (fs.existsSync(fileName)) fs.rmSync(fileName);
   console.log("Downloading API to: " + fileName);
   if (existsSync(fileName)) rmSync(fileName);

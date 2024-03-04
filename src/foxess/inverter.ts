@@ -1,3 +1,8 @@
+/**
+ * @file Inverter API
+ * This is a utility class to assist with pulling basic information on inverters and their real-time data.
+ */
+
 import { BaseUrl, header } from ".";
 import createClient from "openapi-fetch";
 import { type paths } from "./lib/api/v1";
