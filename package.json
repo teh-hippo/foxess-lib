@@ -32,7 +32,7 @@
     "lint": "eslint --max-warnings=0 src/**/*.ts",
     "lintAndFix": "eslint --fix --max-warnings=0 src/**/*.ts",
     "prepublishOnly": "npm run lint && npm test",
-    "updateOpenAPI": "tsx tools/parser.ts && npx openapi-typescript ./dist/foxess-api.json -o ./src/foxess/lib/api/v1.d.ts && eslint --fix ./src/foxess/lib/api/v1.d.ts"
+    "updateOpenAPI": "tsx tools/parser.ts foxess-api.json && npx openapi-typescript tools/foxess-api.json -o src/foxess/lib/api/v1.d.ts && eslint --fix ./src/foxess/lib/api/v1.d.ts"
   },
   "devDependencies": {
     "@stylistic/eslint-plugin": "^1.6.2",
