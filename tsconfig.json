@@ -26,7 +26,7 @@
   ],
   "exclude": [
     "node_modules",
-    "src/__tests__",
+    "src/foxess/__tests__",
     "dist"
   ]
 }
