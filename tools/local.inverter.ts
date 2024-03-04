@@ -1,4 +1,4 @@
-import inverter from "../src/foxess/inverter";
+import inverter from "../src/inverter";
 
 const apiKey = process.env.FOXESS_API_KEY;
 if (apiKey === undefined) throw new Error("No API key found in environment variables");

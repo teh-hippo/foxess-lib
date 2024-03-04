@@ -61,7 +61,7 @@ A utility class is provided for basic inverter querying.
 ```typescript
     // Import
     import createClient from "openapi-fetch";
-    import { type paths } from "foxess/lib/api/v1";
+    import { type paths } from "foxess/v1";
 
     // Map for requests
     export type GetDeviceRealTimeDataRequest = paths["/op/v0/device/real/query"]["post"]["requestBody"]["content"]["application/json"];

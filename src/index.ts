@@ -1,5 +1,5 @@
 import { Md5 } from "ts-md5";
-import type { paths } from "./lib/api/v1";
+import type { paths } from "./v1";
 
 /**
  * Primary API connection endpoint.

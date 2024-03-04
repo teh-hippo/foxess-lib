@@ -34,7 +34,7 @@
     "lint": "eslint --max-warnings=0 src/**/*.ts",
     "lintAndFix": "eslint --fix --max-warnings=0 src/**/*.ts",
     "prepublishOnly": "npm run lint && npm test",
-    "updateOpenAPI": "tsx tools/generator.ts && npx openapi-typescript foxess-api.json -o src/foxess/lib/api/v1.d.ts && eslint --fix ./src/foxess/lib/api/v1.d.ts"
+    "updateOpenAPI": "tsx tools/generator.ts && npx openapi-typescript foxess-api.json -o src/v1.d.ts && eslint --fix ./src/v1.d.ts"
   },
   "devDependencies": {
     "@stylistic/eslint-plugin": "^1.6.2",

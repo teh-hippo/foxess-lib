@@ -5,7 +5,7 @@
 
 import { BaseUrl, header } from ".";
 import createClient from "openapi-fetch";
-import { type paths } from "./lib/api/v1";
+import { type paths } from "./v1";
 
 /* **************** GET DEVICE LIST **************** */
 export type Inverter = paths["/op/v0/device/list"]["post"]["responses"]["200"]["content"]["application/json"]["result"]["data"][0];
