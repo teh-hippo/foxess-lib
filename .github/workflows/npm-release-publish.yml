@@ -8,8 +8,6 @@ on:
     types: [published]
 
 permissions:
-  pull-requests: write
-  contents: write
   packages: write
 
 jobs:

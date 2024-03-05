@@ -4,8 +4,7 @@
 name: Release - Prepare
 
 on:
-  release:
-    types: [created, edited]
+  workflow_dispatch: 
 
 permissions:
   pull-requests: write
@@ -22,9 +21,7 @@ jobs:
           node-version: 20
           registry-url: https://registry.npmjs.org/
       - run: npm ci --progress=false
-      - run: git config --global user.email 'auto@hippo.org'
-      - run: git config --global user.name 'AutoHippo'
-      - run: npm version from-git
+      - run: npm version patch
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
         id: cpr
