@@ -3,7 +3,7 @@
  * This is a utility class to assist with pulling basic information on inverters and their real-time data.
  */
 
-import { BaseUrl, header } from ".";
+import { header, BaseUrl } from "./util";
 import createClient from "openapi-fetch";
 import { type paths } from "./v1";
 
@@ -15,7 +15,7 @@ export type Inverter = paths["/op/v0/device/list"]["post"]["responses"]["200"]["
  * @param apiKey Account API key
  * @returns All inverters
  */
-async function getDeviceList(apiKey: string): Promise<Inverter[]> {
+export async function getDeviceList(apiKey: string): Promise<Inverter[]> {
   const path: keyof paths = "/op/v0/device/list";
   const results: Inverter[] = [];
   let page = 0;
@@ -50,7 +50,7 @@ export type RealTimeData = paths["/op/v0/device/real/query"]["post"]["responses"
  * @param options (Optional) Specific variables and/or inverters to query. All inverters if not specified.
  * @returns All requested real-time data.
  */
-async function getRealTimeData(apiKey: string, options?: GetDeviceRealTimeDataRequest): Promise<RealTimeData[] | undefined> {
+export async function getRealTimeData(apiKey: string, options?: GetDeviceRealTimeDataRequest): Promise<RealTimeData[] | undefined> {
   const path: keyof paths = "/op/v0/device/real/query";
   const { data, error } = await createClient<paths>({ baseUrl: BaseUrl }).POST(path, {
     params: { header: header(path, apiKey) },
@@ -59,5 +59,3 @@ async function getRealTimeData(apiKey: string, options?: GetDeviceRealTimeDataRe
   if (data?.errno !== 0 || !("result" in data)) throw new Error(`Invalid response code: ${data?.errno}: ${error}`);
   return data.result;
 }
-
-export default { getDeviceList, getRealTimeData };

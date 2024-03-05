@@ -34,7 +34,7 @@ jobs:
         with:
           add-paths: |
             foxess-api.json
-            src/v1.d.ts
+            src/v1.ts
           reviewers: teh-hippo
           delete-branch: true
           title: Update OpenAPI ${{ github.run_number }}

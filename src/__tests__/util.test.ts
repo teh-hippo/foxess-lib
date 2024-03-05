@@ -1,4 +1,4 @@
-import { calculateSignature, header } from "..";
+import { calculateSignature, header } from "../util";
 
 describe("testing foxess apis", () => {
   const testPath = "/op/v0/device/list";
