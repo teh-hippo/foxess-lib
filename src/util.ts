@@ -41,3 +41,5 @@ export function header(path: keyof paths, apiKey: string): Header {
     lang: "en"
   };
 }
+
+export default { calculateSignature, header };

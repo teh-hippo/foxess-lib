@@ -59,3 +59,5 @@ export async function getRealTimeData(apiKey: string, options?: GetDeviceRealTim
   if (data?.errno !== 0 || !("result" in data)) throw new Error(`Invalid response code: ${data?.errno}: ${error}`);
   return data.result;
 }
+
+export default { getRealTimeData, getDeviceList };
