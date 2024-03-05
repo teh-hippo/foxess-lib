@@ -1,9 +1,11 @@
 # This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
 # For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
 
-name: Release - Prepare
+name: Release - Bump version
 
 on:
+  release:
+    types: [published]
   workflow_dispatch: 
 
 permissions:
@@ -34,6 +36,6 @@ jobs:
           committer: AutoHippo <auto@hippo.org>
           branch: autohippo/openapi-update-${{ github.run_number }}
       - name: Enable Pull Request Automerge
-        run: gh pr merge --merge --auto ${{ steps.cpr.outputs.pull-request-number }}
+        run: gh pr merge --rebase --auto ${{ steps.cpr.outputs.pull-request-number }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
