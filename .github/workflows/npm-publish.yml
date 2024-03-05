@@ -16,8 +16,8 @@ jobs:
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org/
-      - run: npm ci --progress=false
       - run: npm version patch && git push --tags && git push
+      - run: npm ci --progress=false
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
         with:
