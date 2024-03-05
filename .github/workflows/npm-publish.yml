@@ -16,10 +16,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4.0.2
+      - uses: actions/setup-node@v4.0.1
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org/
+      - run: npm publish --dry-run
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - run: npm version patch && git push --tags && git push
       - run: npm ci --progress=false
       - name: Create Pull Request
@@ -33,9 +36,6 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}
           committer: AutoHippo <auto@hippo.org>
           branch: autohippo/openapi-update-${{ github.run_number }}
-      - run: npm publish --dry-run
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Enable Pull Request Automerge
         run: gh pr merge --merge --auto ${{ steps.cpr.outputs.pull-request-number }}
         env:
