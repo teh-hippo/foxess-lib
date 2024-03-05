@@ -25,6 +25,8 @@ jobs:
       - run: npm publish --dry-run
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: git config --global user.email 'auto@hippo.org'
+      - run: git config --global user.name 'AutoHippo'
       - run: npm version from-git
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
