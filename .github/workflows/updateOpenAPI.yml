@@ -1,0 +1,38 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Node.js CI
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  updateOpenAPI:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4.0.1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci --progress=false
+      - run: npm run updateOpenAPI
+  
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          add-paths: foxess-api.json
+          reviewers: teh-hippo
+          title: Update OpenAPI ${{ github.run_number }}
+          commit-message: |
+            Automated update for the Open API specification.
+          token: ${{ secrets.GH_TOKEN }}
+          committer: AutoHippo <auto@hippo.org>
+          branch: autohippo/openapi-update-${{ github.run_number }}
