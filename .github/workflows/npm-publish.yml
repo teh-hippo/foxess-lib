@@ -40,18 +40,9 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: npm ci --progress=false
       - run: npm version patch --no-git-tag-version
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v6
-        id: cpr
+      - name: get-npm-version
+        id: version-after
+        uses: martinbeentjes/npm-get-version-action@v1.3.1
+      - uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          add-paths: '*'
-          title: Update OpenAPI ${{ github.run_number }}
-          commit-message: |
-            Automated update for the Open API specification.
-          token: ${{ secrets.GITHUB_TOKEN }}
-          committer: AutoHippo <auto@hippo.org>
-          branch: autohippo/openapi-update-${{ github.run_number }}
-      - name: Enable Pull Request Automerge
-        run: gh pr merge --delete-branch --rebase --auto ${{ steps.cpr.outputs.pull-request-number }}
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          commit_message: Bump version to ${{ steps.version-after.outputs.current-version }}
