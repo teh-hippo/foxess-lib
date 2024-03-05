@@ -6,7 +6,6 @@ name: Release - Bump version
 on:
   release:
     types: [published]
-  workflow_dispatch: 
 
 permissions:
   pull-requests: write
@@ -14,6 +13,19 @@ permissions:
   packages: write
 
 jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4.0.1
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org/
+      - run: npm ci --progress=false --include prod
+      - run: npm publish --dry-run
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
   update-build-number:
     runs-on: ubuntu-latest
     steps:
