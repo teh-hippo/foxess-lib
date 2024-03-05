@@ -24,15 +24,15 @@
     "type": "github",
     "url": "https://github.com/sponsors/teh-hippo"
   },
-  "engines": {
-    "node": ">=18.0.0"
-  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "pretest": "npm run build",
     "test": "jest tests",
     "lint": "eslint --max-warnings=0 src/**/*.ts",
     "lintAndFix": "eslint --fix --max-warnings=0 src/**/*.ts",
+    "prepublish": "tsc",
     "prepublishOnly": "npm run lint && npm test",
     "updateOpenAPI": "tsx tools/generator.ts && npx openapi-typescript foxess-api.json -o src/v1.d.ts && eslint --fix ./src/v1.d.ts"
   },

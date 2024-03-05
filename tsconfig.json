@@ -7,6 +7,7 @@
     "esModuleInterop": true,
     "noEmitOnError": true,
     "removeComments": true,
+    "declaration": true,
     /* Type checking */
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
