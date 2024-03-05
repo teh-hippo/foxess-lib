@@ -8,6 +8,10 @@ on:
     - cron: '0 0 * * *'
   workflow_dispatch:
 
+permissions:
+  pull-requests: write
+  contents: write
+
 jobs:
   updateOpenAPI:
 
@@ -37,6 +41,6 @@ jobs:
           title: Update OpenAPI ${{ github.run_number }}
           commit-message: |
             Automated update for the Open API specification.
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           committer: AutoHippo <auto@hippo.org>
           branch: autohippo/openapi-update-${{ github.run_number }}

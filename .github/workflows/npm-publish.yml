@@ -7,6 +7,10 @@ on:
   release:
     types: [created]
 
+permissions:
+  pull-requests: write
+  contents: write
+
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -20,9 +24,9 @@ jobs:
       - run: npm ci --progress=false
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
+        id: cpr
         with:
           add-paths: '*'
-          reviewers: teh-hippo
           title: Update OpenAPI ${{ github.run_number }}
           commit-message: |
             Automated update for the Open API specification.
@@ -32,3 +36,7 @@ jobs:
       - run: npm publish --dry-run
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Enable Pull Request Automerge
+        run: gh pr merge --merge --auto ${{ steps.cpr.outputs.pull-request-number }}
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
