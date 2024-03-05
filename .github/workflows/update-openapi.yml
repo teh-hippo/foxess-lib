@@ -39,7 +39,7 @@ jobs:
           delete-branch: true
           title: Update OpenAPI ${{ github.run_number }}
           commit-message: |
-            Automated update for the Open API specification.
+            Update to the latest Open API specification.
           token: ${{ secrets.GITHUB_TOKEN }}
           committer: AutoHippo <auto@hippo.org>
           branch: autohippo/openapi-update-${{ github.run_number }}
