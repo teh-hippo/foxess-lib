@@ -23,7 +23,7 @@ jobs:
       - run: npm publish --dry-run
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - run: npm version patch && git push --tags && git push
+      - run: npm version patch
       - run: npm ci --progress=false
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
