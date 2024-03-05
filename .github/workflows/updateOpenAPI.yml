@@ -24,12 +24,14 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm ci --progress=false
       - run: npm run updateOpenAPI
-  
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
         with:
-          add-paths: foxess-api.json
+          add-paths: |
+            foxess-api.json
+            src/v1.d.ts
           reviewers: teh-hippo
+          delete-branch: true
           title: Update OpenAPI ${{ github.run_number }}
           commit-message: |
             Automated update for the Open API specification.

@@ -17,6 +17,18 @@ jobs:
           node-version: 20
           registry-url: https://registry.npmjs.org/
       - run: npm ci --progress=false
+      - run: npm version patch && git push --tags && git push
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          add-paths: '*'
+          reviewers: teh-hippo
+          title: Update OpenAPI ${{ github.run_number }}
+          commit-message: |
+            Automated update for the Open API specification.
+          token: ${{ secrets.GH_TOKEN }}
+          committer: AutoHippo <auto@hippo.org>
+          branch: autohippo/openapi-update-${{ github.run_number }}
       - run: npm publish --dry-run
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
