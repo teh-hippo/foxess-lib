@@ -30,10 +30,10 @@ jobs:
           title: Update OpenAPI ${{ github.run_number }}
           commit-message: |
             Automated update for the Open API specification.
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           committer: AutoHippo <auto@hippo.org>
           branch: autohippo/openapi-update-${{ github.run_number }}
       - name: Enable Pull Request Automerge
         run: gh pr merge --merge --auto ${{ steps.cpr.outputs.pull-request-number }}
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
