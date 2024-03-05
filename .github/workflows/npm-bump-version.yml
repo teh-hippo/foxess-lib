@@ -36,6 +36,6 @@ jobs:
           committer: AutoHippo <auto@hippo.org>
           branch: autohippo/openapi-update-${{ github.run_number }}
       - name: Enable Pull Request Automerge
-        run: gh pr merge --rebase --auto ${{ steps.cpr.outputs.pull-request-number }}
+        run: gh pr merge --delete-branch --rebase --auto ${{ steps.cpr.outputs.pull-request-number }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
