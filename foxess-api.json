@@ -1,0 +1,3448 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "version": "1.0.3",
+    "title": "FoxESS OpenAPI"
+  },
+  "servers": [
+    {
+      "url": "https://www.foxesscloud.com"
+    }
+  ],
+  "paths": {
+    "/op/v0/plant/create": {
+      "summary": "Create power station",
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errno": {
+                      "type": "number",
+                      "description": "Error number (When the result is not equal to zero, the request fails)"
+                    },
+                    "result": {
+                      "type": "object",
+                      "properties": {
+                        "stationID": {
+                          "type": "string",
+                          "description": "Id of power station"
+                        },
+                        "devices": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "device": {
+                                "type": "object",
+                                "properties": {
+                                  "sn": {
+                                    "type": "string",
+                                    "description": "Snserial number of module"
+                                  },
+                                  "key": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "errno": {
+                                "type": "number",
+                                "description": "Error number of module (when the result is not equal to zero, the serial number cannt meet the requirements)"
+                              }
+                            }
+                          },
+                          "description": "Information of module"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#create20power20station0a3ca20id3dcreate20power20station4333e203ca3e"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "devices": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "sn": {
+                          "type": "string",
+                          "description": "Serial number of module"
+                        },
+                        "key": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "description": "Information of modules (needed for creating pv/energy-storage power station)"
+                  },
+                  "pileSN": {
+                    "type": "string",
+                    "description": "Charge pile's serial number (needed for charge pile power station)"
+                  },
+                  "details": {
+                    "type": "object",
+                    "description": "Details of power station",
+                    "required": [
+                      "name",
+                      "type",
+                      "countryCode",
+                      "city",
+                      "address",
+                      "postcode"
+                    ],
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "Name of power station"
+                      },
+                      "type": {
+                        "type": "number",
+                        "description": "Type of power station (1-pv power station,2-energy-storage power station,3-charge-pile power station,4-mini-device power station)"
+                      },
+                      "countryCode": {
+                        "type": "string",
+                        "description": "Country's code of power station (Two-bit code, such as China is \\\"CN\\\",Reference address: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)"
+                      },
+                      "city": {
+                        "type": "string",
+                        "description": "City"
+                      },
+                      "address": {
+                        "type": "string",
+                        "description": "Address"
+                      },
+                      "postcode": {
+                        "type": "string",
+                        "description": "Postcode"
+                      },
+                      "price": {
+                        "type": "number",
+                        "description": "Electric price of power station (needed for creating pv/energy-storage/mini-device power station)"
+                      },
+                      "currency": {
+                        "type": "string",
+                        "description": "The currency of electricity price measurement (needed for editing pv/energy-storage/mini-device power station, reference: U.S. dollar-USD($), Euro-EUR(€), Vietnamese Dong-VND(D.), RMB-CNY(¥), Pound sterling-GBP(￡), Australian dollar-AUD($), Poland-PLN(Zł), India-INR(₹), Brazil-BRL(R$), S.Africa-ZAR(R), THB (THB)-THB(฿), Pakistani rupee-PKR(Rs))"
+                      },
+                      "systemCapacity": {
+                        "type": "number",
+                        "description": "System's capacity of power station (needed for creating pv/energy-storage/mini-device power station)"
+                      }
+                    }
+                  },
+                  "timezone": {
+                    "type": "string",
+                    "description": "Detailed time zone in English (\\\"district\\\"+\\\"/\\\"+\\\"country\\\", such as: Asia/Shanghai, Reference address: https://nodatime.org/TimeZones)"
+                  },
+                  "position": {
+                    "type": "object",
+                    "description": "Coordinate information",
+                    "properties": {
+                      "format": {
+                        "type": "string",
+                        "description": "Coordinate address"
+                      },
+                      "x": {
+                        "type": "string",
+                        "description": "Longitude"
+                      },
+                      "y": {
+                        "type": "string",
+                        "description": "Latitude"
+                      },
+                      "pid": {
+                        "type": "string",
+                        "description": "Ip of address"
+                      }
+                    }
+                  },
+                  "electricmeterSN": {
+                    "type": "string",
+                    "description": "Serial number of electricmeter (needn't if empty)"
+                  },
+                  "layoutByMini": {
+                    "type": "object",
+                    "description": "Information of mini-device (needed for creating mini-device power station)",
+                    "properties": {
+                      "direction": {
+                        "type": "number",
+                        "description": "Component layout (1-portrait, 2-crosswise)"
+                      },
+                      "arrange": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "sn": {
+                              "type": "string",
+                              "description": "Serial number of module (needed for creating mini-device power station)"
+                            },
+                            "horizontal": {
+                              "type": "number",
+                              "description": "Horizontal number (needed for creating mini-device power station)"
+                            },
+                            "vertical": {
+                              "type": "number",
+                              "description": "Vertical number (needed for creating mini-device power station)"
+                            },
+                            "azimuth": {
+                              "type": "number",
+                              "description": "Azimuth angle (needed for creating mini-device power station, between 0 and 360°)"
+                            },
+                            "dipAngle": {
+                              "type": "number",
+                              "description": "Angle of inclination (needed for creating mini-device power station, between 0 and 90°)"
+                            },
+                            "direction": {
+                              "type": "number",
+                              "description": "Direction ( needed for creating mini-device power station, 1-vertical, 2-horizontal)"
+                            },
+                            "capacity": {
+                              "type": "number",
+                              "description": "Component capacity (needed for creating mini-device power station)"
+                            },
+                            "model": {
+                              "type": "string",
+                              "description": "Component type (needed for creating mini-device power station)"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "details",
+                  "timezone"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\r\\n\\\" + token + \\\"\\r\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        }
+      ]
+    },
+    "/op/v0/plant/delete": {
+      "summary": "Delete power station",
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer",
+                      "description": "Error number (When the result is not equal to zero, the request fails)"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#delete20power20station0a3ca20id3ddelete20power20station4333e203ca3e"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "stationID"
+                ],
+                "properties": {
+                  "stationID": {
+                    "type": "string",
+                    "description": "Id of power station"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\r\\n\\\" + token + \\\"\\r\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        }
+      ]
+    },
+    "/op/v0/plant/update": {
+      "summary": "Edit power station",
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errno": {
+                      "type": "number",
+                      "description": "Error number (When the result is not equal to zero, the request fails)"
+                    },
+                    "result": {
+                      "type": "object",
+                      "properties": {
+                        "stationID": {
+                          "type": "string",
+                          "description": "Id of power station"
+                        },
+                        "devices": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "device": {
+                                "type": "object",
+                                "properties": {
+                                  "sn": {
+                                    "type": "string",
+                                    "description": "Serial number of module"
+                                  },
+                                  "key": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "errno": {
+                                "type": "number",
+                                "description": "Error number of module (when the result is not equal to zero, the serial number cannt meet the requirements)"
+                              }
+                            }
+                          },
+                          "description": "Information of module"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#edit20power20station0a3ca20id3dedit20power20station4333e203ca3e"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "devices": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "sn": {
+                          "type": "string",
+                          "description": "Serial number of module"
+                        },
+                        "key": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "description": "Information of modules (needed for editing pv/energy-storage power station)"
+                  },
+                  "pileSN": {
+                    "type": "string",
+                    "description": "Charge pile's serial number (needed for charge pile power station)"
+                  },
+                  "details": {
+                    "type": "object",
+                    "description": "Details of power station",
+                    "required": [
+                      "name",
+                      "type",
+                      "countryCode",
+                      "city",
+                      "address",
+                      "postcode",
+                      "stationID"
+                    ],
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "Name of power station"
+                      },
+                      "type": {
+                        "type": "number",
+                        "description": "Type of power station (1-pv power station,2-energy-storage power station,3-charge-pile power station,4-mini-device power station)"
+                      },
+                      "countryCode": {
+                        "type": "string",
+                        "description": "Country's code of power station (Two-bit code, such as China is \\\"CN\\\",Reference address: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)"
+                      },
+                      "city": {
+                        "type": "string",
+                        "description": "City"
+                      },
+                      "address": {
+                        "type": "string",
+                        "description": "Address"
+                      },
+                      "postcode": {
+                        "type": "string",
+                        "description": "Postcode"
+                      },
+                      "price": {
+                        "type": "number",
+                        "description": "Electric price of power station (needed for editing pv/energy-storage/mini-device power station)"
+                      },
+                      "currency": {
+                        "type": "string",
+                        "description": "The currency of electricity price measurement (needed for editing pv/energy-storage/mini-device power station, reference: U.S. dollar-USD($), Euro-EUR(€), Vietnamese Dong-VND(D.), RMB-CNY(¥), Pound sterling-GBP(￡), Australian dollar-AUD($), Poland-PLN(Zł), India-INR(₹), Brazil-BRL(R$), S.Africa-ZAR(R), THB (THB)-THB(฿), Pakistani rupee-PKR(Rs))"
+                      },
+                      "stationID": {
+                        "type": "string",
+                        "description": "Id of power station"
+                      },
+                      "systemCapacity": {
+                        "type": "number",
+                        "description": "System's capacity of power station (needed for editing pv/energy-storage/mini-device power station)"
+                      }
+                    }
+                  },
+                  "timezone": {
+                    "type": "string",
+                    "description": "Detailed time zone in English (\\\"district\\\"+\\\"/\\\"+\\\"country\\\", such as: Asia/Shanghai, Reference address: https://nodatime.org/TimeZones)"
+                  },
+                  "position": {
+                    "type": "object",
+                    "description": "Coordinate information",
+                    "properties": {
+                      "format": {
+                        "type": "string",
+                        "description": "Coordinate address"
+                      },
+                      "x": {
+                        "type": "string",
+                        "description": "Longitude"
+                      },
+                      "y": {
+                        "type": "string",
+                        "description": "Latitude"
+                      },
+                      "pid": {
+                        "type": "string",
+                        "description": "Ip of address"
+                      }
+                    }
+                  },
+                  "electricmeterSN": {
+                    "type": "string",
+                    "description": "Serial number of electricmeter (needn't if empty)"
+                  },
+                  "layoutByMini": {
+                    "type": "object",
+                    "description": "Information of mini-device (needed for editing mini-device power station)",
+                    "properties": {
+                      "direction": {
+                        "type": "number",
+                        "description": "Component layout (1-portrait, 2-crosswise)"
+                      },
+                      "arrange": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "sn": {
+                              "type": "string",
+                              "description": "Serial number of module"
+                            },
+                            "horizontal": {
+                              "type": "number",
+                              "description": "Horizontal number"
+                            },
+                            "vertical": {
+                              "type": "number",
+                              "description": "Vertical number"
+                            },
+                            "azimuth": {
+                              "type": "number",
+                              "description": "Azimuth angle(between 0 and 360°)"
+                            },
+                            "dipAngle": {
+                              "type": "number",
+                              "description": "Angle of inclination (between 0 and 90°)"
+                            },
+                            "direction": {
+                              "type": "number",
+                              "description": "Direction (1-vertical, 2-horizontal)"
+                            },
+                            "capacity": {
+                              "type": "number",
+                              "description": "Component capacity"
+                            },
+                            "model": {
+                              "type": "string",
+                              "description": "Component type"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "details",
+                  "timezone"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\r\\n\\\" + token + \\\"\\r\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        }
+      ]
+    },
+    "/op/v0/plant/detail": {
+      "summary": "Get power station detail",
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "result"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer",
+                      "description": "Error number (When the result is not equal to zero, the request fails)"
+                    },
+                    "result": {
+                      "type": "object",
+                      "required": [
+                        "stationName",
+                        "country",
+                        "city",
+                        "address",
+                        "createDate",
+                        "postcode",
+                        "capacity",
+                        "timezone",
+                        "user",
+                        "installer"
+                      ],
+                      "properties": {
+                        "stationName": {
+                          "type": "string",
+                          "description": "Name of power station"
+                        },
+                        "country": {
+                          "type": "string",
+                          "description": "Country of power station"
+                        },
+                        "city": {
+                          "type": "string",
+                          "description": "City of power station"
+                        },
+                        "address": {
+                          "type": "string",
+                          "description": "Address of power station"
+                        },
+                        "createDate": {
+                          "type": "string",
+                          "description": "Create time,millisecond timestamp"
+                        },
+                        "postcode": {
+                          "type": "string",
+                          "description": "Postcode of power station"
+                        },
+                        "capacity": {
+                          "type": "number",
+                          "description": "Installed capacity (Unit kw)"
+                        },
+                        "timezone": {
+                          "type": "string",
+                          "description": "Time zone of power station"
+                        },
+                        "user": {
+                          "type": "object",
+                          "description": "User information",
+                          "required": [
+                            "name",
+                            "email",
+                            "phone"
+                          ],
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "description": "Name of user"
+                            },
+                            "email": {
+                              "type": "string",
+                              "description": "Email of user"
+                            },
+                            "phone": {
+                              "type": "string",
+                              "description": "Phone of user"
+                            }
+                          }
+                        },
+                        "installer": {
+                          "type": "object",
+                          "description": "Installer information",
+                          "required": [
+                            "name",
+                            "email",
+                            "phone"
+                          ],
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "description": "Name of Installer"
+                            },
+                            "email": {
+                              "type": "string",
+                              "description": "Email of Installer"
+                            },
+                            "phone": {
+                              "type": "string",
+                              "description": "Phone of Installer"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#get20power20station20detail0a3ca20id3dget20power20station20detail4333e203ca3e"
+        }
+      },
+      "description": "Obtain details about a power station based on the power station ID",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\r\\n\\\" + token + \\\"\\r\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        },
+        {
+          "in": "query",
+          "name": "id",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Id of power station"
+        }
+      ]
+    },
+    "/op/v0/plant/list": {
+      "summary": "Get power station list",
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "result"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "number",
+                      "description": "Error number (When the result is not equal to zero, the request fails)"
+                    },
+                    "result": {
+                      "type": "object",
+                      "required": [
+                        "data",
+                        "currentPage",
+                        "pageSize",
+                        "total"
+                      ],
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "stationID",
+                              "name",
+                              "ianaTimezone"
+                            ],
+                            "properties": {
+                              "stationID": {
+                                "type": "string",
+                                "description": "Id of power station"
+                              },
+                              "name": {
+                                "type": "string",
+                                "description": "Name of power station"
+                              },
+                              "ianaTimezone": {
+                                "type": "string",
+                                "description": "Timezone of power station"
+                              }
+                            }
+                          }
+                        },
+                        "currentPage": {
+                          "type": "integer",
+                          "description": "Current page number"
+                        },
+                        "pageSize": {
+                          "type": "integer",
+                          "description": "The amount of data presented per page"
+                        },
+                        "total": {
+                          "type": "integer",
+                          "description": "Data volume total"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#get20power20station20list0a3ca20id3dget20power20station20list4333e203ca3e"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "currentPage",
+                  "pageSize"
+                ],
+                "properties": {
+                  "currentPage": {
+                    "type": "integer",
+                    "default": "1",
+                    "description": "Current page number"
+                  },
+                  "pageSize": {
+                    "type": "integer",
+                    "default": "10",
+                    "description": "The amount of data presented per page"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "Obtain the list of power stations to which this account belongs",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\r\\n\\\" + token + \\\"\\r\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        }
+      ]
+    },
+    "/op/v0/device/list": {
+      "summary": "Get device list",
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "result"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer",
+                      "description": "Error number (When the result is not equal to zero, the request fails)"
+                    },
+                    "result": {
+                      "type": "object",
+                      "required": [
+                        "currentPage",
+                        "pageSize",
+                        "total",
+                        "data"
+                      ],
+                      "properties": {
+                        "currentPage": {
+                          "type": "integer",
+                          "description": "Current page number"
+                        },
+                        "pageSize": {
+                          "type": "integer",
+                          "description": "The amount of data presented per page"
+                        },
+                        "total": {
+                          "type": "integer",
+                          "description": "Data volume total"
+                        },
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "deviceSN",
+                              "moduleSN",
+                              "plantID",
+                              "status",
+                              "hasPV",
+                              "hasBattery",
+                              "deviceType",
+                              "productType",
+                              "stationName"
+                            ],
+                            "properties": {
+                              "deviceSN": {
+                                "type": "string",
+                                "description": "Serial number of the inverter"
+                              },
+                              "moduleSN": {
+                                "type": "string",
+                                "description": "Serial number of the Data Logger"
+                              },
+                              "plantID": {
+                                "type": "string",
+                                "description": "Id of power station"
+                              },
+                              "status": {
+                                "type": "integer",
+                                "description": "Status of module"
+                              },
+                              "hasPV": {
+                                "type": "boolean",
+                                "description": "Is there a photovoltaic system available"
+                              },
+                              "hasBattery": {
+                                "type": "boolean",
+                                "description": "Is there a battery available"
+                              },
+                              "deviceType": {
+                                "type": "string",
+                                "description": "Type of device"
+                              },
+                              "productType": {
+                                "type": "string",
+                                "description": "Type of product"
+                              },
+                              "stationName": {
+                                "type": "string",
+                                "description": "Name of power station"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#get20device20list0a3ca20id3dget20device20list4303e203ca3e"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "currentPage",
+                  "pageSize"
+                ],
+                "properties": {
+                  "currentPage": {
+                    "type": "integer",
+                    "default": "1",
+                    "description": "Current page number"
+                  },
+                  "pageSize": {
+                    "type": "integer",
+                    "default": "10",
+                    "description": "The amount of data presented per page"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "Obtain the list of inverters owned by this account",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\r\\n\\\" + token + \\\"\\r\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        }
+      ]
+    },
+    "/op/v0/device/detail": {
+      "summary": "Get device detail",
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "result"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer",
+                      "description": "Error number (When the result is not equal to zero, the request fails)"
+                    },
+                    "result": {
+                      "type": "object",
+                      "required": [
+                        "deviceSN",
+                        "moduleSN",
+                        "stationID",
+                        "stationName",
+                        "afciVersion",
+                        "managerVersion",
+                        "masterVersion",
+                        "slaveVersion",
+                        "hardwareVersion",
+                        "status"
+                      ],
+                      "properties": {
+                        "deviceSN": {
+                          "type": "string",
+                          "description": "Serial number of the inverter"
+                        },
+                        "moduleSN": {
+                          "type": "string",
+                          "description": "Serial number of the collector"
+                        },
+                        "stationID": {
+                          "type": "string",
+                          "description": "Id of power station"
+                        },
+                        "stationName": {
+                          "type": "string",
+                          "description": "Name of power station"
+                        },
+                        "afciVersion": {
+                          "type": "string",
+                          "description": "Version of afci"
+                        },
+                        "managerVersion": {
+                          "type": "string",
+                          "description": "Version of manager"
+                        },
+                        "masterVersion": {
+                          "type": "string",
+                          "description": "Version of master"
+                        },
+                        "slaveVersion": {
+                          "type": "string",
+                          "description": "Version of slave"
+                        },
+                        "hardwareVersion": {
+                          "type": "string",
+                          "description": "Version of hardware"
+                        },
+                        "status": {
+                          "type": "integer",
+                          "description": "Status of device"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#get20device20detail0a3ca20id3dget20device20detail4303e203ca3e"
+        }
+      },
+      "description": "Obtain inverter details",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\r\\n\\\" + token + \\\"\\r\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        },
+        {
+          "in": "query",
+          "name": "sn",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Serial number of Inverter"
+        }
+      ]
+    },
+    "/op/v0/device/variable/get": {
+      "summary": "Get available variables",
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "result"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer"
+                    },
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "{variable}"
+                        ],
+                        "properties": {
+                          "{variable}": {
+                            "type": "object",
+                            "required": [
+                              "unit",
+                              "name"
+                            ],
+                            "properties": {
+                              "unit": {
+                                "type": "string",
+                                "description": "unit"
+                              },
+                              "name": {
+                                "type": "object",
+                                "description": "variable name",
+                                "required": [
+                                  "zh_CN",
+                                  "en",
+                                  "de",
+                                  "pt",
+                                  "fr",
+                                  "pl"
+                                ],
+                                "properties": {
+                                  "zh_CN": {
+                                    "type": "string"
+                                  },
+                                  "en": {
+                                    "type": "string"
+                                  },
+                                  "de": {
+                                    "type": "string"
+                                  },
+                                  "pt": {
+                                    "type": "string"
+                                  },
+                                  "fr": {
+                                    "type": "string"
+                                  },
+                                  "pl": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#get20available20variables0a3ca20id3dget20available20variables4303e203ca3e"
+        }
+      },
+      "description": "Obtain variable tables for use by real-time data and historical data interfaces",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\r\\n\\\" + token + \\\"\\r\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        }
+      ]
+    },
+    "/op/v0/device/real/query": {
+      "summary": "Get device real-time data",
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "result"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer"
+                    },
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "deviceSN",
+                          "datas",
+                          "time"
+                        ],
+                        "properties": {
+                          "deviceSN": {
+                            "type": "string",
+                            "description": "Serial Number of Inverter"
+                          },
+                          "datas": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "variable",
+                                "unit",
+                                "name",
+                                "value"
+                              ],
+                              "properties": {
+                                "variable": {
+                                  "type": "string",
+                                  "description": "Variable name If the data is not found, it will not be returned"
+                                },
+                                "unit": {
+                                  "type": "string",
+                                  "description": "Unit"
+                                },
+                                "name": {
+                                  "type": "string",
+                                  "description": "Name in English"
+                                },
+                                "value": {
+                                  "type": "number",
+                                  "description": "Value"
+                                }
+                              }
+                            }
+                          },
+                          "time": {
+                            "type": "string",
+                            "description": "Time of Data Update, utc time"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#get20device20real-time20data0a3ca20id3dget20device20real-time20data4303e203ca3e"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "variables": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "If this parameter is not passed, all variable data is obtained by default item type: string"
+                  },
+                  "sn": {
+                    "type": "string",
+                    "description": "Serial Number of Inverter If no parameter is specified, all devices are obtained"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "Get the latest real-time data of the inverter, and get the real-time data of all devices under the name without specifying the SN",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\r\\n\\\" + token + \\\"\\r\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        }
+      ]
+    },
+    "/op/v0/device/history/query": {
+      "summary": "Get device history data",
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "result"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer"
+                    },
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "deviceSN",
+                          "datas"
+                        ],
+                        "properties": {
+                          "deviceSN": {
+                            "type": "string",
+                            "description": "Serial Number of Inverter"
+                          },
+                          "datas": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "variable",
+                                "unit",
+                                "name",
+                                "data"
+                              ],
+                              "properties": {
+                                "variable": {
+                                  "type": "string",
+                                  "description": "Variable name"
+                                },
+                                "unit": {
+                                  "type": "string",
+                                  "description": "Unit of variable"
+                                },
+                                "name": {
+                                  "type": "string",
+                                  "description": "Name in English"
+                                },
+                                "data": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "required": [
+                                      "value",
+                                      "time"
+                                    ],
+                                    "properties": {
+                                      "value": {
+                                        "type": "number",
+                                        "description": "Value"
+                                      },
+                                      "time": {
+                                        "type": "string",
+                                        "description": "Time of Data Update, utc time"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#get20device20history20data0a3ca20id3dget20device20history20data4303e203ca3e"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "variables": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "If this parameter is not passed, all variable data is obtained by default"
+                  },
+                  "sn": {
+                    "type": "string",
+                    "description": "Serial Number of Inverter"
+                  },
+                  "begin": {
+                    "type": "number",
+                    "description": "Start timestamp(milliseconds)"
+                  },
+                  "end": {
+                    "type": "number",
+                    "description": "End timestamp(milliseconds)"
+                  }
+                },
+                "required": [
+                  "sn"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "description": "Obtain the historical data of the inverter, obtain the historical data of the last three days without specifying the time,and the time span must be less than or equal to 24 hours",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\r\\n\\\" + token + \\\"\\r\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        }
+      ]
+    },
+    "/op/v0/device/report/query": {
+      "summary": "Get device production report",
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "result"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer",
+                      "description": "Error number (When the result is not equal to zero, the request fails)"
+                    },
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "variable",
+                          "unit",
+                          "values"
+                        ],
+                        "properties": {
+                          "variable": {
+                            "type": "string",
+                            "description": "Variable name"
+                          },
+                          "unit": {
+                            "type": "string",
+                            "description": "Variable unit"
+                          },
+                          "values": {
+                            "type": "array",
+                            "items": {
+                              "type": "number"
+                            },
+                            "description": "Variable value"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#get20device20production20report0a3ca20id3dget20device20production20report4303e203ca3e"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "sn",
+                  "year",
+                  "dimension",
+                  "variables"
+                ],
+                "properties": {
+                  "sn": {
+                    "type": "string",
+                    "description": "Serial number of the inverter"
+                  },
+                  "year": {
+                    "type": "integer",
+                    "description": "year"
+                  },
+                  "month": {
+                    "type": "integer",
+                    "description": "month"
+                  },
+                  "day": {
+                    "type": "integer",
+                    "description": "day"
+                  },
+                  "dimension": {
+                    "type": "string",
+                    "description": "Statistical dimension"
+                  },
+                  "variables": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Query variable"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "Obtain the inverter electricity consumption report.Calculated according to the time zone of the power station to which the inverter belongs.The monthly electricity consumption of the year is obtained, the daily electricity consumption of the month is obtained, and the hourly electricity consumption of the day is obtained",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\r\\n\\\" + token + \\\"\\r\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        }
+      ]
+    },
+    "/op/v0/device/generation": {
+      "summary": "Get device power generation",
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "result"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer",
+                      "description": "Error number (When the result is not equal to zero, the request fails)"
+                    },
+                    "result": {
+                      "type": "object",
+                      "required": [
+                        "today",
+                        "month",
+                        "cumulative"
+                      ],
+                      "properties": {
+                        "today": {
+                          "type": "number",
+                          "description": "Electricity generation of this today unit:kWh"
+                        },
+                        "month": {
+                          "type": "number",
+                          "description": "Electricity generation of this month unit:kWh"
+                        },
+                        "cumulative": {
+                          "type": "number",
+                          "description": "Cumulative power generation unit:kWh"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#get20device20power20generation0a3ca20id3dget20device20power20generation4303e203ca3e"
+        }
+      },
+      "description": "Obtain the energy yield information of the inverter based on the time zone of the power station to which the inverter belongs",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\r\\n\\\" + token + \\\"\\r\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        },
+        {
+          "in": "query",
+          "name": "sn",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Serial number of inverter"
+        }
+      ]
+    },
+    "/op/v0/device/battery/soc/get": {
+      "summary": "Get the minimum soc settings for the battery of device",
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "result"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer",
+                      "description": "error number (When the result is not equal to zero, the request fails)"
+                    },
+                    "result": {
+                      "type": "object",
+                      "required": [
+                        "minSoc",
+                        "minSocOnGrid"
+                      ],
+                      "properties": {
+                        "minSoc": {
+                          "type": "integer",
+                          "description": "Minimum soc of system"
+                        },
+                        "minSocOnGrid": {
+                          "type": "integer",
+                          "description": "Minimum soc in grid-connected mode"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#get20the20minimum20soc20settings20for20the20battery20of20device200a3ca20id3dget20the20minimum20soc20settings20for20the20battery20of20device204303e203ca3e"
+        }
+      },
+      "description": "Obtain the inverter battery soc Settings",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\r\\n\\\" + token + \\\"\\r\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        },
+        {
+          "in": "query",
+          "name": "sn",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Serial number of Inverter"
+        }
+      ]
+    },
+    "/op/v0/device/battery/soc/set": {
+      "summary": "Set the minmum soc for the battery of the device",
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "result"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer",
+                      "description": "error number (When the result is not equal to zero, the request fails)"
+                    },
+                    "result": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#set20the20minmum20soc20for20the20battery20of20the20device200a3ca20id3dset20the20minmum20soc20for20the20battery20of20the20device204303e203ca3e"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "sn",
+                  "minSoc",
+                  "minSocOnGrid"
+                ],
+                "properties": {
+                  "sn": {
+                    "type": "string",
+                    "description": "Serial number of inverter"
+                  },
+                  "minSoc": {
+                    "type": "integer",
+                    "description": "Minimum soc of system"
+                  },
+                  "minSocOnGrid": {
+                    "type": "integer",
+                    "description": "Minimum soc in grid-connected mode"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "Set the minmum soc for the battery of the device",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\r\\n\\\" + token + \\\"\\r\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        }
+      ]
+    },
+    "/op/v0/device/battery/forceChargeTime/get": {
+      "summary": "Get the setting of battery charging time",
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "result"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer",
+                      "description": "Error number (When the result is not equal to zero, the request fails)"
+                    },
+                    "result": {
+                      "type": "object",
+                      "required": [
+                        "enable1",
+                        "startTime1",
+                        "endTime1",
+                        "enable2",
+                        "startTime2",
+                        "endTime2"
+                      ],
+                      "properties": {
+                        "enable1": {
+                          "type": "string",
+                          "description": "Whether the first segment is enabled"
+                        },
+                        "startTime1": {
+                          "type": "object",
+                          "description": "The first period starts time",
+                          "required": [
+                            "hour",
+                            "minute"
+                          ],
+                          "properties": {
+                            "hour": {
+                              "type": "integer"
+                            },
+                            "minute": {
+                              "type": "integer"
+                            }
+                          }
+                        },
+                        "endTime1": {
+                          "type": "object",
+                          "description": "The end time of the first period",
+                          "required": [
+                            "hour",
+                            "minute"
+                          ],
+                          "properties": {
+                            "hour": {
+                              "type": "integer"
+                            },
+                            "minute": {
+                              "type": "integer"
+                            }
+                          }
+                        },
+                        "enable2": {
+                          "type": "string",
+                          "description": "Whether the second segment is enabled or not"
+                        },
+                        "startTime2": {
+                          "type": "object",
+                          "description": "The second period starts time",
+                          "required": [
+                            "hour",
+                            "minute"
+                          ],
+                          "properties": {
+                            "hour": {
+                              "type": "integer"
+                            },
+                            "minute": {
+                              "type": "integer"
+                            }
+                          }
+                        },
+                        "endTime2": {
+                          "type": "object",
+                          "description": "The end time of the second period",
+                          "required": [
+                            "hour",
+                            "minute"
+                          ],
+                          "properties": {
+                            "hour": {
+                              "type": "integer"
+                            },
+                            "minute": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#get20the20setting20of20battery20charging20time0a3ca20id3dget20the20setting20of20battery20charging20time4303e203ca3e"
+        }
+      },
+      "description": "Obtain the setting of battery charging time",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\r\\n\\\" + token + \\\"\\r\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        },
+        {
+          "in": "query",
+          "name": "sn",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Serial number of inverter"
+        }
+      ]
+    },
+    "/op/v0/device/battery/forceChargeTime/set": {
+      "summary": "Set the battery charging time",
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "result"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer",
+                      "description": "Error number (When the result is not equal to zero, the request fails)"
+                    },
+                    "result": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#set20the20battery20charging20time0a3ca20id3dset20the20battery20charging20time4303e203ca3e"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "sn",
+                  "enable1",
+                  "enable2",
+                  "startTime1",
+                  "endTime1",
+                  "startTime2",
+                  "endTime2"
+                ],
+                "properties": {
+                  "sn": {
+                    "type": "string",
+                    "description": "Serial number of Inverter"
+                  },
+                  "enable1": {
+                    "type": "boolean",
+                    "description": "Whether the first segment is enabled"
+                  },
+                  "enable2": {
+                    "type": "boolean",
+                    "description": "Whether the second segment is enabled or not"
+                  },
+                  "startTime1": {
+                    "type": "object",
+                    "description": "The first period starts time",
+                    "required": [
+                      "hour",
+                      "minute"
+                    ],
+                    "properties": {
+                      "hour": {
+                        "type": "integer"
+                      },
+                      "minute": {
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "endTime1": {
+                    "type": "object",
+                    "description": "The end time of the first period",
+                    "required": [
+                      "hour",
+                      "minute"
+                    ],
+                    "properties": {
+                      "hour": {
+                        "type": "integer"
+                      },
+                      "minute": {
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "startTime2": {
+                    "type": "object",
+                    "description": "The second period starts time",
+                    "required": [
+                      "hour",
+                      "minute"
+                    ],
+                    "properties": {
+                      "hour": {
+                        "type": "integer"
+                      },
+                      "minute": {
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "endTime2": {
+                    "type": "object",
+                    "description": "The end time of the second period",
+                    "required": [
+                      "hour",
+                      "minute"
+                    ],
+                    "properties": {
+                      "hour": {
+                        "type": "integer"
+                      },
+                      "minute": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "Set the battery charging time. The period must be two periods. Both periods must be delivered",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\r\\n\\\" + token + \\\"\\r\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        }
+      ]
+    },
+    "/op/v0/device/scheduler/get/flag": {
+      "summary": "Get the main switch status",
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "msg",
+                    "result"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer",
+                      "description": "Error number (When the result is not equal to zero, the request fails)"
+                    },
+                    "msg": {
+                      "type": "string",
+                      "description": "Error message"
+                    },
+                    "result": {
+                      "type": "object",
+                      "required": [
+                        "support",
+                        "enable"
+                      ],
+                      "properties": {
+                        "support": {
+                          "type": "integer",
+                          "description": "Whether the timing function is supported(0:nonsupport 1:support) 0:nonsupport 1:support"
+                        },
+                        "enable": {
+                          "type": "integer",
+                          "description": "Whether to enable the timing function(0:disable 1:enable) 0:disable 1:enable"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#get20the20main20switch20status0a3ca20id3dget20the20main20switch20status4313e203ca3e"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "deviceSN"
+                ],
+                "properties": {
+                  "deviceSN": {
+                    "type": "string",
+                    "description": "Serial number of device"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "Obtain the timing mode switch status",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\r\\n\\\" + token + \\\"\\r\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        }
+      ]
+    },
+    "/op/v0/device/scheduler/get": {
+      "summary": "Get the time segment information",
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "msg",
+                    "result"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer",
+                      "description": "error number (When the result is not equal to zero, the request fails)"
+                    },
+                    "msg": {
+                      "type": "string",
+                      "description": "Error message"
+                    },
+                    "result": {
+                      "type": "object",
+                      "required": [
+                        "enable",
+                        "groups"
+                      ],
+                      "properties": {
+                        "enable": {
+                          "type": "string",
+                          "description": "State of master switch (0:off 1:on)"
+                        },
+                        "groups": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "enable",
+                              "startHour",
+                              "startMinute",
+                              "endHour",
+                              "endMinute",
+                              "workMode",
+                              "minSocOnGrid",
+                              "fdSoc",
+                              "fdPwr"
+                            ],
+                            "properties": {
+                              "enable": {
+                                "type": "integer",
+                                "description": "Whether to enable this group setting(0:disable 1:enable)"
+                              },
+                              "startHour": {
+                                "type": "integer",
+                                "description": "Start time - hour(The value is between 0 and 23)"
+                              },
+                              "startMinute": {
+                                "type": "integer",
+                                "description": "Start time - minute(The value is between 0 and 59)"
+                              },
+                              "endHour": {
+                                "type": "integer",
+                                "description": "Ending time - hour(The value is between 0 and 23)"
+                              },
+                              "endMinute": {
+                                "type": "integer",
+                                "description": "Ending time - minute(The value is between 0 and 59)"
+                              },
+                              "workMode": {
+                                "type": "string",
+                                "description": "Working mode (SelfUse, Feedin, Backup, ForceCharge, ForceDischarge)"
+                              },
+                              "minSocOnGrid": {
+                                "type": "integer",
+                                "description": "socThe minimum soc value of the offline battery"
+                              },
+                              "fdSoc": {
+                                "type": "integer",
+                                "description": "Discharge soc value"
+                              },
+                              "fdPwr": {
+                                "type": "integer",
+                                "description": "The maximum discharge power value"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#get20the20time20segment20information0a3ca20id3dget20the20time20segment20information4313e203ca3e"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "deviceSN"
+                ],
+                "properties": {
+                  "deviceSN": {
+                    "type": "string",
+                    "description": "Serial number of device"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "Get timing mode segment information",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\r\\n\\\" + token + \\\"\\r\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        }
+      ]
+    },
+    "/op/v0/device/scheduler/set/flag": {
+      "summary": "Set the main switch status",
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "msg"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer",
+                      "description": "Error number (When the result is not equal to zero, the request fails)"
+                    },
+                    "msg": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#set20the20main20switch20status0a3ca20id3dset20the20main20switch20status4313e203ca3e"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "deviceSN",
+                  "enable"
+                ],
+                "properties": {
+                  "deviceSN": {
+                    "type": "string",
+                    "description": "Serial number of device"
+                  },
+                  "enable": {
+                    "type": "integer",
+                    "description": "Whether the switch is on 0:disable 1:enable"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "Set the timing mode switch",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\r\\n\\\" + token + \\\"\\r\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        }
+      ]
+    },
+    "/op/v0/device/scheduler/enable": {
+      "summary": "Set the time segment information",
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "msg"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer",
+                      "description": "Error number (When the result is not equal to zero, the request fails)"
+                    },
+                    "msg": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#set20the20time20segment20information0a3ca20id3dset20the20time20segment20information4313e203ca3e"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "deviceSN",
+                  "groups"
+                ],
+                "properties": {
+                  "deviceSN": {
+                    "type": "string",
+                    "description": "Serial number of device"
+                  },
+                  "groups": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "enable",
+                        "startHour",
+                        "startMinute",
+                        "endHour",
+                        "endMinute",
+                        "workMode",
+                        "minSocOnGrid",
+                        "fdSoc",
+                        "fdPwr"
+                      ],
+                      "properties": {
+                        "enable": {
+                          "type": "integer",
+                          "description": "Whether to enable this group setting(0:disable 1:enable)"
+                        },
+                        "startHour": {
+                          "type": "integer",
+                          "description": "Start time - hour(The value is between 0 and 23)"
+                        },
+                        "startMinute": {
+                          "type": "integer",
+                          "description": "Start time - minute(The value is between 0 and 59)"
+                        },
+                        "endHour": {
+                          "type": "integer",
+                          "description": "Ending time - hour(The value is between 0 and 23)"
+                        },
+                        "endMinute": {
+                          "type": "integer",
+                          "description": "Ending time - minute(The value is between 0 and 59)"
+                        },
+                        "workMode": {
+                          "type": "string",
+                          "description": "Working mode (SelfUse, Feedin, Backup, ForceCharge, ForceDischarge)"
+                        },
+                        "minSocOnGrid": {
+                          "type": "integer",
+                          "description": "The minimum soc range of the offline battery is between 10 and 100"
+                        },
+                        "fdSoc": {
+                          "type": "integer",
+                          "description": "Discharge soc range between 0 and 100,value of fdsoc must be equal or greater than minSocOnGrid value of fdsoc must be equal or greater than minSocOnGrid"
+                        },
+                        "fdPwr": {
+                          "type": "number",
+                          "description": "The maximum discharge power ranges between 0 and 6000"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "Set the time segment information of the timing mode",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\r\\n\\\" + token + \\\"\\r\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        }
+      ]
+    },
+    "/op/v0/module/list": {
+      "summary": "Get Data Logger list",
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "result"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer",
+                      "description": "Error number (When the result is not equal to zero, the request fails)"
+                    },
+                    "result": {
+                      "type": "object",
+                      "required": [
+                        "currentPage",
+                        "pageSize",
+                        "total",
+                        "data"
+                      ],
+                      "properties": {
+                        "currentPage": {
+                          "type": "integer",
+                          "description": "Current page number"
+                        },
+                        "pageSize": {
+                          "type": "integer",
+                          "description": "The amount of data presented per page"
+                        },
+                        "total": {
+                          "type": "integer",
+                          "description": "Data volume total"
+                        },
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "moduleSN",
+                              "stationID",
+                              "status",
+                              "signal"
+                            ],
+                            "properties": {
+                              "moduleSN": {
+                                "type": "string",
+                                "description": "Serial number of Data Logger"
+                              },
+                              "stationID": {
+                                "type": "string",
+                                "description": "Id of power station"
+                              },
+                              "status": {
+                                "type": "integer",
+                                "description": "Status of collector"
+                              },
+                              "signal": {
+                                "type": "integer",
+                                "description": "Signal strength"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#get20data20logger20list0a3ca20id3dget20data20logger20list4403e203ca3e"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "currentPage",
+                  "pageSize"
+                ],
+                "properties": {
+                  "currentPage": {
+                    "type": "integer",
+                    "default": "1",
+                    "description": "Current page number"
+                  },
+                  "pageSize": {
+                    "type": "integer",
+                    "default": "10",
+                    "description": "The amount of data presented per page"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "Obtain the collector list of this account",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\r\\n\\\" + token + \\\"\\r\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        }
+      ]
+    },
+    "/op/v0/user/getAccessCount": {
+      "summary": "Get the number of public interface accesses",
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "result"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer",
+                      "description": "Error number (When the result is not equal to zero, the request fails)"
+                    },
+                    "result": {
+                      "type": "object",
+                      "required": [
+                        "total",
+                        "remaining"
+                      ],
+                      "properties": {
+                        "total": {
+                          "type": "string",
+                          "description": "Number of total times that the user can access the open interface"
+                        },
+                        "remaining": {
+                          "type": "string",
+                          "description": "Number of remaining times that the user can access the open interface"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#get20the20number20of20public20interface20accesses0a3ca20id3dget20the20number20of20public20interface20accesses4323e203ca3e"
+        }
+      },
+      "description": "Obtain the number of accessible interfaces under the account based on the open api.",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\r\\n\\\" + token + \\\"\\r\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        }
+      ]
+    }
+  }
+}
