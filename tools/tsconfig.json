@@ -3,7 +3,7 @@
     "target": "ESNext",
     "moduleResolution": "Bundler",
     "sourceMap": true,
-    "outDir": "./dist",
+    "noEmit": true,
     "esModuleInterop": true,
     "noEmitOnError": true,
     "removeComments": true,
