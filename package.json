@@ -43,8 +43,6 @@
     "test": "jest tests",
     "lint": "eslint --max-warnings=0 src/**/*.ts",
     "lintAndFix": "eslint --fix --max-warnings=0 src/**/*.ts",
-    "prepublish": "tsc",
-    "prepublishOnly": "npm run lint && npm test",
     "updateOpenAPI": "tsx tools/generator.ts && npx openapi-typescript foxess-api.json -o src/v1.ts && eslint --fix ./src/v1.ts"
   },
   "devDependencies": {
