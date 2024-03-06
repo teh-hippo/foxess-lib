@@ -41,7 +41,6 @@
   "scripts": {
     "build": "tsup",
     "test": "jest tests",
-    "packtest": "npm pack | attw",
     "lint": "eslint --max-warnings=0 src/**/*.ts",
     "lintAndFix": "eslint --fix --max-warnings=0 src/**/*.ts",
     "prepublish": "tsc",

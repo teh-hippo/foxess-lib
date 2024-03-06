@@ -40,4 +40,4 @@ jobs:
       with:
         node-version: 20.x
     - run: npm ci --progress=false
-    - run: npm run packtest
+    - run: npx attw $(npm pack)
