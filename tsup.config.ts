@@ -7,5 +7,6 @@ export default defineConfig({
   clean: true,
   dts: true,
   cjsInterop: true,
-  format: [ "cjs", "esm" ]
+  format: [ "cjs", "esm" ],
+  noExternal: [ /(.*)/ ]
 })
