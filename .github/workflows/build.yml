@@ -40,4 +40,5 @@ jobs:
       with:
         node-version: 20.x
     - run: npm ci --progress=false
+    - run: npm run build
     - run: npx attw $(npm pack)
