@@ -43,7 +43,7 @@
     "test": "jest tests",
     "lint": "eslint --max-warnings=0 src/**/*.ts",
     "lintAndFix": "eslint --fix --max-warnings=0 src/**/*.ts",
-    "updateOpenAPI": "tsx tools/generator.ts && pnpm dlx openapi-typescript foxess-api.json -o src/v1.ts && eslint --fix ./src/v1.ts"
+    "updateOpenAPI": "tsx tools/generator.ts && pnpm exec openapi-typescript foxess-api.json -o src/v1.ts && eslint --fix ./src/v1.ts"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.15.0",
