@@ -16,9 +16,12 @@ jobs:
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org/
-      - run: npm ci --progress=false --include prod
-      - run: npm run build
-      - run: npm publish
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
+      - run: pnpm ci --progress=false --include prod
+      - run: pnpm build
+      - run: pnpm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -36,7 +39,10 @@ jobs:
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org/
-      - run: npm version patch --no-git-tag-version
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
+      - run: pnpm version patch --no-git-tag-version
       - name: get-npm-version
         id: version-after
         uses: martinbeentjes/npm-get-version-action@v1.3.1
