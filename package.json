@@ -43,7 +43,7 @@
     "test": "jest tests",
     "lint": "eslint --max-warnings=0 src/**/*.ts",
     "lintAndFix": "eslint --fix --max-warnings=0 src/**/*.ts",
-    "updateOpenAPI": "tsx tools/generator.ts && npx openapi-typescript foxess-api.json -o src/v1.ts && eslint --fix ./src/v1.ts"
+    "updateOpenAPI": "tsx tools/generator.ts && pnpm dlx openapi-typescript foxess-api.json -o src/v1.ts && eslint --fix ./src/v1.ts"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.15.0",
@@ -72,5 +72,6 @@
     "LICENSE",
     "README.md",
     "package.json"
-  ]
+  ],
+  "packageManager": "pnpm@8.15.4+sha256.cea6d0bdf2de3a0549582da3983c70c92ffc577ff4410cbf190817ddc35137c2"
 }
