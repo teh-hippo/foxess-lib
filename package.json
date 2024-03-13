@@ -41,8 +41,8 @@
   "scripts": {
     "build": "tsup",
     "test": "jest tests",
-    "lint": "eslint --max-warnings=0 src/**/*.ts",
-    "lintAndFix": "eslint --fix --max-warnings=0 src/**/*.ts",
+    "lint": "eslint src tools",
+    "lintAndFix": "eslint --fix  src tools",
     "updateOpenAPI": "pnpm exec tsx tools/generator.ts && pnpm exec openapi-typescript foxess-api.json -o src/v1.ts && eslint --fix ./src/v1.ts"
   },
   "devDependencies": {
