@@ -6,6 +6,7 @@ export default defineConfig({
   splitting: false,
   clean: true,
   dts: true,
+  outDir: 'lib',
   cjsInterop: true,
   format: [ "cjs", "esm" ],
   noExternal: [ /(.*)/ ]
