@@ -46,21 +46,21 @@
     "updateOpenAPI": "pnpm exec tsx tools/generator.ts && pnpm exec openapi-typescript foxess-api.json -o src/v1.ts && eslint --fix ./src/v1.ts"
   },
   "devDependencies": {
-    "@arethetypeswrong/cli": "^0.15.0",
+    "@arethetypeswrong/cli": "^0.15.1",
     "@stylistic/eslint-plugin": "^1.6.3",
     "@types/jest": "^29.5.12",
-    "@types/node": "^20.11.25",
+    "@types/node": "^20.11.26",
     "eslint": "^8.57.0",
     "jest": "^29.7.0",
     "node-html-parser": "^6.1.12",
-    "openapi-typescript": "^6.7.4",
+    "openapi-typescript": "^6.7.5",
     "ts-jest": "^29.1.2",
     "ts-log": "^2.2.5",
     "ts-patch": "^3.1.2",
     "tsup": "^8.0.2",
     "tsx": "^4.7.1",
     "typescript": "^5.4.2",
-    "typescript-eslint": "^7.1.1"
+    "typescript-eslint": "^7.2.0"
   },
   "dependencies": {
     "openapi-fetch": "^0.9.3",
