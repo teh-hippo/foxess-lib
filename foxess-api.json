@@ -2777,14 +2777,14 @@
                       "type": "object",
                       "required": [
                         "enable",
-                        "├�� groups"
+                        "groups"
                       ],
                       "properties": {
                         "enable": {
                           "type": "string",
                           "description": "State of master switch (0:off 1:on)"
                         },
-                        "├�� groups": {
+                        "groups": {
                           "type": "array",
                           "items": {
                             "type": "object",
