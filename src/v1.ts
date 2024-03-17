@@ -1391,7 +1391,7 @@ export interface paths {
               result: {
                 /** @description State of master switch (0:off 1:on) */
                 enable: string;
-                "├�� groups": {
+                groups: {
                   /** @description Whether to enable this group setting(0:disable 1:enable) */
                   enable: number;
                   /** @description Start time - hour(The value is between 0 and 23) */
