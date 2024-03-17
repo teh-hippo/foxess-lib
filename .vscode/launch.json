@@ -11,6 +11,15 @@
             "internalConsoleOptions": "openOnSessionStart"
         },
         {
+            "name": "Current Unit Test",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceRoot}/node_modules/jest/bin/jest.js",
+            "args": [ "${fileBasenameNoExtension}", "--config", "${workspaceRoot}/jest.config.json" ],
+            "cwd": "${workspaceRoot}",
+            "internalConsoleOptions": "openOnSessionStart"
+        },
+        {
             "name": "Generate OpenAPI Spec",
             "type": "node",
             "request": "launch",
