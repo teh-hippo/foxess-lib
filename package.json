@@ -1,7 +1,7 @@
 {
   "name": "foxess-lib",
   "displayName": "FoxESS Lib",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Wrapper for the FoxESS OpenAPI specification",
   "license": "GPL-3.0",
   "keywords": [
@@ -13,7 +13,9 @@
     "openapi"
   ],
   "type": "module",
-  "engines": { "node": ">=16.14" },
+  "engines": {
+    "node": ">=16.14"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/teh-hippo/foxess-lib.git"
