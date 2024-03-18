@@ -6,9 +6,14 @@ name: Build
 on: [push, pull_request]
 
 jobs:
+
   build:
 
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x, 18.x, 20.x]
 
     steps:
     - uses: actions/checkout@v4
@@ -17,10 +22,10 @@ jobs:
       with:
         path: node_modules
         key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.json') }}
-    - name: Use Node.js 20.x
+    - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4.0.2
       with:
-        node-version: 20.x
+        node-version: ${{ matrix.node-version }}
     - uses: pnpm/action-setup@v3
       with:
         version: 8
@@ -29,7 +34,13 @@ jobs:
     - run: pnpm test
 
   packtest:
+
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x, 18.x, 20.x]
+
     steps:
     - uses: actions/checkout@v4
     - uses: actions/cache@v4
@@ -37,10 +48,10 @@ jobs:
       with:
         path: node_modules
         key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.json') }}
-    - name: Use Node.js 20.x
+    - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4.0.2
       with:
-        node-version: 20.x
+        node-version: ${{ matrix.node-version }}
     - uses: pnpm/action-setup@v3
       with:
         version: latest

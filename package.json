@@ -13,6 +13,7 @@
     "openapi"
   ],
   "type": "module",
+  "engines": { "node": ">=16.14" },
   "repository": {
     "type": "git",
     "url": "git://github.com/teh-hippo/foxess-lib.git"
