@@ -1,0 +1,53 @@
+name: Publish Wiki
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+concurrency:
+  group: publish-wiki
+  cancel-in-progress: true
+permissions:
+  contents: write
+  repository-projects: write
+jobs:
+  publish-wiki:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Checkout wiki code
+      uses: actions/checkout@v4
+      with:
+        repository: ${{github.repository}}.wiki
+        path: docs
+    - uses: actions/cache@v4
+      name: Cache node modules
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.json') }}
+    - name: Use Node.js 20.x
+      uses: actions/setup-node@v4.0.2
+      with:
+        node-version: 20.x
+    - uses: pnpm/action-setup@v3
+      with:
+        version: latest
+    - name: get-npm-version
+      id: version-after
+      uses: martinbeentjes/npm-get-version-action@v1.3.1
+    - run: pnpm install --frozen-lockfile
+    - run: |
+        cd docs
+        for i in *; do
+          echo "Removing ${i}"
+          rm -R ${i}
+        done
+    - run: pnpm wiki
+    - run: |
+        cd docs
+        mv README.md Home.md
+    - uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: Updating documentation for v${{ steps.version-after.outputs.current-version }}
+        repository: docs
+        commit_user_name: AutoHippo
+        commit_user_email: auto@hippo.org 

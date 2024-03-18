@@ -44,7 +44,8 @@
     "test": "jest tests",
     "lint": "eslint src tools",
     "lintAndFix": "eslint --fix  src tools",
-    "updateOpenAPI": "pnpm exec tsx tools/generator.ts && pnpm exec openapi-typescript foxess-api.json -o src/v1.ts && eslint --fix ./src/v1.ts"
+    "updateOpenAPI": "pnpm exec tsx tools/generator.ts && pnpm exec openapi-typescript foxess-api.json -o src/v1.ts && eslint --fix ./src/v1.ts",
+    "wiki": "pnpm exec typedoc src --out docs --plugin typedoc-plugin-markdown --searchInComments --excludeInternal --excludeProtected --excludePrivate --excludeReferences --excludeExternals --exclude src/v1.ts --readme none --includeVersion --cleanOutputDir false"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.15.1",
@@ -60,6 +61,8 @@
     "ts-patch": "^3.1.2",
     "tsup": "^8.0.2",
     "tsx": "^4.7.1",
+    "typedoc": "^0.25.12",
+    "typedoc-plugin-markdown": "^3.17.1",
     "typescript": "^5.4.2",
     "typescript-eslint": "^7.2.0"
   },

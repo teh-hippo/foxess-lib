@@ -2,3 +2,4 @@ node_modules/
 *.tsbuildinfo
 lib
 /*.tgz
+docs
