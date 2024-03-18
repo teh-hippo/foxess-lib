@@ -8,22 +8,22 @@ import createClient from "openapi-fetch";
 import { type paths } from "./v1";
 
 /* **************** GET DEVICE LIST **************** */
-export type Inverter = paths["/op/v0/device/list"]["post"]["responses"]["200"]["content"]["application/json"]["result"]["data"][0];
+const inverterPath = "/op/v0/device/list";
+export type Inverter = paths[typeof inverterPath]["post"]["responses"]["200"]["content"]["application/json"]["result"]["data"][0];
 
 /**
  * Obtain the list of inverters owned by this account
  * @param apiKey Account API key
  * @returns All inverters
  */
-export async function getDeviceList(apiKey: string): Promise<Inverter[]> {
-  const path: keyof paths = "/op/v0/device/list";
+export async function getDevices(apiKey: string): Promise<Inverter[]> {
   const results: Inverter[] = [];
   let page = 0;
   let total = 0;
   do {
-    const { data, error } = await createClient<paths>({ baseUrl: BaseUrl }).POST(path, {
+    const { data, error } = await createClient<paths>({ baseUrl: BaseUrl }).POST(inverterPath, {
       params: {
-        header: header(path, apiKey)
+        header: header(inverterPath, apiKey)
       },
       body: {
         currentPage: ++page,
@@ -40,9 +40,32 @@ export async function getDeviceList(apiKey: string): Promise<Inverter[]> {
   return results;
 }
 
+/* **************** GET DEVICE DETAIL **************** */
+const detailPath = "/op/v0/device/detail";
+export type InverterDetails = paths[typeof detailPath]["get"]["responses"]["200"]["content"]["application/json"]["result"];
+
+/**
+ * Get details about a specific inverter.
+ *
+ * @param apiKey Account API key
+ * @param inverter Specific inverter to query.
+ * @returns More detailed inverter information.
+ */
+export async function getDetails(apiKey: string, inverter: Pick<Inverter, "deviceSN">): Promise<InverterDetails | undefined> {
+  const { data, error } = await createClient<paths>({ baseUrl: BaseUrl }).GET(detailPath, {
+    params: {
+      header: header(detailPath, apiKey),
+      query: { sn: inverter.deviceSN }
+    }
+  });
+  if (data?.errno !== 0 || !("result" in data)) throw new Error(`Invalid response code: ${data?.errno}: ${error}`);
+  return data.result;
+}
+
 /* **************** GET REALTIME DATA **************** */
-export type GetDeviceRealTimeDataRequest = paths["/op/v0/device/real/query"]["post"]["requestBody"]["content"]["application/json"];
-export type RealTimeData = paths["/op/v0/device/real/query"]["post"]["responses"]["200"]["content"]["application/json"]["result"][0];
+const realTimePath = "/op/v0/device/real/query";
+export type GetDeviceRealTimeDataRequest = paths[typeof realTimePath]["post"]["requestBody"]["content"]["application/json"];
+export type RealTimeData = paths[typeof realTimePath]["post"]["responses"]["200"]["content"]["application/json"]["result"][0];
 
 /**
  * Get realtime data for the account.
@@ -51,13 +74,36 @@ export type RealTimeData = paths["/op/v0/device/real/query"]["post"]["responses"
  * @returns All requested real-time data.
  */
 export async function getRealTimeData(apiKey: string, options?: GetDeviceRealTimeDataRequest): Promise<RealTimeData[] | undefined> {
-  const path: keyof paths = "/op/v0/device/real/query";
-  const { data, error } = await createClient<paths>({ baseUrl: BaseUrl }).POST(path, {
-    params: { header: header(path, apiKey) },
+  const { data, error } = await createClient<paths>({ baseUrl: BaseUrl }).POST(realTimePath, {
+    params: { header: header(realTimePath, apiKey) },
     body: options ?? {}
   });
   if (data?.errno !== 0 || !("result" in data)) throw new Error(`Invalid response code: ${data?.errno}: ${error}`);
   return data.result;
 }
 
-export default { getRealTimeData, getDeviceList };
+/* **************** GET PRODUCTION REPORT **************** */
+const reportPath = "/op/v0/device/report/query";
+export type GetDeviceProductionReportRequest = paths[typeof reportPath]["post"]["requestBody"]["content"]["application/json"];
+export type ReportData = paths[typeof reportPath]["post"]["responses"]["200"]["content"]["application/json"]["result"][0];
+
+/**
+ * Obtain the inverter electricity consumption report
+ *
+ * Calculated according to the time zone of the power station to which the inverter belongs.
+ * The monthly electricity consumption of the year is obtained, the daily electricity consumption of the month is obtained, and the hourly electricity consumption of the day is obtained.
+ *
+ * @param apiKey Account API key
+ * @param options Query parameters.
+ * @returns Data for the requested report.
+ */
+export async function getProductionReport(apiKey: string, options: GetDeviceProductionReportRequest): Promise<ReportData[] | undefined> {
+  const { data, error } = await createClient<paths>({ baseUrl: BaseUrl }).POST(reportPath, {
+    params: { header: header(reportPath, apiKey) },
+    body: options
+  });
+  if (data?.errno !== 0 || !("result" in data)) throw new Error(`Invalid response code: ${data?.errno}: ${error}`);
+  return data.result;
+}
+
+export default { getDetails, getDevices, getProductionReport, getRealTimeData };
