@@ -38,21 +38,39 @@ For local testing (e.g., [local.inverter.ts](./tools/local.inverter.ts)), store 
 
 ### Basic
 
-A utility class is provided for basic inverter querying.
+Several utility classes are provided for common tasks.
+
+#### Power Stations
+
+```typescript
+    import powerStation from "foxess-lib/lib/powerstation";
+
+    void (async () => {
+        const apiKey = "<my-api-key>";
+        const devices = await powerStation.getDevices(apiKey);
+        for (const device of devices) {
+            console.log(await powerStation.getDetails(apiKey, device));
+        }
+    })();
+```
+
+#### Inverters
 
 ```typescript
     import inverter from "foxess-lib/lib/inverter";
 
     void (async () => {
         const apiKey = "<my-api-key>";
-        const devices = await inverter.getDeviceList(apiKey);
-        console.log(devices);
+        const devices = await inverter.getDevices(apiKey);
         for (const device of devices) {
-            const data = await inverter.getRealTimeData(apiKey, { sn: device.deviceSN });
-            console.log(data);
+            console.log(await inverter.getRealTimeData(apiKey, { sn: device.deviceSN }));
         }
     })();
 ```
+
+#### Utilities
+
+See [util.ts](src/util.ts) for FoxESS-specific functions, such as `calculateSignature`.
 
 ### Advanced
 
