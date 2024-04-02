@@ -60,7 +60,7 @@ function extractTable(element: HTMLElement, topic: string, extractDepth: boolean
   body.querySelectorAll("tr").forEach((tr) => {
     const items = tr.querySelectorAll("td");
     if (items.length === 0) return;
-    if (items.length !== columns) throw new Error(`Expected ${columns} columns, but got ${items.length}. (${topic})`);
+    if (items.length !== columns) throw new Error(`Expected ${columns.toString()} columns, but got ${items.length.toString()}. (${topic})`);
     const result: string[] = items.map(content => content.textContent.tidy());
     if (extractDepth) {
       const key = tr.attributes.key;
@@ -96,7 +96,7 @@ async function downloadApi(): Promise<string> {
         if (response.statusCode >= 200 && response.statusCode <= 299) {
           resolve(body);
         } else {
-          reject(new Error(`Request failed. status: ${response.statusCode}, body: ${body}`));
+          reject(new Error(`Request failed. status: ${response.statusCode.toString()}, body: ${body}`));
         }
       });
     });
@@ -288,4 +288,4 @@ function indent(table: HTMLElement, path: string): FoxESSField[] {
   });
 
   fs.writeFileSync(fileName, JSON.stringify(doc, null, 2));
-})().catch((e) => { console.error(e); });
+})().catch((e: unknown) => { console.error(e); });

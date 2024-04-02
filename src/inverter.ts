@@ -21,7 +21,7 @@ export async function getDevices(apiKey: string): Promise<Inverter[]> {
   let page = 0;
   let total = 0;
   do {
-    const { data, error } = await createClient<paths>({ baseUrl: BaseUrl }).POST(inverterPath, {
+    const { data } = await createClient<paths>({ baseUrl: BaseUrl }).POST(inverterPath, {
       params: {
         header: header(inverterPath, apiKey)
       },
@@ -31,7 +31,8 @@ export async function getDevices(apiKey: string): Promise<Inverter[]> {
       }
     });
 
-    if (data?.errno !== 0 || !("result" in data)) throw new Error(`Invalid response code: ${data?.errno}: ${error} (page: ${page})`);
+    if (data === undefined) throw new Error(`Did not receive back any data.`);
+    if (data.errno !== 0) throw new Error(`Invalid response code: ${data.errno.toString()}: (page: ${page.toString()})`);
 
     // Append the results.  Return if at the end of pagination.
     total = data.result.total;
@@ -52,13 +53,15 @@ export type InverterDetails = paths[typeof detailPath]["get"]["responses"]["200"
  * @returns More detailed inverter information.
  */
 export async function getDetails(apiKey: string, inverter: Pick<Inverter, "deviceSN">): Promise<InverterDetails | undefined> {
-  const { data, error } = await createClient<paths>({ baseUrl: BaseUrl }).GET(detailPath, {
+  const { data } = await createClient<paths>({ baseUrl: BaseUrl }).GET(detailPath, {
     params: {
       header: header(detailPath, apiKey),
       query: { sn: inverter.deviceSN }
     }
   });
-  if (data?.errno !== 0 || !("result" in data)) throw new Error(`Invalid response code: ${data?.errno}: ${error}`);
+
+  if (data === undefined) throw new Error(`Did not receive back any data.`);
+  if (data.errno !== 0) throw new Error(`Invalid response code: ${data.errno.toString()}`);
   return data.result;
 }
 
@@ -74,11 +77,12 @@ export type RealTimeData = paths[typeof realTimePath]["post"]["responses"]["200"
  * @returns All requested real-time data.
  */
 export async function getRealTimeData(apiKey: string, options?: GetDeviceRealTimeDataRequest): Promise<RealTimeData[] | undefined> {
-  const { data, error } = await createClient<paths>({ baseUrl: BaseUrl }).POST(realTimePath, {
+  const { data } = await createClient<paths>({ baseUrl: BaseUrl }).POST(realTimePath, {
     params: { header: header(realTimePath, apiKey) },
     body: options ?? {}
   });
-  if (data?.errno !== 0 || !("result" in data)) throw new Error(`Invalid response code: ${data?.errno}: ${error}`);
+  if (data === undefined) throw new Error(`Did not receive back any data.`);
+  if (data.errno !== 0) throw new Error(`Invalid response code: ${data.errno.toString()}`);
   return data.result;
 }
 
@@ -98,11 +102,12 @@ export type ReportData = paths[typeof reportPath]["post"]["responses"]["200"]["c
  * @returns Data for the requested report.
  */
 export async function getProductionReport(apiKey: string, options: GetDeviceProductionReportRequest): Promise<ReportData[] | undefined> {
-  const { data, error } = await createClient<paths>({ baseUrl: BaseUrl }).POST(reportPath, {
+  const { data } = await createClient<paths>({ baseUrl: BaseUrl }).POST(reportPath, {
     params: { header: header(reportPath, apiKey) },
     body: options
   });
-  if (data?.errno !== 0 || !("result" in data)) throw new Error(`Invalid response code: ${data?.errno}: ${error}`);
+  if (data === undefined) throw new Error(`Did not receive back any data.`);
+  if (data.errno !== 0) throw new Error(`Invalid response code: ${data.errno.toString()}`);
   return data.result;
 }
 
