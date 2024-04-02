@@ -90,11 +90,13 @@ Usage follows the same approach provided by OpenAPI.
     // Example call
     export async function getRealTimeData(apiKey: string, options?: GetDeviceRealTimeDataRequest): Promise<RealTimeData[] | undefined> {
         const path: keyof paths = "/op/v0/device/real/query";
-        const { data, error } = await createClient<paths>({ baseUrl: BaseUrl }).POST(path, {
+        const { data } = await createClient<paths>({ baseUrl: BaseUrl }).POST(path, {
             params: { header: header(path, apiKey) },
             body: options ?? {}
         });
-        if (data?.errno !== 0 || !("result" in data)) throw new Error(`Invalid response code: ${data?.errno}: ${error}`);
+
+        if (data === undefined) throw new Error(`Did not receive back any data.`);
+        if (data.errno !== 0) throw new Error(`Invalid response code: ${data.errno.toString()}`);
         return data.result;
     }
 ```

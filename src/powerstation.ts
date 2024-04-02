@@ -21,7 +21,7 @@ export async function getDevices(apiKey: string): Promise<PowerStation[]> {
   let page = 0;
   let total = 0;
   do {
-    const { data, error } = await createClient<paths>({ baseUrl: BaseUrl }).POST(plantListPath, {
+    const { data } = await createClient<paths>({ baseUrl: BaseUrl }).POST(plantListPath, {
       params: {
         header: header(plantListPath, apiKey)
       },
@@ -31,7 +31,8 @@ export async function getDevices(apiKey: string): Promise<PowerStation[]> {
       }
     });
 
-    if (data?.errno !== 0 || !("result" in data)) throw new Error(`Invalid response code: ${data?.errno}: ${error} (page: ${page})`);
+    if (data === undefined) throw new Error(`Did not receive back any data.`);
+    if (data.errno !== 0) throw new Error(`Invalid response code: ${data.errno.toString()}: (page: ${page.toString()})`);
 
     // Append the results.  Return if at the end of pagination.
     total = data.result.total;
@@ -52,13 +53,14 @@ export type PowerStationDetails = paths[typeof plantDetailPath]["get"]["response
  * @returns More detailed power station information.
  */
 export async function getDetails(apiKey: string, powerStation: Pick<PowerStation, "stationID">): Promise<PowerStationDetails | undefined> {
-  const { data, error } = await createClient<paths>({ baseUrl: BaseUrl }).GET(plantDetailPath, {
+  const { data } = await createClient<paths>({ baseUrl: BaseUrl }).GET(plantDetailPath, {
     params: {
       header: header(plantDetailPath, apiKey),
       query: { id: powerStation.stationID }
     }
   });
-  if (data?.errno !== 0 || !("result" in data)) throw new Error(`Invalid response code: ${data?.errno}: ${error}`);
+  if (data === undefined) throw new Error(`Did not receive back any data.`);
+  if (data.errno !== 0) throw new Error(`Invalid response code: ${data.errno.toString()}`);
   return data.result;
 }
 
