@@ -235,7 +235,7 @@ export interface paths {
               /** @description Address */
               address: string;
               /** @description Postcode */
-              postcode: string;
+              "��─ postcode": string;
               /** @description Electric price of power station (needed for editing pv/energy-storage/mini-device power station) */
               price?: number;
               /** @description The currency of electricity price measurement (needed for editing pv/energy-storage/mini-device power station, reference: U.S. dollar-USD($), Euro-EUR(€), Vietnamese Dong-VND(D.), RMB-CNY(¥), Pound sterling-GBP(￡), Australian dollar-AUD($), Poland-PLN(Zł), India-INR(₹), Brazil-BRL(R$), S.Africa-ZAR(R), THB (THB)-THB(฿), Pakistani rupee-PKR(Rs)) */

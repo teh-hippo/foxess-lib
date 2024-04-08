@@ -476,7 +476,7 @@
                       "countryCode",
                       "city",
                       "address",
-                      "postcode",
+                      "��─ postcode",
                       "stationID"
                     ],
                     "properties": {
@@ -500,7 +500,7 @@
                         "type": "string",
                         "description": "Address"
                       },
-                      "postcode": {
+                      "��─ postcode": {
                         "type": "string",
                         "description": "Postcode"
                       },
