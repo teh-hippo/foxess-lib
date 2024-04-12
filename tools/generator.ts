@@ -38,8 +38,8 @@ String.prototype.tidy = function (): string {
   return this
     .replace(/\r\n/g, " ")
     .replace(/\n/g, " ")
-    .replace("  ", " ")
-    .replace("├─", "")
+    .replace(/ {2}/g, " ")
+    .replace(/├─/g, "")
     .replace(/（/g, " (")
     .replace(/）/g, ") ")
     .replace(/：/g, ": ")
