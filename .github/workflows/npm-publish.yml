@@ -17,8 +17,6 @@ jobs:
           node-version: 20
           registry-url: https://registry.npmjs.org/
       - uses: pnpm/action-setup@v3
-        with:
-          version: 8
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
       - run: pnpm publish --no-git-checks
@@ -40,8 +38,6 @@ jobs:
           node-version: 20
           registry-url: https://registry.npmjs.org/
       - uses: pnpm/action-setup@v3
-        with:
-          version: 8
       - run: pnpm version patch --no-git-tag-version
       - name: get-npm-version
         id: version-after
