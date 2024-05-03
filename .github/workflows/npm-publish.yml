@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4.0.1
+      - uses: actions/setup-node@v4.0.2
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org/
@@ -27,13 +27,14 @@ jobs:
     needs: publish
     runs-on: ubuntu-latest
     permissions:
+      pull-requests: write
       contents: write
     steps:
       - uses: actions/checkout@v4
         with:
           ref: main
           fetch-tags: true
-      - uses: actions/setup-node@v4.0.1
+      - uses: actions/setup-node@v4.0.2
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org/
@@ -42,6 +43,15 @@ jobs:
       - name: get-npm-version
         id: version-after
         uses: martinbeentjes/npm-get-version-action@v1.3.1
-      - uses: stefanzweifel/git-auto-commit-action@v5
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
         with:
-          commit_message: Bump version to ${{ steps.version-after.outputs.current-version }}
+          add-paths: |
+            package.json
+          delete-branch: true
+          title: Bump to version ${{ steps.version-after.outputs.current-version }}
+          commit-message: |
+            Bump to version ${{ steps.version-after.outputs.current-version }}
+          token: ${{ secrets.PAT }}
+          committer: AutoHippo <auto@hippo.org>
+          branch: bump-to-version-${{ steps.version-after.outputs.current-version }}
