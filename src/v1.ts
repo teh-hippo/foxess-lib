@@ -11,7 +11,7 @@ export interface paths {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
           token: string;
-          /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
           signature: string;
           /** @description Current timestamp */
           timestamp: string;
@@ -126,7 +126,7 @@ export interface paths {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
         token: string;
-        /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
         signature: string;
         /** @description Current timestamp */
         timestamp: string;
@@ -145,7 +145,7 @@ export interface paths {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
           token: string;
-          /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
           signature: string;
           /** @description Current timestamp */
           timestamp: string;
@@ -181,7 +181,7 @@ export interface paths {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
         token: string;
-        /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
         signature: string;
         /** @description Current timestamp */
         timestamp: string;
@@ -200,7 +200,7 @@ export interface paths {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
           token: string;
-          /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
           signature: string;
           /** @description Current timestamp */
           timestamp: string;
@@ -317,7 +317,7 @@ export interface paths {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
         token: string;
-        /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
         signature: string;
         /** @description Current timestamp */
         timestamp: string;
@@ -340,7 +340,7 @@ export interface paths {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
           token: string;
-          /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
           signature: string;
           /** @description Current timestamp */
           timestamp: string;
@@ -408,7 +408,7 @@ export interface paths {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
         token: string;
-        /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
         signature: string;
         /** @description Current timestamp */
         timestamp: string;
@@ -427,7 +427,7 @@ export interface paths {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
           token: string;
-          /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
           signature: string;
           /** @description Current timestamp */
           timestamp: string;
@@ -487,7 +487,7 @@ export interface paths {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
         token: string;
-        /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
         signature: string;
         /** @description Current timestamp */
         timestamp: string;
@@ -506,7 +506,7 @@ export interface paths {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
           token: string;
-          /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
           signature: string;
           /** @description Current timestamp */
           timestamp: string;
@@ -578,7 +578,7 @@ export interface paths {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
         token: string;
-        /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
         signature: string;
         /** @description Current timestamp */
         timestamp: string;
@@ -601,7 +601,7 @@ export interface paths {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
           token: string;
-          /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
           signature: string;
           /** @description Current timestamp */
           timestamp: string;
@@ -655,7 +655,7 @@ export interface paths {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
         token: string;
-        /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
         signature: string;
         /** @description Current timestamp */
         timestamp: string;
@@ -674,7 +674,7 @@ export interface paths {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
           token: string;
-          /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
           signature: string;
           /** @description Current timestamp */
           timestamp: string;
@@ -716,7 +716,7 @@ export interface paths {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
         token: string;
-        /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
         signature: string;
         /** @description Current timestamp */
         timestamp: string;
@@ -735,7 +735,7 @@ export interface paths {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
           token: string;
-          /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
           signature: string;
           /** @description Current timestamp */
           timestamp: string;
@@ -788,7 +788,7 @@ export interface paths {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
         token: string;
-        /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
         signature: string;
         /** @description Current timestamp */
         timestamp: string;
@@ -807,7 +807,7 @@ export interface paths {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
           token: string;
-          /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
           signature: string;
           /** @description Current timestamp */
           timestamp: string;
@@ -866,7 +866,7 @@ export interface paths {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
         token: string;
-        /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
         signature: string;
         /** @description Current timestamp */
         timestamp: string;
@@ -885,7 +885,7 @@ export interface paths {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
           token: string;
-          /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
           signature: string;
           /** @description Current timestamp */
           timestamp: string;
@@ -939,7 +939,7 @@ export interface paths {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
         token: string;
-        /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
         signature: string;
         /** @description Current timestamp */
         timestamp: string;
@@ -962,7 +962,7 @@ export interface paths {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
           token: string;
-          /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
           signature: string;
           /** @description Current timestamp */
           timestamp: string;
@@ -1002,7 +1002,7 @@ export interface paths {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
         token: string;
-        /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
         signature: string;
         /** @description Current timestamp */
         timestamp: string;
@@ -1025,7 +1025,7 @@ export interface paths {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
           token: string;
-          /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
           signature: string;
           /** @description Current timestamp */
           timestamp: string;
@@ -1063,7 +1063,7 @@ export interface paths {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
         token: string;
-        /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
         signature: string;
         /** @description Current timestamp */
         timestamp: string;
@@ -1082,7 +1082,7 @@ export interface paths {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
           token: string;
-          /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
           signature: string;
           /** @description Current timestamp */
           timestamp: string;
@@ -1120,7 +1120,7 @@ export interface paths {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
         token: string;
-        /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
         signature: string;
         /** @description Current timestamp */
         timestamp: string;
@@ -1140,7 +1140,7 @@ export interface paths {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
           token: string;
-          /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
           signature: string;
           /** @description Current timestamp */
           timestamp: string;
@@ -1198,7 +1198,7 @@ export interface paths {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
         token: string;
-        /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
         signature: string;
         /** @description Current timestamp */
         timestamp: string;
@@ -1217,7 +1217,7 @@ export interface paths {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
           token: string;
-          /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
           signature: string;
           /** @description Current timestamp */
           timestamp: string;
@@ -1278,7 +1278,7 @@ export interface paths {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
         token: string;
-        /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
         signature: string;
         /** @description Current timestamp */
         timestamp: string;
@@ -1297,7 +1297,7 @@ export interface paths {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
           token: string;
-          /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
           signature: string;
           /** @description Current timestamp */
           timestamp: string;
@@ -1341,7 +1341,7 @@ export interface paths {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
         token: string;
-        /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
         signature: string;
         /** @description Current timestamp */
         timestamp: string;
@@ -1360,7 +1360,7 @@ export interface paths {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
           token: string;
-          /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
           signature: string;
           /** @description Current timestamp */
           timestamp: string;
@@ -1422,7 +1422,7 @@ export interface paths {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
         token: string;
-        /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
         signature: string;
         /** @description Current timestamp */
         timestamp: string;
@@ -1441,7 +1441,7 @@ export interface paths {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
           token: string;
-          /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
           signature: string;
           /** @description Current timestamp */
           timestamp: string;
@@ -1481,7 +1481,7 @@ export interface paths {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
         token: string;
-        /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
         signature: string;
         /** @description Current timestamp */
         timestamp: string;
@@ -1500,7 +1500,7 @@ export interface paths {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
           token: string;
-          /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
           signature: string;
           /** @description Current timestamp */
           timestamp: string;
@@ -1558,7 +1558,7 @@ export interface paths {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
         token: string;
-        /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
         signature: string;
         /** @description Current timestamp */
         timestamp: string;
@@ -1577,7 +1577,7 @@ export interface paths {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
           token: string;
-          /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
           signature: string;
           /** @description Current timestamp */
           timestamp: string;
@@ -1639,7 +1639,7 @@ export interface paths {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
         token: string;
-        /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
         signature: string;
         /** @description Current timestamp */
         timestamp: string;
@@ -1658,7 +1658,7 @@ export interface paths {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
           token: string;
-          /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
           signature: string;
           /** @description Current timestamp */
           timestamp: string;
@@ -1692,7 +1692,7 @@ export interface paths {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
         token: string;
-        /** @description Signature rule: Encrypt the string url + \"\r\n\" + token + \"\r\n\" + timestamp with md5 */
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
         signature: string;
         /** @description Current timestamp */
         timestamp: string;
