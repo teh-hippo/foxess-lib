@@ -2,7 +2,6 @@
 
 /* eslint-disable no-extend-native */
 import { parse, type HTMLElement } from "node-html-parser";
-import { rmSync, existsSync } from "fs";
 import * as fs from "fs";
 import { get } from "https";
 import { OpenAPIV3 } from "openapi-types";
@@ -160,10 +159,7 @@ function indent(table: HTMLElement, path: string): FoxESSField[] {
 (async () => {
   const script = process.argv[1];
   if (script === undefined) throw new Error("Unable to determine script");
-  const fileName = path.join(path.dirname(path.dirname(script)), "foxess-api.json");
-  if (fs.existsSync(fileName)) fs.rmSync(fileName);
-  console.log("Downloading API to: " + fileName);
-  if (existsSync(fileName)) rmSync(fileName);
+  console.log("Downloading API");
   const data = await downloadApi();
   const root = parse(data);
 
@@ -287,5 +283,7 @@ function indent(table: HTMLElement, path: string): FoxESSField[] {
     });
   });
 
-  fs.writeFileSync(fileName, JSON.stringify(doc, null, 2));
+  const fileName = path.join(path.dirname(path.dirname(script)), "foxess-api.json");
+  const fd = fs.openSync(fileName, fs.constants.O_CREAT | fs.constants.O_RDWR, 0o600);
+  fs.writeFileSync(fd, JSON.stringify(doc, null, 2));
 })().catch((e: unknown) => { console.error(e); });
