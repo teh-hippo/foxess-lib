@@ -35,6 +35,7 @@ String.prototype.trimToUndefined = function (): string | undefined {
 
 String.prototype.tidy = function (): string {
   return this
+    .replace(/\\/g, "\\\\")
     .replace(/\r\n/g, " ")
     .replace(/\n/g, " ")
     .replace(/ {2}/g, " ")
