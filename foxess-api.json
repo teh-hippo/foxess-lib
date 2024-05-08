@@ -687,7 +687,7 @@
                         "stationName",
                         "country",
                         "city",
-                        "address",
+                        "├�� address",
                         "createDate",
                         "postcode",
                         "capacity",
@@ -708,7 +708,7 @@
                           "type": "string",
                           "description": "City of power station"
                         },
-                        "address": {
+                        "├�� address": {
                           "type": "string",
                           "description": "Address of power station"
                         },

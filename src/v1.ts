@@ -366,7 +366,7 @@ export interface paths {
                 /** @description City of power station */
                 city: string;
                 /** @description Address of power station */
-                address: string;
+                "├�� address": string;
                 /** @description Create time,millisecond timestamp */
                 createDate: string;
                 /** @description Postcode of power station */
