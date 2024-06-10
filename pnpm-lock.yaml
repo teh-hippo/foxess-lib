@@ -48,7 +48,7 @@ devDependencies:
     version: 2.2.5
   ts-patch:
     specifier: ^3.1.2
-    version: 3.1.2
+    version: 3.2.0
   tsup:
     specifier: ^8.0.2
     version: 8.1.0(typescript@5.4.5)
@@ -4264,8 +4264,8 @@ packages:
     engines: {node: '>=12'}
     dev: false
 
-  /ts-patch@3.1.2:
-    resolution: {integrity: sha512-n58F5AqjUMdp9RAKq+E1YBkmONltPVbt1nN+wrmZXoYZek6QcvaTuqvKMhYhr5BxtC53kD/exxIPA1cP1RQxsA==}
+  /ts-patch@3.2.0:
+    resolution: {integrity: sha512-fUGMkjGIlD4BFibDM+6pLYLXRguzCUY6fhP1KQzSnFJfAtTDT7DKyX0yHn3CJqfBv4mia/o3ZRte31UVf9Dl1A==}
     hasBin: true
     dependencies:
       chalk: 4.1.2
