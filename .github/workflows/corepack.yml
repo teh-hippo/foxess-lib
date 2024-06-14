@@ -6,7 +6,7 @@ name: Update PNPM
 on:
   
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '37 13 1 * *'
   workflow_dispatch:
     
 permissions:
