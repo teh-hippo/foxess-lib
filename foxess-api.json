@@ -1050,7 +1050,7 @@
                               "plantID",
                               "status",
                               "hasPV",
-                              "hasBattery",
+                              "��─ hasBattery",
                               "deviceType",
                               "productType",
                               "stationName"
@@ -1076,7 +1076,7 @@
                                 "type": "boolean",
                                 "description": "Is there a photovoltaic system available"
                               },
-                              "hasBattery": {
+                              "��─ hasBattery": {
                                 "type": "boolean",
                                 "description": "Is there a battery available"
                               },

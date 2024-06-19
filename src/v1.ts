@@ -559,7 +559,7 @@ export interface paths {
                   /** @description Is there a photovoltaic system available */
                   hasPV: boolean;
                   /** @description Is there a battery available */
-                  hasBattery: boolean;
+                  "��─ hasBattery": boolean;
                   /** @description Type of device */
                   deviceType: string;
                   /** @description Type of product */
