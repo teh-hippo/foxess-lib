@@ -5,8 +5,30 @@
 
 export interface paths {
   "/op/v0/plant/create": {
+    parameters: {
+      query?: never;
+      header: {
+        "Content-Type": string;
+        /** @description Generate apikey from the API management function of the platform */
+        token: string;
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+        signature: string;
+        /** @description Current timestamp */
+        timestamp: string;
+        /**
+                 * @description Language
+                 * @example en
+                 */
+        lang: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
     post: {
       parameters: {
+        query?: never;
         header: {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
@@ -16,11 +38,13 @@ export interface paths {
           /** @description Current timestamp */
           timestamp: string;
           /**
-           * @description Language
-           * @example en
-           */
+                     * @description Language
+                     * @example en
+                     */
           lang: string;
         };
+        path?: never;
+        cookie?: never;
       };
       requestBody: {
         content: {
@@ -98,6 +122,7 @@ export interface paths {
       responses: {
         /** @description OK */
         200: {
+          headers: Record<string, unknown>;
           content: {
             "application/json": {
               /** @description Error number (When the result is not equal to zero, the request fails) */
@@ -121,7 +146,15 @@ export interface paths {
         };
       };
     };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/plant/delete": {
     parameters: {
+      query?: never;
       header: {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
@@ -131,16 +164,19 @@ export interface paths {
         /** @description Current timestamp */
         timestamp: string;
         /**
-         * @description Language
-         * @example en
-         */
+                 * @description Language
+                 * @example en
+                 */
         lang: string;
       };
+      path?: never;
+      cookie?: never;
     };
-  };
-  "/op/v0/plant/delete": {
+    get?: never;
+    put?: never;
     post: {
       parameters: {
+        query?: never;
         header: {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
@@ -150,11 +186,13 @@ export interface paths {
           /** @description Current timestamp */
           timestamp: string;
           /**
-           * @description Language
-           * @example en
-           */
+                     * @description Language
+                     * @example en
+                     */
           lang: string;
         };
+        path?: never;
+        cookie?: never;
       };
       requestBody: {
         content: {
@@ -167,6 +205,7 @@ export interface paths {
       responses: {
         /** @description OK */
         200: {
+          headers: Record<string, unknown>;
           content: {
             "application/json": {
               /** @description Error number (When the result is not equal to zero, the request fails) */
@@ -176,7 +215,15 @@ export interface paths {
         };
       };
     };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/plant/update": {
     parameters: {
+      query?: never;
       header: {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
@@ -186,16 +233,19 @@ export interface paths {
         /** @description Current timestamp */
         timestamp: string;
         /**
-         * @description Language
-         * @example en
-         */
+                 * @description Language
+                 * @example en
+                 */
         lang: string;
       };
+      path?: never;
+      cookie?: never;
     };
-  };
-  "/op/v0/plant/update": {
+    get?: never;
+    put?: never;
     post: {
       parameters: {
+        query?: never;
         header: {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
@@ -205,11 +255,13 @@ export interface paths {
           /** @description Current timestamp */
           timestamp: string;
           /**
-           * @description Language
-           * @example en
-           */
+                     * @description Language
+                     * @example en
+                     */
           lang: string;
         };
+        path?: never;
+        cookie?: never;
       };
       requestBody: {
         content: {
@@ -289,6 +341,7 @@ export interface paths {
       responses: {
         /** @description OK */
         200: {
+          headers: Record<string, unknown>;
           content: {
             "application/json": {
               /** @description Error number (When the result is not equal to zero, the request fails) */
@@ -312,7 +365,18 @@ export interface paths {
         };
       };
     };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/plant/detail": {
     parameters: {
+      query: {
+        /** @description Id of power station */
+        id: string;
+      };
       header: {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
@@ -322,14 +386,14 @@ export interface paths {
         /** @description Current timestamp */
         timestamp: string;
         /**
-         * @description Language
-         * @example en
-         */
+                 * @description Language
+                 * @example en
+                 */
         lang: string;
       };
+      path?: never;
+      cookie?: never;
     };
-  };
-  "/op/v0/plant/detail": {
     get: {
       parameters: {
         query: {
@@ -345,15 +409,19 @@ export interface paths {
           /** @description Current timestamp */
           timestamp: string;
           /**
-           * @description Language
-           * @example en
-           */
+                     * @description Language
+                     * @example en
+                     */
           lang: string;
         };
+        path?: never;
+        cookie?: never;
       };
+      requestBody?: never;
       responses: {
         /** @description OK */
         200: {
+          headers: Record<string, unknown>;
           content: {
             "application/json": {
               /** @description Error number (When the result is not equal to zero, the request fails) */
@@ -399,11 +467,17 @@ export interface paths {
         };
       };
     };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/plant/list": {
     parameters: {
-      query: {
-        /** @description Id of power station */
-        id: string;
-      };
+      query?: never;
       header: {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
@@ -413,16 +487,19 @@ export interface paths {
         /** @description Current timestamp */
         timestamp: string;
         /**
-         * @description Language
-         * @example en
-         */
+                 * @description Language
+                 * @example en
+                 */
         lang: string;
       };
+      path?: never;
+      cookie?: never;
     };
-  };
-  "/op/v0/plant/list": {
+    get?: never;
+    put?: never;
     post: {
       parameters: {
+        query?: never;
         header: {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
@@ -432,24 +509,26 @@ export interface paths {
           /** @description Current timestamp */
           timestamp: string;
           /**
-           * @description Language
-           * @example en
-           */
+                     * @description Language
+                     * @example en
+                     */
           lang: string;
         };
+        path?: never;
+        cookie?: never;
       };
       requestBody: {
         content: {
           "application/json": {
             /**
-             * @description Current page number
-             * @default 1
-             */
+                         * @description Current page number
+                         * @default 1
+                         */
             currentPage: number;
             /**
-             * @description The amount of data presented per page
-             * @default 10
-             */
+                         * @description The amount of data presented per page
+                         * @default 10
+                         */
             pageSize: number;
           };
         };
@@ -457,6 +536,7 @@ export interface paths {
       responses: {
         /** @description OK */
         200: {
+          headers: Record<string, unknown>;
           content: {
             "application/json": {
               /** @description Error number (When the result is not equal to zero, the request fails) */
@@ -482,7 +562,15 @@ export interface paths {
         };
       };
     };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/device/list": {
     parameters: {
+      query?: never;
       header: {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
@@ -492,16 +580,19 @@ export interface paths {
         /** @description Current timestamp */
         timestamp: string;
         /**
-         * @description Language
-         * @example en
-         */
+                 * @description Language
+                 * @example en
+                 */
         lang: string;
       };
+      path?: never;
+      cookie?: never;
     };
-  };
-  "/op/v0/device/list": {
+    get?: never;
+    put?: never;
     post: {
       parameters: {
+        query?: never;
         header: {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
@@ -511,24 +602,26 @@ export interface paths {
           /** @description Current timestamp */
           timestamp: string;
           /**
-           * @description Language
-           * @example en
-           */
+                     * @description Language
+                     * @example en
+                     */
           lang: string;
         };
+        path?: never;
+        cookie?: never;
       };
       requestBody: {
         content: {
           "application/json": {
             /**
-             * @description Current page number
-             * @default 1
-             */
+                         * @description Current page number
+                         * @default 1
+                         */
             currentPage: number;
             /**
-             * @description The amount of data presented per page
-             * @default 10
-             */
+                         * @description The amount of data presented per page
+                         * @default 10
+                         */
             pageSize: number;
           };
         };
@@ -536,6 +629,7 @@ export interface paths {
       responses: {
         /** @description OK */
         200: {
+          headers: Record<string, unknown>;
           content: {
             "application/json": {
               /** @description Error number (When the result is not equal to zero, the request fails) */
@@ -573,7 +667,18 @@ export interface paths {
         };
       };
     };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/device/detail": {
     parameters: {
+      query: {
+        /** @description Serial number of Inverter */
+        sn: string;
+      };
       header: {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
@@ -583,14 +688,14 @@ export interface paths {
         /** @description Current timestamp */
         timestamp: string;
         /**
-         * @description Language
-         * @example en
-         */
+                 * @description Language
+                 * @example en
+                 */
         lang: string;
       };
+      path?: never;
+      cookie?: never;
     };
-  };
-  "/op/v0/device/detail": {
     get: {
       parameters: {
         query: {
@@ -606,15 +711,19 @@ export interface paths {
           /** @description Current timestamp */
           timestamp: string;
           /**
-           * @description Language
-           * @example en
-           */
+                     * @description Language
+                     * @example en
+                     */
           lang: string;
         };
+        path?: never;
+        cookie?: never;
       };
+      requestBody?: never;
       responses: {
         /** @description OK */
         200: {
+          headers: Record<string, unknown>;
           content: {
             "application/json": {
               /** @description Error number (When the result is not equal to zero, the request fails) */
@@ -646,11 +755,17 @@ export interface paths {
         };
       };
     };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/device/variable/get": {
     parameters: {
-      query: {
-        /** @description Serial number of Inverter */
-        sn: string;
-      };
+      query?: never;
       header: {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
@@ -660,16 +775,17 @@ export interface paths {
         /** @description Current timestamp */
         timestamp: string;
         /**
-         * @description Language
-         * @example en
-         */
+                 * @description Language
+                 * @example en
+                 */
         lang: string;
       };
+      path?: never;
+      cookie?: never;
     };
-  };
-  "/op/v0/device/variable/get": {
     get: {
       parameters: {
+        query?: never;
         header: {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
@@ -679,15 +795,19 @@ export interface paths {
           /** @description Current timestamp */
           timestamp: string;
           /**
-           * @description Language
-           * @example en
-           */
+                     * @description Language
+                     * @example en
+                     */
           lang: string;
         };
+        path?: never;
+        cookie?: never;
       };
+      requestBody?: never;
       responses: {
         /** @description OK */
         200: {
+          headers: Record<string, unknown>;
           content: {
             "application/json": {
               errno: number;
@@ -711,7 +831,17 @@ export interface paths {
         };
       };
     };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/device/real/query": {
     parameters: {
+      query?: never;
       header: {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
@@ -721,16 +851,19 @@ export interface paths {
         /** @description Current timestamp */
         timestamp: string;
         /**
-         * @description Language
-         * @example en
-         */
+                 * @description Language
+                 * @example en
+                 */
         lang: string;
       };
+      path?: never;
+      cookie?: never;
     };
-  };
-  "/op/v0/device/real/query": {
+    get?: never;
+    put?: never;
     post: {
       parameters: {
+        query?: never;
         header: {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
@@ -740,11 +873,13 @@ export interface paths {
           /** @description Current timestamp */
           timestamp: string;
           /**
-           * @description Language
-           * @example en
-           */
+                     * @description Language
+                     * @example en
+                     */
           lang: string;
         };
+        path?: never;
+        cookie?: never;
       };
       requestBody: {
         content: {
@@ -759,6 +894,7 @@ export interface paths {
       responses: {
         /** @description OK */
         200: {
+          headers: Record<string, unknown>;
           content: {
             "application/json": {
               errno: number;
@@ -783,7 +919,15 @@ export interface paths {
         };
       };
     };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/device/history/query": {
     parameters: {
+      query?: never;
       header: {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
@@ -793,16 +937,19 @@ export interface paths {
         /** @description Current timestamp */
         timestamp: string;
         /**
-         * @description Language
-         * @example en
-         */
+                 * @description Language
+                 * @example en
+                 */
         lang: string;
       };
+      path?: never;
+      cookie?: never;
     };
-  };
-  "/op/v0/device/history/query": {
+    get?: never;
+    put?: never;
     post: {
       parameters: {
+        query?: never;
         header: {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
@@ -812,11 +959,13 @@ export interface paths {
           /** @description Current timestamp */
           timestamp: string;
           /**
-           * @description Language
-           * @example en
-           */
+                     * @description Language
+                     * @example en
+                     */
           lang: string;
         };
+        path?: never;
+        cookie?: never;
       };
       requestBody: {
         content: {
@@ -835,6 +984,7 @@ export interface paths {
       responses: {
         /** @description OK */
         200: {
+          headers: Record<string, unknown>;
           content: {
             "application/json": {
               errno: number;
@@ -861,7 +1011,15 @@ export interface paths {
         };
       };
     };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/device/report/query": {
     parameters: {
+      query?: never;
       header: {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
@@ -871,16 +1029,19 @@ export interface paths {
         /** @description Current timestamp */
         timestamp: string;
         /**
-         * @description Language
-         * @example en
-         */
+                 * @description Language
+                 * @example en
+                 */
         lang: string;
       };
+      path?: never;
+      cookie?: never;
     };
-  };
-  "/op/v0/device/report/query": {
+    get?: never;
+    put?: never;
     post: {
       parameters: {
+        query?: never;
         header: {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
@@ -890,11 +1051,13 @@ export interface paths {
           /** @description Current timestamp */
           timestamp: string;
           /**
-           * @description Language
-           * @example en
-           */
+                     * @description Language
+                     * @example en
+                     */
           lang: string;
         };
+        path?: never;
+        cookie?: never;
       };
       requestBody: {
         content: {
@@ -917,6 +1080,7 @@ export interface paths {
       responses: {
         /** @description OK */
         200: {
+          headers: Record<string, unknown>;
           content: {
             "application/json": {
               /** @description Error number (When the result is not equal to zero, the request fails) */
@@ -934,7 +1098,18 @@ export interface paths {
         };
       };
     };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/device/generation": {
     parameters: {
+      query: {
+        /** @description Serial number of inverter */
+        sn: string;
+      };
       header: {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
@@ -944,14 +1119,14 @@ export interface paths {
         /** @description Current timestamp */
         timestamp: string;
         /**
-         * @description Language
-         * @example en
-         */
+                 * @description Language
+                 * @example en
+                 */
         lang: string;
       };
+      path?: never;
+      cookie?: never;
     };
-  };
-  "/op/v0/device/generation": {
     get: {
       parameters: {
         query: {
@@ -967,15 +1142,19 @@ export interface paths {
           /** @description Current timestamp */
           timestamp: string;
           /**
-           * @description Language
-           * @example en
-           */
+                     * @description Language
+                     * @example en
+                     */
           lang: string;
         };
+        path?: never;
+        cookie?: never;
       };
+      requestBody?: never;
       responses: {
         /** @description OK */
         200: {
+          headers: Record<string, unknown>;
           content: {
             "application/json": {
               /** @description Error number (When the result is not equal to zero, the request fails) */
@@ -993,9 +1172,18 @@ export interface paths {
         };
       };
     };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/device/battery/soc/get": {
     parameters: {
       query: {
-        /** @description Serial number of inverter */
+        /** @description Serial number of Inverter */
         sn: string;
       };
       header: {
@@ -1007,14 +1195,14 @@ export interface paths {
         /** @description Current timestamp */
         timestamp: string;
         /**
-         * @description Language
-         * @example en
-         */
+                 * @description Language
+                 * @example en
+                 */
         lang: string;
       };
+      path?: never;
+      cookie?: never;
     };
-  };
-  "/op/v0/device/battery/soc/get": {
     get: {
       parameters: {
         query: {
@@ -1030,15 +1218,19 @@ export interface paths {
           /** @description Current timestamp */
           timestamp: string;
           /**
-           * @description Language
-           * @example en
-           */
+                     * @description Language
+                     * @example en
+                     */
           lang: string;
         };
+        path?: never;
+        cookie?: never;
       };
+      requestBody?: never;
       responses: {
         /** @description OK */
         200: {
+          headers: Record<string, unknown>;
           content: {
             "application/json": {
               /** @description error number (When the result is not equal to zero, the request fails) */
@@ -1054,11 +1246,17 @@ export interface paths {
         };
       };
     };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/device/battery/soc/set": {
     parameters: {
-      query: {
-        /** @description Serial number of Inverter */
-        sn: string;
-      };
+      query?: never;
       header: {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
@@ -1067,17 +1265,17 @@ export interface paths {
         signature: string;
         /** @description Current timestamp */
         timestamp: string;
-        /**
-         * @description Language
-         * @example en
-         */
+        /** @description Language */
         lang: string;
       };
+      path?: never;
+      cookie?: never;
     };
-  };
-  "/op/v0/device/battery/soc/set": {
+    get?: never;
+    put?: never;
     post: {
       parameters: {
+        query?: never;
         header: {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
@@ -1089,6 +1287,8 @@ export interface paths {
           /** @description Language */
           lang: string;
         };
+        path?: never;
+        cookie?: never;
       };
       requestBody: {
         content: {
@@ -1105,6 +1305,7 @@ export interface paths {
       responses: {
         /** @description OK */
         200: {
+          headers: Record<string, unknown>;
           content: {
             "application/json": {
               /** @description error number (When the result is not equal to zero, the request fails) */
@@ -1115,7 +1316,18 @@ export interface paths {
         };
       };
     };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/device/battery/forceChargeTime/get": {
     parameters: {
+      query: {
+        /** @description Serial number of inverter */
+        sn: string;
+      };
       header: {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
@@ -1124,12 +1336,15 @@ export interface paths {
         signature: string;
         /** @description Current timestamp */
         timestamp: string;
-        /** @description Language */
+        /**
+                 * @description Language
+                 * @example en
+                 */
         lang: string;
       };
+      path?: never;
+      cookie?: never;
     };
-  };
-  "/op/v0/device/battery/forceChargeTime/get": {
     get: {
       parameters: {
         query: {
@@ -1145,15 +1360,19 @@ export interface paths {
           /** @description Current timestamp */
           timestamp: string;
           /**
-           * @description Language
-           * @example en
-           */
+                     * @description Language
+                     * @example en
+                     */
           lang: string;
         };
+        path?: never;
+        cookie?: never;
       };
+      requestBody?: never;
       responses: {
         /** @description OK */
         200: {
+          headers: Record<string, unknown>;
           content: {
             "application/json": {
               /** @description Error number (When the result is not equal to zero, the request fails) */
@@ -1189,11 +1408,17 @@ export interface paths {
         };
       };
     };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/device/battery/forceChargeTime/set": {
     parameters: {
-      query: {
-        /** @description Serial number of inverter */
-        sn: string;
-      };
+      query?: never;
       header: {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
@@ -1203,16 +1428,19 @@ export interface paths {
         /** @description Current timestamp */
         timestamp: string;
         /**
-         * @description Language
-         * @example en
-         */
+                 * @description Language
+                 * @example en
+                 */
         lang: string;
       };
+      path?: never;
+      cookie?: never;
     };
-  };
-  "/op/v0/device/battery/forceChargeTime/set": {
+    get?: never;
+    put?: never;
     post: {
       parameters: {
+        query?: never;
         header: {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
@@ -1222,11 +1450,13 @@ export interface paths {
           /** @description Current timestamp */
           timestamp: string;
           /**
-           * @description Language
-           * @example en
-           */
+                     * @description Language
+                     * @example en
+                     */
           lang: string;
         };
+        path?: never;
+        cookie?: never;
       };
       requestBody: {
         content: {
@@ -1263,6 +1493,7 @@ export interface paths {
       responses: {
         /** @description OK */
         200: {
+          headers: Record<string, unknown>;
           content: {
             "application/json": {
               /** @description Error number (When the result is not equal to zero, the request fails) */
@@ -1273,7 +1504,15 @@ export interface paths {
         };
       };
     };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/device/scheduler/get/flag": {
     parameters: {
+      query?: never;
       header: {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
@@ -1283,16 +1522,19 @@ export interface paths {
         /** @description Current timestamp */
         timestamp: string;
         /**
-         * @description Language
-         * @example en
-         */
+                 * @description Language
+                 * @example en
+                 */
         lang: string;
       };
+      path?: never;
+      cookie?: never;
     };
-  };
-  "/op/v0/device/scheduler/get/flag": {
+    get?: never;
+    put?: never;
     post: {
       parameters: {
+        query?: never;
         header: {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
@@ -1302,11 +1544,13 @@ export interface paths {
           /** @description Current timestamp */
           timestamp: string;
           /**
-           * @description Language
-           * @example en
-           */
+                     * @description Language
+                     * @example en
+                     */
           lang: string;
         };
+        path?: never;
+        cookie?: never;
       };
       requestBody: {
         content: {
@@ -1319,6 +1563,7 @@ export interface paths {
       responses: {
         /** @description OK */
         200: {
+          headers: Record<string, unknown>;
           content: {
             "application/json": {
               /** @description Error number (When the result is not equal to zero, the request fails) */
@@ -1336,7 +1581,15 @@ export interface paths {
         };
       };
     };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/device/scheduler/get": {
     parameters: {
+      query?: never;
       header: {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
@@ -1346,16 +1599,19 @@ export interface paths {
         /** @description Current timestamp */
         timestamp: string;
         /**
-         * @description Language
-         * @example en
-         */
+                 * @description Language
+                 * @example en
+                 */
         lang: string;
       };
+      path?: never;
+      cookie?: never;
     };
-  };
-  "/op/v0/device/scheduler/get": {
+    get?: never;
+    put?: never;
     post: {
       parameters: {
+        query?: never;
         header: {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
@@ -1365,11 +1621,13 @@ export interface paths {
           /** @description Current timestamp */
           timestamp: string;
           /**
-           * @description Language
-           * @example en
-           */
+                     * @description Language
+                     * @example en
+                     */
           lang: string;
         };
+        path?: never;
+        cookie?: never;
       };
       requestBody: {
         content: {
@@ -1382,6 +1640,7 @@ export interface paths {
       responses: {
         /** @description OK */
         200: {
+          headers: Record<string, unknown>;
           content: {
             "application/json": {
               /** @description error number (When the result is not equal to zero, the request fails) */
@@ -1417,7 +1676,15 @@ export interface paths {
         };
       };
     };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/device/scheduler/set/flag": {
     parameters: {
+      query?: never;
       header: {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
@@ -1427,16 +1694,19 @@ export interface paths {
         /** @description Current timestamp */
         timestamp: string;
         /**
-         * @description Language
-         * @example en
-         */
+                 * @description Language
+                 * @example en
+                 */
         lang: string;
       };
+      path?: never;
+      cookie?: never;
     };
-  };
-  "/op/v0/device/scheduler/set/flag": {
+    get?: never;
+    put?: never;
     post: {
       parameters: {
+        query?: never;
         header: {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
@@ -1446,11 +1716,13 @@ export interface paths {
           /** @description Current timestamp */
           timestamp: string;
           /**
-           * @description Language
-           * @example en
-           */
+                     * @description Language
+                     * @example en
+                     */
           lang: string;
         };
+        path?: never;
+        cookie?: never;
       };
       requestBody: {
         content: {
@@ -1465,6 +1737,7 @@ export interface paths {
       responses: {
         /** @description OK */
         200: {
+          headers: Record<string, unknown>;
           content: {
             "application/json": {
               /** @description Error number (When the result is not equal to zero, the request fails) */
@@ -1476,7 +1749,15 @@ export interface paths {
         };
       };
     };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/device/scheduler/enable": {
     parameters: {
+      query?: never;
       header: {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
@@ -1486,16 +1767,19 @@ export interface paths {
         /** @description Current timestamp */
         timestamp: string;
         /**
-         * @description Language
-         * @example en
-         */
+                 * @description Language
+                 * @example en
+                 */
         lang: string;
       };
+      path?: never;
+      cookie?: never;
     };
-  };
-  "/op/v0/device/scheduler/enable": {
+    get?: never;
+    put?: never;
     post: {
       parameters: {
+        query?: never;
         header: {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
@@ -1505,11 +1789,13 @@ export interface paths {
           /** @description Current timestamp */
           timestamp: string;
           /**
-           * @description Language
-           * @example en
-           */
+                     * @description Language
+                     * @example en
+                     */
           lang: string;
         };
+        path?: never;
+        cookie?: never;
       };
       requestBody: {
         content: {
@@ -1542,6 +1828,7 @@ export interface paths {
       responses: {
         /** @description OK */
         200: {
+          headers: Record<string, unknown>;
           content: {
             "application/json": {
               /** @description Error number (When the result is not equal to zero, the request fails) */
@@ -1553,7 +1840,15 @@ export interface paths {
         };
       };
     };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/module/list": {
     parameters: {
+      query?: never;
       header: {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
@@ -1563,16 +1858,19 @@ export interface paths {
         /** @description Current timestamp */
         timestamp: string;
         /**
-         * @description Language
-         * @example en
-         */
+                 * @description Language
+                 * @example en
+                 */
         lang: string;
       };
+      path?: never;
+      cookie?: never;
     };
-  };
-  "/op/v0/module/list": {
+    get?: never;
+    put?: never;
     post: {
       parameters: {
+        query?: never;
         header: {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
@@ -1582,24 +1880,26 @@ export interface paths {
           /** @description Current timestamp */
           timestamp: string;
           /**
-           * @description Language
-           * @example en
-           */
+                     * @description Language
+                     * @example en
+                     */
           lang: string;
         };
+        path?: never;
+        cookie?: never;
       };
       requestBody: {
         content: {
           "application/json": {
             /**
-             * @description Current page number
-             * @default 1
-             */
+                         * @description Current page number
+                         * @default 1
+                         */
             currentPage: number;
             /**
-             * @description The amount of data presented per page
-             * @default 10
-             */
+                         * @description The amount of data presented per page
+                         * @default 10
+                         */
             pageSize: number;
           };
         };
@@ -1607,6 +1907,7 @@ export interface paths {
       responses: {
         /** @description OK */
         200: {
+          headers: Record<string, unknown>;
           content: {
             "application/json": {
               /** @description Error number (When the result is not equal to zero, the request fails) */
@@ -1634,7 +1935,15 @@ export interface paths {
         };
       };
     };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/user/getAccessCount": {
     parameters: {
+      query?: never;
       header: {
         "Content-Type": string;
         /** @description Generate apikey from the API management function of the platform */
@@ -1644,16 +1953,17 @@ export interface paths {
         /** @description Current timestamp */
         timestamp: string;
         /**
-         * @description Language
-         * @example en
-         */
+                 * @description Language
+                 * @example en
+                 */
         lang: string;
       };
+      path?: never;
+      cookie?: never;
     };
-  };
-  "/op/v0/user/getAccessCount": {
     get: {
       parameters: {
+        query?: never;
         header: {
           "Content-Type": string;
           /** @description Generate apikey from the API management function of the platform */
@@ -1663,15 +1973,19 @@ export interface paths {
           /** @description Current timestamp */
           timestamp: string;
           /**
-           * @description Language
-           * @example en
-           */
+                     * @description Language
+                     * @example en
+                     */
           lang: string;
         };
+        path?: never;
+        cookie?: never;
       };
+      requestBody?: never;
       responses: {
         /** @description OK */
         200: {
+          headers: Record<string, unknown>;
           content: {
             "application/json": {
               /** @description Error number (When the result is not equal to zero, the request fails) */
@@ -1687,31 +2001,23 @@ export interface paths {
         };
       };
     };
-    parameters: {
-      header: {
-        "Content-Type": string;
-        /** @description Generate apikey from the API management function of the platform */
-        token: string;
-        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
-        signature: string;
-        /** @description Current timestamp */
-        timestamp: string;
-        /**
-         * @description Language
-         * @example en
-         */
-        lang: string;
-      };
-    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
   };
 }
-
 export type webhooks = Record<string, never>;
-
-export type components = Record<string, never>;
-
+export interface components {
+  schemas: never;
+  responses: never;
+  parameters: never;
+  requestBodies: never;
+  headers: never;
+  pathItems: never;
+}
 export type $defs = Record<string, never>;
-
-export type external = Record<string, never>;
-
 export type operations = Record<string, never>;
