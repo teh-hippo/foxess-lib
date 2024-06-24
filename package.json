@@ -57,7 +57,7 @@
     "eslint": "^8.57.0",
     "jest": "^29.7.0",
     "node-html-parser": "^6.1.13",
-    "openapi-typescript": "^6.7.6",
+    "openapi-typescript": "^7.0.0",
     "ts-jest": "^29.1.4",
     "ts-log": "^2.2.5",
     "ts-patch": "^3.2.0",
