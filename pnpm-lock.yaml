@@ -60,7 +60,7 @@ devDependencies:
     version: 0.26.5(typescript@5.5.3)
   typedoc-plugin-markdown:
     specifier: ^4.0.3
-    version: 4.2.1(typedoc@0.26.5)
+    version: 4.2.2(typedoc@0.26.5)
   typescript:
     specifier: ^5.4.5
     version: 5.5.3
@@ -4281,8 +4281,8 @@ packages:
     engines: {node: '>=16'}
     dev: true
 
-  /typedoc-plugin-markdown@4.2.1(typedoc@0.26.5):
-    resolution: {integrity: sha512-7hQt/1WaW/VI4+x3sxwcCGsEylP1E1GvF6OTTELK5sfTEp6AeK+83jkCOgZGp1pI2DiOammMYQMnxxOny9TKsQ==}
+  /typedoc-plugin-markdown@4.2.2(typedoc@0.26.5):
+    resolution: {integrity: sha512-4Amnhjiw4L9aN5yBn6Ryh5WZr+uW41e6IU3EuQCNcVWgHQC+tlNIbbQMKVYAb33ES7yaM01dAXGS4BdJtQi7mA==}
     engines: {node: '>= 18'}
     peerDependencies:
       typedoc: 0.26.x
