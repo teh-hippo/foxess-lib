@@ -39,7 +39,7 @@ devDependencies:
     version: 6.1.13
   openapi-typescript:
     specifier: ^7.0.0
-    version: 7.1.0(typescript@5.5.3)
+    version: 7.1.1(typescript@5.5.3)
   ts-jest:
     specifier: ^29.1.4
     version: 29.2.3(@babel/core@7.24.7)(esbuild@0.21.5)(jest@29.7.0)(typescript@5.5.3)
@@ -3564,8 +3564,8 @@ packages:
     resolution: {integrity: sha512-BO2TvIDAO/FPVKz1Nj2gy+pUOHfaoENdK5UP3H0Jbh0VXBf3dwYMs58ZwOjiezrbHA2LamdquoyQgahTPvIxGA==}
     dev: false
 
-  /openapi-typescript@7.1.0(typescript@5.5.3):
-    resolution: {integrity: sha512-qxjGhIO6ODCGximE2HiozkPUNbO4y7F2OQyGa+gcn6TdZMMtmuiyDPqoKmf+Y4VlvQRfhJUTU635w8KfZVeuVA==}
+  /openapi-typescript@7.1.1(typescript@5.5.3):
+    resolution: {integrity: sha512-ssIeBp3Y7cwA/481AzC/+/cMTFHmg+R8aRXJPSNV/sc+2qvfGkFueL3/LyvLZEYeDDCzl2IhxoFPzH+UEscGQw==}
     hasBin: true
     peerDependencies:
       typescript: ^5.x
