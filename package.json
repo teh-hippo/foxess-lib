@@ -45,7 +45,7 @@
     "build": "tsup",
     "test": "jest tests",
     "lint": "eslint src tools",
-    "lintAndFix": "eslint --fix  src tools",
+    "lintAndFix": "eslint --fix src tools",
     "updateOpenAPI": "pnpm exec tsx tools/generator.ts && pnpm exec openapi-typescript foxess-api.json -o src/v1.ts && eslint --fix ./src/v1.ts",
     "wiki": "pnpm exec typedoc src --out docs --plugin typedoc-plugin-markdown --searchInComments --excludeInternal --excludeProtected --excludePrivate --excludeReferences --excludeExternals --exclude src/v1.ts --readme none --includeVersion --cleanOutputDir false"
   },
