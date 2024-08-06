@@ -18,15 +18,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/cache@v4
-        name: Cache node modules
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.yaml') }}
+      - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4.0.3
         with:
           node-version: latest
-      - uses: pnpm/action-setup@v4
+          cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm updateOpenAPI
       - name: Create Pull Request

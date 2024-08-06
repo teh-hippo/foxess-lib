@@ -17,16 +17,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - uses: actions/cache@v4
-      name: Cache node modules
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.yaml') }}
+    - uses: pnpm/action-setup@v4
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4.0.3
       with:
         node-version: ${{ matrix.node-version }}
-    - uses: pnpm/action-setup@v4
+        cache: pnpm
     - run: pnpm install --frozen-lockfile
     - run: pnpm lint
     - run: pnpm test
@@ -41,16 +37,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - uses: actions/cache@v4
-      name: Cache node modules
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.yaml') }}
+    - uses: pnpm/action-setup@v4
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4.0.3
       with:
         node-version: ${{ matrix.node-version }}
-    - uses: pnpm/action-setup@v4
+        cache: pnpm
     - run: pnpm install --frozen-lockfile
     - run: pnpm build
     - run: pnpm exec attw $(pnpm pack)
