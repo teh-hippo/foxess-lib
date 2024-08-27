@@ -1,6 +1,5 @@
 #!/usr/bin/env ts-node
 
-/* eslint-disable no-extend-native */
 import { parse, type HTMLElement } from "node-html-parser";
 import * as fs from "fs";
 import { get } from "https";
