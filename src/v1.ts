@@ -58,19 +58,19 @@ export interface paths {
             /** @description Charge pile's serial number (needed for charge pile power station) */
             pileSN?: string;
             /** @description Details of power station */
-            details: {
+            details?: {
               /** @description Name of power station */
-              name: string;
+              name?: string;
               /** @description Type of power station (1-pv power station,2-energy-storage power station,3-charge-pile power station,4-mini-device power station) */
-              type: number;
+              type?: number;
               /** @description Country's code of power station (Two-bit code, such as China is \"CN\",Reference address: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) */
-              countryCode: string;
+              countryCode?: string;
               /** @description City */
-              city: string;
+              city?: string;
               /** @description Address */
-              address: string;
+              address?: string;
               /** @description Postcode */
-              postcode: string;
+              postcode?: string;
               /** @description Electric price of power station (needed for creating pv/energy-storage/mini-device power station) */
               price?: number;
               /** @description The currency of electricity price measurement (needed for editing pv/energy-storage/mini-device power station, reference: U.S. dollar-USD($), Euro-EUR(€), Vietnamese Dong-VND(D.), RMB-CNY(¥), Pound sterling-GBP(￡), Australian dollar-AUD($), Poland-PLN(Zł), India-INR(₹), Brazil-BRL(R$), S.Africa-ZAR(R), THB (THB)-THB(฿), Pakistani rupee-PKR(Rs)) */
@@ -79,7 +79,7 @@ export interface paths {
               systemCapacity?: number;
             };
             /** @description Detailed time zone in English (\"district\"+\"/\"+\"country\", such as: Asia/Shanghai, Reference address: https://nodatime.org/TimeZones) */
-            timezone: string;
+            timezone?: string;
             /** @description Coordinate information */
             position?: {
               /** @description Coordinate address */
@@ -198,7 +198,7 @@ export interface paths {
         content: {
           "application/json": {
             /** @description Id of power station */
-            stationID: string;
+            stationID?: string;
           };
         };
       };
@@ -209,7 +209,7 @@ export interface paths {
           content: {
             "application/json": {
               /** @description Error number (When the result is not equal to zero, the request fails) */
-              errno: number;
+              errno?: number;
             };
           };
         };
@@ -275,30 +275,30 @@ export interface paths {
             /** @description Charge pile's serial number (needed for charge pile power station) */
             pileSN?: string;
             /** @description Details of power station */
-            details: {
+            details?: {
               /** @description Name of power station */
-              name: string;
+              name?: string;
               /** @description Type of power station (1-pv power station,2-energy-storage power station,3-charge-pile power station,4-mini-device power station) */
-              type: number;
+              "\u251C\uFFFD\uFFFD type"?: number;
               /** @description Country's code of power station (Two-bit code, such as China is \"CN\",Reference address: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) */
-              countryCode: string;
+              countryCode?: string;
               /** @description City */
-              city: string;
+              city?: string;
               /** @description Address */
-              address: string;
+              address?: string;
               /** @description Postcode */
-              postcode: string;
+              postcode?: string;
               /** @description Electric price of power station (needed for editing pv/energy-storage/mini-device power station) */
               price?: number;
               /** @description The currency of electricity price measurement (needed for editing pv/energy-storage/mini-device power station, reference: U.S. dollar-USD($), Euro-EUR(€), Vietnamese Dong-VND(D.), RMB-CNY(¥), Pound sterling-GBP(￡), Australian dollar-AUD($), Poland-PLN(Zł), India-INR(₹), Brazil-BRL(R$), S.Africa-ZAR(R), THB (THB)-THB(฿), Pakistani rupee-PKR(Rs)) */
               currency?: string;
               /** @description Id of power station */
-              stationID: string;
+              stationID?: string;
               /** @description System's capacity of power station (needed for editing pv/energy-storage/mini-device power station) */
               systemCapacity?: number;
             };
             /** @description Detailed time zone in English (\"district\"+\"/\"+\"country\", such as: Asia/Shanghai, Reference address: https://nodatime.org/TimeZones) */
-            timezone: string;
+            timezone?: string;
             /** @description Coordinate information */
             position?: {
               /** @description Coordinate address */
@@ -425,41 +425,41 @@ export interface paths {
           content: {
             "application/json": {
               /** @description Error number (When the result is not equal to zero, the request fails) */
-              errno: number;
-              result: {
+              errno?: number;
+              result?: {
                 /** @description Name of power station */
-                stationName: string;
+                stationName?: string;
                 /** @description Country of power station */
-                country: string;
+                country?: string;
                 /** @description City of power station */
-                city: string;
+                city?: string;
                 /** @description Address of power station */
-                address: string;
+                address?: string;
                 /** @description Create time,millisecond timestamp */
-                createDate: string;
+                createDate?: string;
                 /** @description Postcode of power station */
-                postcode: string;
+                postcode?: string;
                 /** @description Installed capacity (Unit kw) */
-                capacity: number;
+                capacity?: number;
                 /** @description Time zone of power station */
-                timezone: string;
+                timezone?: string;
                 /** @description User information */
-                user: {
+                user?: {
                   /** @description Name of user */
-                  name: string;
+                  name?: string;
                   /** @description Email of user */
-                  email: string;
+                  email?: string;
                   /** @description Phone of user */
-                  phone: string;
+                  phone?: string;
                 };
                 /** @description Installer information */
-                installer: {
+                installer?: {
                   /** @description Name of Installer */
-                  name: string;
+                  name?: string;
                   /** @description Email of Installer */
-                  email: string;
+                  email?: string;
                   /** @description Phone of Installer */
-                  phone: string;
+                  phone?: string;
                 };
               };
             };
@@ -524,12 +524,12 @@ export interface paths {
                          * @description Current page number
                          * @default 1
                          */
-            currentPage: number;
+            currentPage?: number;
             /**
                          * @description The amount of data presented per page
                          * @default 10
                          */
-            pageSize: number;
+            pageSize?: number;
           };
         };
       };
@@ -540,23 +540,109 @@ export interface paths {
           content: {
             "application/json": {
               /** @description Error number (When the result is not equal to zero, the request fails) */
-              errno: number;
-              result: {
-                data: {
+              errno?: number;
+              result?: {
+                data?: {
                   /** @description Id of power station */
-                  stationID: string;
+                  stationID?: string;
                   /** @description Name of power station */
-                  name: string;
+                  name?: string;
                   /** @description Timezone of power station */
-                  ianaTimezone: string;
+                  ianaTimezone?: string;
                 }[];
                 /** @description Current page number */
-                currentPage: number;
+                currentPage?: number;
                 /** @description The amount of data presented per page */
-                pageSize: number;
+                pageSize?: number;
                 /** @description Data volume total */
-                total: number;
+                total?: number;
               };
+            };
+          };
+        };
+      };
+    };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v1/device/real/query": {
+    parameters: {
+      query?: never;
+      header: {
+        "Content-Type": string;
+        /** @description Generate apikey from the API management function of the platform */
+        token: string;
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+        signature: string;
+        /** @description Current timestamp */
+        timestamp: string;
+        /**
+                 * @description Language
+                 * @example en
+                 */
+        lang: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: {
+      parameters: {
+        query?: never;
+        header: {
+          "Content-Type": string;
+          /** @description Generate apikey from the API management function of the platform */
+          token: string;
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+          signature: string;
+          /** @description Current timestamp */
+          timestamp: string;
+          /**
+                     * @description Language
+                     * @example en
+                     */
+          lang: string;
+        };
+        path?: never;
+        cookie?: never;
+      };
+      requestBody: {
+        content: {
+          "application/json": {
+            /** @description If this parameter is not passed, all variable data is obtained by default item type: string */
+            variables?: string[];
+            /** @description Serial Number of Inverter Remark:Can transmit up to 50 Serial Number */
+            sns?: string[];
+          };
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          headers: Record<string, unknown>;
+          content: {
+            "application/json": {
+              errno?: number;
+              result?: {
+                /** @description Serial Number of Inverter */
+                deviceSN?: string;
+                datas?: {
+                  /** @description Variable name If the data is not found, it will not be returned */
+                  variable?: string;
+                  /** @description Unit */
+                  unit?: string;
+                  /** @description Name in English */
+                  name?: string;
+                  /** @description Value */
+                  value?: number;
+                }[];
+                /** @description Time of Data Update, utc time */
+                time?: string;
+              }[];
             };
           };
         };
@@ -617,12 +703,12 @@ export interface paths {
                          * @description Current page number
                          * @default 1
                          */
-            currentPage: number;
+            currentPage?: number;
             /**
                          * @description The amount of data presented per page
                          * @default 10
                          */
-            pageSize: number;
+            pageSize?: number;
           };
         };
       };
@@ -633,33 +719,33 @@ export interface paths {
           content: {
             "application/json": {
               /** @description Error number (When the result is not equal to zero, the request fails) */
-              errno: number;
-              result: {
+              errno?: number;
+              result?: {
                 /** @description Current page number */
-                currentPage: number;
+                currentPage?: number;
                 /** @description The amount of data presented per page */
-                pageSize: number;
+                pageSize?: number;
                 /** @description Data volume total */
-                total: number;
-                data: {
+                total?: number;
+                data?: {
                   /** @description Serial number of the inverter */
-                  deviceSN: string;
+                  deviceSN?: string;
                   /** @description Serial number of the Data Logger */
-                  moduleSN: string;
+                  moduleSN?: string;
                   /** @description Id of power station */
-                  plantID: string;
-                  /** @description Status of module */
-                  status: number;
-                  /** @description Is there a photovoltaic system available */
-                  hasPV: boolean;
-                  /** @description Is there a battery available */
-                  hasBattery: boolean;
-                  /** @description Type of device */
-                  deviceType: string;
-                  /** @description Type of product */
-                  productType: string;
+                  stationID?: string;
                   /** @description Name of power station */
-                  stationName: string;
+                  stationName?: string;
+                  /** @description Status of module */
+                  status?: number;
+                  /** @description Is there a photovoltaic system available */
+                  hasPV?: boolean;
+                  /** @description Is there a battery available */
+                  hasBattery?: boolean;
+                  /** @description Type of device */
+                  deviceType?: string;
+                  /** @description Type of product */
+                  productType?: string;
                 }[];
               };
             };
@@ -727,28 +813,28 @@ export interface paths {
           content: {
             "application/json": {
               /** @description Error number (When the result is not equal to zero, the request fails) */
-              errno: number;
-              result: {
+              errno?: number;
+              result?: {
                 /** @description Serial number of the inverter */
-                deviceSN: string;
+                deviceSN?: string;
                 /** @description Serial number of the collector */
-                moduleSN: string;
+                moduleSN?: string;
                 /** @description Id of power station */
-                stationID: string;
+                stationID?: string;
                 /** @description Name of power station */
-                stationName: string;
+                stationName?: string;
                 /** @description Version of afci */
-                afciVersion: string;
+                afciVersion?: string;
                 /** @description Version of manager */
-                managerVersion: string;
+                managerVersion?: string;
                 /** @description Version of master */
-                masterVersion: string;
+                masterVersion?: string;
                 /** @description Version of slave */
-                slaveVersion: string;
+                slaveVersion?: string;
                 /** @description Version of hardware */
-                hardwareVersion: string;
+                hardwareVersion?: string;
                 /** @description Status of device */
-                status: number;
+                status?: number;
               };
             };
           };
@@ -810,20 +896,92 @@ export interface paths {
           headers: Record<string, unknown>;
           content: {
             "application/json": {
-              errno: number;
-              result: {
-                "{variable}": {
+              errno?: number;
+              result?: {
+                "{variable}"?: {
                   /** @description unit */
-                  unit: string;
+                  unit?: string;
                   /** @description variable name */
-                  name: {
-                    zh_CN: string;
-                    en: string;
-                    de: string;
-                    pt: string;
-                    fr: string;
-                    pl: string;
+                  name?: {
+                    zh_CN?: string;
+                    en?: string;
+                    de?: string;
+                    pt?: string;
+                    fr?: string;
+                    pl?: string;
                   };
+                };
+              }[];
+            };
+          };
+        };
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/device/fault/get": {
+    parameters: {
+      query?: never;
+      header: {
+        "Content-Type": string;
+        /** @description Generate apikey from the API management function of the platform */
+        token: string;
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+        signature: string;
+        /** @description Current timestamp */
+        timestamp: string;
+        /**
+                 * @description Language
+                 * @example en
+                 */
+        lang: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    get: {
+      parameters: {
+        query?: never;
+        header: {
+          "Content-Type": string;
+          /** @description Generate apikey from the API management function of the platform */
+          token: string;
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+          signature: string;
+          /** @description Current timestamp */
+          timestamp: string;
+          /**
+                     * @description Language
+                     * @example en
+                     */
+          lang: string;
+        };
+        path?: never;
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        /** @description OK */
+        200: {
+          headers: Record<string, unknown>;
+          content: {
+            "application/json": {
+              errno?: number;
+              result?: {
+                /** @description Error code */
+                "{errNo}"?: {
+                  /** @description The error code corresponds in English */
+                  en?: string;
+                  /** @description The error code corresponds in Chinese */
+                  zh_CN?: string;
+                  /** @description The error code corresponds in Polish */
+                  pl?: string;
                 };
               }[];
             };
@@ -897,22 +1055,22 @@ export interface paths {
           headers: Record<string, unknown>;
           content: {
             "application/json": {
-              errno: number;
-              result: {
+              errno?: number;
+              result?: {
                 /** @description Serial Number of Inverter */
-                deviceSN: string;
-                datas: {
+                deviceSN?: string;
+                datas?: {
                   /** @description Variable name If the data is not found, it will not be returned */
-                  variable: string;
+                  variable?: string;
                   /** @description Unit */
-                  unit: string;
+                  unit?: string;
                   /** @description Name in English */
-                  name: string;
+                  name?: string;
                   /** @description Value */
-                  value: number;
+                  value?: number;
                 }[];
                 /** @description Time of Data Update, utc time */
-                time: string;
+                time?: string;
               }[];
             };
           };
@@ -973,7 +1131,7 @@ export interface paths {
             /** @description If this parameter is not passed, all variable data is obtained by default */
             variables?: string[];
             /** @description Serial Number of Inverter */
-            sn: string;
+            sn?: string;
             /** @description Start timestamp(milliseconds) */
             begin?: number;
             /** @description End timestamp(milliseconds) */
@@ -987,22 +1145,22 @@ export interface paths {
           headers: Record<string, unknown>;
           content: {
             "application/json": {
-              errno: number;
-              result: {
+              errno?: number;
+              result?: {
                 /** @description Serial Number of Inverter */
-                deviceSN: string;
-                datas: {
+                deviceSN?: string;
+                datas?: {
                   /** @description Variable name */
-                  variable: string;
+                  variable?: string;
                   /** @description Unit of variable */
-                  unit: string;
+                  unit?: string;
                   /** @description Name in English */
-                  name: string;
-                  data: {
+                  name?: string;
+                  data?: {
                     /** @description Value */
-                    value: number;
+                    value?: number;
                     /** @description Time of Data Update, utc time */
-                    time: string;
+                    time?: string;
                   }[];
                 }[];
               }[];
@@ -1063,17 +1221,17 @@ export interface paths {
         content: {
           "application/json": {
             /** @description Serial number of the inverter */
-            sn: string;
+            sn?: string;
             /** @description year */
-            year: number;
+            year?: number;
             /** @description month */
             month?: number;
             /** @description day */
             day?: number;
             /** @description Statistical dimension */
-            dimension: string;
+            dimension?: string;
             /** @description Query variable */
-            variables: string[];
+            variables?: string[];
           };
         };
       };
@@ -1084,14 +1242,14 @@ export interface paths {
           content: {
             "application/json": {
               /** @description Error number (When the result is not equal to zero, the request fails) */
-              errno: number;
-              result: {
+              errno?: number;
+              result?: {
                 /** @description Variable name */
-                variable: string;
+                variable?: string;
                 /** @description Variable unit */
-                unit: string;
+                unit?: string;
                 /** @description Variable value */
-                values: number[];
+                values?: number[];
               }[];
             };
           };
@@ -1158,14 +1316,14 @@ export interface paths {
           content: {
             "application/json": {
               /** @description Error number (When the result is not equal to zero, the request fails) */
-              errno: number;
-              result: {
+              errno?: number;
+              result?: {
                 /** @description Electricity generation of this today unit:kWh */
-                today: number;
+                today?: number;
                 /** @description Electricity generation of this month unit:kWh */
-                month: number;
+                month?: number;
                 /** @description Cumulative power generation unit:kWh */
-                cumulative: number;
+                cumulative?: number;
               };
             };
           };
@@ -1234,12 +1392,12 @@ export interface paths {
           content: {
             "application/json": {
               /** @description error number (When the result is not equal to zero, the request fails) */
-              errno: number;
-              result: {
+              errno?: number;
+              result?: {
                 /** @description Minimum soc of system */
-                minSoc: number;
+                minSoc?: number;
                 /** @description Minimum soc in grid-connected mode */
-                minSocOnGrid: number;
+                minSocOnGrid?: number;
               };
             };
           };
@@ -1294,11 +1452,11 @@ export interface paths {
         content: {
           "application/json": {
             /** @description Serial number of inverter */
-            sn: string;
+            sn?: string;
             /** @description Minimum soc of system */
-            minSoc: number;
+            minSoc?: number;
             /** @description Minimum soc in grid-connected mode */
-            minSocOnGrid: number;
+            minSocOnGrid?: number;
           };
         };
       };
@@ -1309,8 +1467,8 @@ export interface paths {
           content: {
             "application/json": {
               /** @description error number (When the result is not equal to zero, the request fails) */
-              errno: number;
-              result: Record<string, never>;
+              errno?: number;
+              result?: Record<string, never>;
             };
           };
         };
@@ -1376,31 +1534,31 @@ export interface paths {
           content: {
             "application/json": {
               /** @description Error number (When the result is not equal to zero, the request fails) */
-              errno: number;
-              result: {
+              errno?: number;
+              result?: {
                 /** @description Whether the first segment is enabled */
-                enable1: string;
+                enable1?: string;
                 /** @description The first period starts time */
-                startTime1: {
-                  hour: number;
-                  minute: number;
+                startTime1?: {
+                  hour?: number;
+                  minute?: number;
                 };
                 /** @description The end time of the first period */
-                endTime1: {
-                  hour: number;
-                  minute: number;
+                endTime1?: {
+                  hour?: number;
+                  minute?: number;
                 };
                 /** @description Whether the second segment is enabled or not */
-                enable2: string;
+                enable2?: string;
                 /** @description The second period starts time */
-                startTime2: {
-                  hour: number;
-                  minute: number;
+                startTime2?: {
+                  hour?: number;
+                  minute?: number;
                 };
                 /** @description The end time of the second period */
-                endTime2: {
-                  hour: number;
-                  minute: number;
+                endTime2?: {
+                  hour?: number;
+                  minute?: number;
                 };
               };
             };
@@ -1462,30 +1620,30 @@ export interface paths {
         content: {
           "application/json": {
             /** @description Serial number of Inverter */
-            sn: string;
+            sn?: string;
             /** @description Whether the first segment is enabled */
-            enable1: boolean;
+            enable1?: boolean;
             /** @description Whether the second segment is enabled or not */
-            enable2: boolean;
+            enable2?: boolean;
             /** @description The first period starts time */
-            startTime1: {
-              hour: number;
-              minute: number;
+            startTime1?: {
+              hour?: number;
+              minute?: number;
             };
             /** @description The end time of the first period */
-            endTime1: {
-              hour: number;
-              minute: number;
+            endTime1?: {
+              hour?: number;
+              minute?: number;
             };
             /** @description The second period starts time */
-            startTime2: {
-              hour: number;
-              minute: number;
+            startTime2?: {
+              hour?: number;
+              minute?: number;
             };
             /** @description The end time of the second period */
-            endTime2: {
-              hour: number;
-              minute: number;
+            endTime2?: {
+              hour?: number;
+              minute?: number;
             };
           };
         };
@@ -1497,8 +1655,167 @@ export interface paths {
           content: {
             "application/json": {
               /** @description Error number (When the result is not equal to zero, the request fails) */
-              errno: number;
-              result: Record<string, never>;
+              errno?: number;
+              result?: Record<string, never>;
+            };
+          };
+        };
+      };
+    };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/device/setting/get": {
+    parameters: {
+      query?: never;
+      header: {
+        "Content-Type": string;
+        /** @description Generate apikey from the API management function of the platform */
+        token: string;
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+        signature: string;
+        /** @description Current timestamp */
+        timestamp: string;
+        /**
+                 * @description Language
+                 * @example en
+                 */
+        lang: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: {
+      parameters: {
+        query?: never;
+        header: {
+          "Content-Type": string;
+          /** @description Generate apikey from the API management function of the platform */
+          token: string;
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+          signature: string;
+          /** @description Current timestamp */
+          timestamp: string;
+          /**
+                     * @description Language
+                     * @example en
+                     */
+          lang: string;
+        };
+        path?: never;
+        cookie?: never;
+      };
+      requestBody: {
+        content: {
+          "application/json": {
+            /** @description Serial number of Inverter */
+            sn?: string;
+            /** @description settings item */
+            key?: string;
+          };
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          headers: Record<string, unknown>;
+          content: {
+            "application/json": {
+              /** @description Error number (When the result is not equal to zero, the request fails) */
+              errno?: number;
+              result?: {
+                /** @description setting value */
+                value?: string;
+                /** @description unit */
+                unit?: string;
+                /** @description precision */
+                precision?: number;
+                range?: {
+                  /** @description minimum */
+                  min?: number;
+                  /** @description maximum */
+                  max?: number;
+                };
+              };
+            };
+          };
+        };
+      };
+    };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/device/setting/set": {
+    parameters: {
+      query?: never;
+      header: {
+        "Content-Type": string;
+        /** @description Generate apikey from the API management function of the platform */
+        token: string;
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+        signature: string;
+        /** @description Current timestamp */
+        timestamp: string;
+        /**
+                 * @description Language
+                 * @example en
+                 */
+        lang: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: {
+      parameters: {
+        query?: never;
+        header: {
+          "Content-Type": string;
+          /** @description Generate apikey from the API management function of the platform */
+          token: string;
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+          signature: string;
+          /** @description Current timestamp */
+          timestamp: string;
+          /**
+                     * @description Language
+                     * @example en
+                     */
+          lang: string;
+        };
+        path?: never;
+        cookie?: never;
+      };
+      requestBody: {
+        content: {
+          "application/json": {
+            /** @description Serial number of Inverter */
+            sn?: string;
+            /** @description settings item */
+            key?: string;
+            /** @description settings value */
+            value?: string;
+          };
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          headers: Record<string, unknown>;
+          content: {
+            "application/json": {
+              /** @description Error number (When the result is not equal to zero, the request fails) */
+              errno?: number;
+              result?: Record<string, never>;
             };
           };
         };
@@ -1556,7 +1873,7 @@ export interface paths {
         content: {
           "application/json": {
             /** @description Serial number of device */
-            deviceSN: string;
+            deviceSN?: string;
           };
         };
       };
@@ -1567,14 +1884,14 @@ export interface paths {
           content: {
             "application/json": {
               /** @description Error number (When the result is not equal to zero, the request fails) */
-              errno: number;
+              errno?: number;
               /** @description Error message */
-              msg: string;
-              result: {
+              msg?: string;
+              result?: {
                 /** @description Whether the timing function is supported(0:nonsupport 1:support) 0:nonsupport 1:support */
-                support: number;
+                support?: number;
                 /** @description Whether to enable the timing function(0:disable 1:enable) 0:disable 1:enable */
-                enable: number;
+                enable?: number;
               };
             };
           };
@@ -1633,7 +1950,7 @@ export interface paths {
         content: {
           "application/json": {
             /** @description Serial number of device */
-            deviceSN: string;
+            deviceSN?: string;
           };
         };
       };
@@ -1644,31 +1961,31 @@ export interface paths {
           content: {
             "application/json": {
               /** @description error number (When the result is not equal to zero, the request fails) */
-              errno: number;
+              errno?: number;
               /** @description Error message */
-              msg: string;
-              result: {
+              msg?: string;
+              result?: {
                 /** @description State of master switch (0:off 1:on) */
-                enable: string;
-                groups: {
+                enable?: string;
+                groups?: {
                   /** @description Whether to enable this group setting(0:disable 1:enable) */
-                  enable: number;
+                  enable?: number;
                   /** @description Start time - hour(The value is between 0 and 23) */
-                  startHour: number;
+                  startHour?: number;
                   /** @description Start time - minute(The value is between 0 and 59) */
-                  startMinute: number;
+                  startMinute?: number;
                   /** @description Ending time - hour(The value is between 0 and 23) */
-                  endHour: number;
+                  endHour?: number;
                   /** @description Ending time - minute(The value is between 0 and 59) */
-                  endMinute: number;
+                  endMinute?: number;
                   /** @description Working mode (SelfUse, Feedin, Backup, ForceCharge, ForceDischarge) */
-                  workMode: string;
+                  workMode?: string;
                   /** @description socThe minimum soc value of the offline battery */
-                  minSocOnGrid: number;
+                  minSocOnGrid?: number;
                   /** @description Discharge soc value */
-                  fdSoc: number;
+                  fdSoc?: number;
                   /** @description The maximum discharge power value */
-                  fdPwr: number;
+                  fdPwr?: number;
                 }[];
               };
             };
@@ -1728,9 +2045,9 @@ export interface paths {
         content: {
           "application/json": {
             /** @description Serial number of device */
-            deviceSN: string;
+            deviceSN?: string;
             /** @description Whether the switch is on 0:disable 1:enable */
-            enable: number;
+            enable?: number;
           };
         };
       };
@@ -1741,9 +2058,9 @@ export interface paths {
           content: {
             "application/json": {
               /** @description Error number (When the result is not equal to zero, the request fails) */
-              errno: number;
+              errno?: number;
               /** @description Error message */
-              msg: string;
+              msg?: string;
             };
           };
         };
@@ -1801,26 +2118,26 @@ export interface paths {
         content: {
           "application/json": {
             /** @description Serial number of device */
-            deviceSN: string;
-            groups: {
+            deviceSN?: string;
+            groups?: {
               /** @description Whether to enable this group setting(0:disable 1:enable) */
-              enable: number;
+              enable?: number;
               /** @description Start time - hour(The value is between 0 and 23) */
-              startHour: number;
+              startHour?: number;
               /** @description Start time - minute(The value is between 0 and 59) */
-              startMinute: number;
+              startMinute?: number;
               /** @description Ending time - hour(The value is between 0 and 23) */
-              endHour: number;
+              endHour?: number;
               /** @description Ending time - minute(The value is between 0 and 59) */
-              endMinute: number;
+              endMinute?: number;
               /** @description Working mode (SelfUse, Feedin, Backup, ForceCharge, ForceDischarge) */
-              workMode: string;
+              workMode?: string;
               /** @description The minimum soc range of the offline battery is between 10 and 100 */
-              minSocOnGrid: number;
+              minSocOnGrid?: number;
               /** @description Discharge soc range between 0 and 100,value of fdsoc must be equal or greater than minSocOnGrid value of fdsoc must be equal or greater than minSocOnGrid */
-              fdSoc: number;
+              fdSoc?: number;
               /** @description The maximum discharge power ranges between 0 and 6000 */
-              fdPwr: number;
+              fdPwr?: number;
             }[];
           };
         };
@@ -1832,9 +2149,9 @@ export interface paths {
           content: {
             "application/json": {
               /** @description Error number (When the result is not equal to zero, the request fails) */
-              errno: number;
+              errno?: number;
               /** @description Error message */
-              msg: string;
+              msg?: string;
             };
           };
         };
@@ -1895,12 +2212,12 @@ export interface paths {
                          * @description Current page number
                          * @default 1
                          */
-            currentPage: number;
+            currentPage?: number;
             /**
                          * @description The amount of data presented per page
                          * @default 10
                          */
-            pageSize: number;
+            pageSize?: number;
           };
         };
       };
@@ -1911,23 +2228,23 @@ export interface paths {
           content: {
             "application/json": {
               /** @description Error number (When the result is not equal to zero, the request fails) */
-              errno: number;
-              result: {
+              errno?: number;
+              result?: {
                 /** @description Current page number */
-                currentPage: number;
+                currentPage?: number;
                 /** @description The amount of data presented per page */
-                pageSize: number;
+                pageSize?: number;
                 /** @description Data volume total */
-                total: number;
-                data: {
+                total?: number;
+                data?: {
                   /** @description Serial number of Data Logger */
-                  moduleSN: string;
+                  moduleSN?: string;
                   /** @description Id of power station */
-                  stationID: string;
+                  stationID?: string;
                   /** @description Status of collector */
-                  status: number;
+                  status?: number;
                   /** @description Signal strength */
-                  signal: number;
+                  signal?: number;
                 }[];
               };
             };
@@ -1989,12 +2306,12 @@ export interface paths {
           content: {
             "application/json": {
               /** @description Error number (When the result is not equal to zero, the request fails) */
-              errno: number;
-              result: {
+              errno?: number;
+              result?: {
                 /** @description Number of total times that the user can access the open interface */
-                total: string;
+                total?: string;
                 /** @description Number of remaining times that the user can access the open interface */
-                remaining: string;
+                remaining?: string;
               };
             };
           };
