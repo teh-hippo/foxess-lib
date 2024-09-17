@@ -48,8 +48,8 @@ String.prototype.tidy = function (): string {
     .trim();
 };
 
-function yesNoToBool(value: string): boolean {
-  return value.trim() === "Yes";
+function isRequired(value: string): boolean {
+  return value.trim() === "Required";
 }
 
 function extractTable(element: HTMLElement, topic: string, extractDepth: boolean, columns: number): string[][] {
@@ -129,7 +129,7 @@ function indent(table: HTMLElement, path: string): FoxESSField[] {
     return {
       name: String(d[0]),
       type: isArray ? "array" : type,
-      required: yesNoToBool(String(d[2])),
+      required: isRequired(String(d[2])),
       defaultValue: d[3]?.trimToUndefined(),
       remark: d[4]?.trimToUndefined(),
       additionalInfo: d[5]?.trimToUndefined(),
