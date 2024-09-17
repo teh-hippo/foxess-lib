@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "version": "1.0.4",
+    "version": "1.0.6",
     "title": "FoxESS OpenAPI"
   },
   "servers": [
@@ -1000,6 +1000,165 @@
         }
       ]
     },
+    "/op/v1/device/real/query": {
+      "summary": "Get device real-time data",
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "result"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer"
+                    },
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "deviceSN",
+                          "datas",
+                          "time"
+                        ],
+                        "properties": {
+                          "deviceSN": {
+                            "type": "string",
+                            "description": "Serial Number of Inverter"
+                          },
+                          "datas": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "variable",
+                                "unit",
+                                "name",
+                                "value"
+                              ],
+                              "properties": {
+                                "variable": {
+                                  "type": "string",
+                                  "description": "Variable name If the data is not found, it will not be returned"
+                                },
+                                "unit": {
+                                  "type": "string",
+                                  "description": "Unit"
+                                },
+                                "name": {
+                                  "type": "string",
+                                  "description": "Name in English"
+                                },
+                                "value": {
+                                  "type": "number",
+                                  "description": "Value"
+                                }
+                              }
+                            }
+                          },
+                          "time": {
+                            "type": "string",
+                            "description": "Time of Data Update, utc time"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#get20device20real-time20data0a3ca20id3dget20device20real-time20data5603e203ca3e"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "variables": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "If this parameter is not passed, all variable data is obtained by default item type: string"
+                  },
+                  "sns": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Serial Number of Inverter Remark:Can transmit up to 50 Serial Number"
+                  }
+                },
+                "required": [
+                  "sns"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "description": "Get the latest real-time data of the inverter. The sn array is mandatory and returns only the result set belonging to the current user. If no variable is specified, all variables are queried",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\\\r\\\\n\\\" + token + \\\"\\\\r\\\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        }
+      ]
+    },
     "/op/v0/device/list": {
       "summary": "Get device list",
       "post": {
@@ -1047,13 +1206,13 @@
                             "required": [
                               "deviceSN",
                               "moduleSN",
-                              "plantID",
+                              "stationID",
+                              "stationName",
                               "status",
                               "hasPV",
                               "hasBattery",
                               "deviceType",
-                              "productType",
-                              "stationName"
+                              "productType"
                             ],
                             "properties": {
                               "deviceSN": {
@@ -1064,9 +1223,13 @@
                                 "type": "string",
                                 "description": "Serial number of the Data Logger"
                               },
-                              "plantID": {
+                              "stationID": {
                                 "type": "string",
                                 "description": "Id of power station"
+                              },
+                              "stationName": {
+                                "type": "string",
+                                "description": "Name of power station"
                               },
                               "status": {
                                 "type": "integer",
@@ -1087,10 +1250,6 @@
                               "productType": {
                                 "type": "string",
                                 "description": "Type of product"
-                              },
-                              "stationName": {
-                                "type": "string",
-                                "description": "Name of power station"
                               }
                             }
                           }
@@ -1415,6 +1574,119 @@
         }
       },
       "description": "Obtain variable tables for use by real-time data and historical data interfaces",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\\\r\\\\n\\\" + token + \\\"\\\\r\\\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        }
+      ]
+    },
+    "/op/v0/device/fault/get": {
+      "summary": "Get error code information",
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "result"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer"
+                    },
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "{errNo}"
+                        ],
+                        "properties": {
+                          "{errNo}": {
+                            "type": "object",
+                            "description": "Error code",
+                            "required": [
+                              "en",
+                              "zh_CN",
+                              "pl"
+                            ],
+                            "properties": {
+                              "en": {
+                                "type": "string",
+                                "description": "The error code corresponds in English"
+                              },
+                              "zh_CN": {
+                                "type": "string",
+                                "description": "The error code corresponds in Chinese"
+                              },
+                              "pl": {
+                                "type": "string",
+                                "description": "The error code corresponds in Polish"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#get20error20code20information0a3ca20id3dget20error20code20information4303e203ca3e"
+        }
+      },
+      "description": "Obtain error code information",
       "parameters": [
         {
           "in": "header",
@@ -1895,7 +2167,7 @@
           }
         }
       },
-      "description": "Obtain the inverter electricity consumption report.Calculated according to the time zone of the power station to which the inverter belongs.The monthly electricity consumption of the year is obtained, the daily electricity consumption of the month is obtained, and the hourly electricity consumption of the day is obtained",
+      "description": "Obtain the inverter electricity consumption report. Calculated according to the time zone of the power station to which the inverter belongs.The monthly electricity consumption of the year is obtained, the daily electricity consumption of the month is obtained, and the hourly electricity       consumption of the day is obtained",
       "parameters": [
         {
           "in": "header",
@@ -2578,6 +2850,262 @@
         }
       },
       "description": "Set the battery charging time. The period must be two periods. Both periods must be delivered",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\\\r\\\\n\\\" + token + \\\"\\\\r\\\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        }
+      ]
+    },
+    "/op/v0/device/setting/get": {
+      "summary": "Get the device settings item",
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "result"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer",
+                      "description": "Error number (When the result is not equal to zero, the request fails)"
+                    },
+                    "result": {
+                      "type": "object",
+                      "required": [
+                        "value",
+                        "unit",
+                        "precision",
+                        "range"
+                      ],
+                      "properties": {
+                        "value": {
+                          "type": "string",
+                          "description": "setting value"
+                        },
+                        "unit": {
+                          "type": "string",
+                          "description": "unit"
+                        },
+                        "precision": {
+                          "type": "number",
+                          "description": "precision"
+                        },
+                        "range": {
+                          "type": "object",
+                          "required": [
+                            "min",
+                            "max"
+                          ],
+                          "properties": {
+                            "min": {
+                              "type": "number",
+                              "description": "minimum"
+                            },
+                            "max": {
+                              "type": "number",
+                              "description": "maximum"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#get20the20device20settings20item0a3ca20id3dget20the20device20settings20item4303e203ca3e"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "sn",
+                  "key"
+                ],
+                "properties": {
+                  "sn": {
+                    "type": "string",
+                    "description": "Serial number of Inverter"
+                  },
+                  "key": {
+                    "type": "string",
+                    "description": "settings item"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "Obtain the device settings, which currently support the H3 series",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\\\r\\\\n\\\" + token + \\\"\\\\r\\\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        }
+      ]
+    },
+    "/op/v0/device/setting/set": {
+      "summary": "Set the device settings item",
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "result"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer",
+                      "description": "Error number (When the result is not equal to zero, the request fails)"
+                    },
+                    "result": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#set20the20device20settings20item0a3ca20id3dset20the20device20settings20item4303e203ca3e"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "sn",
+                  "key",
+                  "value"
+                ],
+                "properties": {
+                  "sn": {
+                    "type": "string",
+                    "description": "Serial number of Inverter"
+                  },
+                  "key": {
+                    "type": "string",
+                    "description": "settings item"
+                  },
+                  "value": {
+                    "type": "string",
+                    "description": "settings value"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "Deliver device settings, which currently support the H3 series",
       "parameters": [
         {
           "in": "header",
