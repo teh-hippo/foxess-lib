@@ -568,6 +568,92 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  "/op/v1/device/real/query": {
+    parameters: {
+      query?: never;
+      header: {
+        "Content-Type": string;
+        /** @description Generate apikey from the API management function of the platform */
+        token: string;
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+        signature: string;
+        /** @description Current timestamp */
+        timestamp: string;
+        /**
+                 * @description Language
+                 * @example en
+                 */
+        lang: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: {
+      parameters: {
+        query?: never;
+        header: {
+          "Content-Type": string;
+          /** @description Generate apikey from the API management function of the platform */
+          token: string;
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+          signature: string;
+          /** @description Current timestamp */
+          timestamp: string;
+          /**
+                     * @description Language
+                     * @example en
+                     */
+          lang: string;
+        };
+        path?: never;
+        cookie?: never;
+      };
+      requestBody: {
+        content: {
+          "application/json": {
+            /** @description If this parameter is not passed, all variable data is obtained by default item type: string */
+            variables?: string[];
+            /** @description Serial Number of Inverter Remark:Can transmit up to 50 Serial Number */
+            sns: string[];
+          };
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          headers: Record<string, unknown>;
+          content: {
+            "application/json": {
+              errno: number;
+              result: {
+                /** @description Serial Number of Inverter */
+                deviceSN: string;
+                datas: {
+                  /** @description Variable name If the data is not found, it will not be returned */
+                  variable: string;
+                  /** @description Unit */
+                  unit: string;
+                  /** @description Name in English */
+                  name: string;
+                  /** @description Value */
+                  value: number;
+                }[];
+                /** @description Time of Data Update, utc time */
+                time: string;
+              }[];
+            };
+          };
+        };
+      };
+    };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   "/op/v0/device/list": {
     parameters: {
       query?: never;
@@ -647,7 +733,9 @@ export interface paths {
                   /** @description Serial number of the Data Logger */
                   moduleSN: string;
                   /** @description Id of power station */
-                  plantID: string;
+                  stationID: string;
+                  /** @description Name of power station */
+                  stationName: string;
                   /** @description Status of module */
                   status: number;
                   /** @description Is there a photovoltaic system available */
@@ -658,8 +746,6 @@ export interface paths {
                   deviceType: string;
                   /** @description Type of product */
                   productType: string;
-                  /** @description Name of power station */
-                  stationName: string;
                 }[];
               };
             };
@@ -824,6 +910,78 @@ export interface paths {
                     fr: string;
                     pl: string;
                   };
+                };
+              }[];
+            };
+          };
+        };
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/device/fault/get": {
+    parameters: {
+      query?: never;
+      header: {
+        "Content-Type": string;
+        /** @description Generate apikey from the API management function of the platform */
+        token: string;
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+        signature: string;
+        /** @description Current timestamp */
+        timestamp: string;
+        /**
+                 * @description Language
+                 * @example en
+                 */
+        lang: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    get: {
+      parameters: {
+        query?: never;
+        header: {
+          "Content-Type": string;
+          /** @description Generate apikey from the API management function of the platform */
+          token: string;
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+          signature: string;
+          /** @description Current timestamp */
+          timestamp: string;
+          /**
+                     * @description Language
+                     * @example en
+                     */
+          lang: string;
+        };
+        path?: never;
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        /** @description OK */
+        200: {
+          headers: Record<string, unknown>;
+          content: {
+            "application/json": {
+              errno: number;
+              result: {
+                /** @description Error code */
+                "{errNo}": {
+                  /** @description The error code corresponds in English */
+                  en: string;
+                  /** @description The error code corresponds in Chinese */
+                  zh_CN: string;
+                  /** @description The error code corresponds in Polish */
+                  pl: string;
                 };
               }[];
             };
@@ -1487,6 +1645,165 @@ export interface paths {
               hour: number;
               minute: number;
             };
+          };
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          headers: Record<string, unknown>;
+          content: {
+            "application/json": {
+              /** @description Error number (When the result is not equal to zero, the request fails) */
+              errno: number;
+              result: Record<string, never>;
+            };
+          };
+        };
+      };
+    };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/device/setting/get": {
+    parameters: {
+      query?: never;
+      header: {
+        "Content-Type": string;
+        /** @description Generate apikey from the API management function of the platform */
+        token: string;
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+        signature: string;
+        /** @description Current timestamp */
+        timestamp: string;
+        /**
+                 * @description Language
+                 * @example en
+                 */
+        lang: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: {
+      parameters: {
+        query?: never;
+        header: {
+          "Content-Type": string;
+          /** @description Generate apikey from the API management function of the platform */
+          token: string;
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+          signature: string;
+          /** @description Current timestamp */
+          timestamp: string;
+          /**
+                     * @description Language
+                     * @example en
+                     */
+          lang: string;
+        };
+        path?: never;
+        cookie?: never;
+      };
+      requestBody: {
+        content: {
+          "application/json": {
+            /** @description Serial number of Inverter */
+            sn: string;
+            /** @description settings item */
+            key: string;
+          };
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          headers: Record<string, unknown>;
+          content: {
+            "application/json": {
+              /** @description Error number (When the result is not equal to zero, the request fails) */
+              errno: number;
+              result: {
+                /** @description setting value */
+                value: string;
+                /** @description unit */
+                unit: string;
+                /** @description precision */
+                precision: number;
+                range: {
+                  /** @description minimum */
+                  min: number;
+                  /** @description maximum */
+                  max: number;
+                };
+              };
+            };
+          };
+        };
+      };
+    };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/device/setting/set": {
+    parameters: {
+      query?: never;
+      header: {
+        "Content-Type": string;
+        /** @description Generate apikey from the API management function of the platform */
+        token: string;
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+        signature: string;
+        /** @description Current timestamp */
+        timestamp: string;
+        /**
+                 * @description Language
+                 * @example en
+                 */
+        lang: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: {
+      parameters: {
+        query?: never;
+        header: {
+          "Content-Type": string;
+          /** @description Generate apikey from the API management function of the platform */
+          token: string;
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+          signature: string;
+          /** @description Current timestamp */
+          timestamp: string;
+          /**
+                     * @description Language
+                     * @example en
+                     */
+          lang: string;
+        };
+        path?: never;
+        cookie?: never;
+      };
+      requestBody: {
+        content: {
+          "application/json": {
+            /** @description Serial number of Inverter */
+            sn: string;
+            /** @description settings item */
+            key: string;
+            /** @description settings value */
+            value: string;
           };
         };
       };
