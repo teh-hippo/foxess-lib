@@ -2240,12 +2240,12 @@
                     "result": {
                       "type": "object",
                       "required": [
-                        "today",
+                        "├�� today",
                         "month",
                         "cumulative"
                       ],
                       "properties": {
-                        "today": {
+                        "├�� today": {
                           "type": "number",
                           "description": "Electricity generation of this today unit:kWh"
                         },

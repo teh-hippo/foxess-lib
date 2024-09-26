@@ -1319,7 +1319,7 @@ export interface paths {
               errno: number;
               result: {
                 /** @description Electricity generation of this today unit:kWh */
-                today: number;
+                "\u251C\uFFFD\uFFFD today": number;
                 /** @description Electricity generation of this month unit:kWh */
                 month: number;
                 /** @description Cumulative power generation unit:kWh */
