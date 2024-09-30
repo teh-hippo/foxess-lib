@@ -732,12 +732,12 @@
                           "type": "object",
                           "description": "User information",
                           "required": [
-                            "name",
+                            "├�� name",
                             "email",
                             "phone"
                           ],
                           "properties": {
-                            "name": {
+                            "├�� name": {
                               "type": "string",
                               "description": "Name of user"
                             },

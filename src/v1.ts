@@ -446,7 +446,7 @@ export interface paths {
                 /** @description User information */
                 user: {
                   /** @description Name of user */
-                  name: string;
+                  "\u251C\uFFFD\uFFFD name": string;
                   /** @description Email of user */
                   email: string;
                   /** @description Phone of user */
