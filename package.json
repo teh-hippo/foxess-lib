@@ -50,7 +50,7 @@
     "wiki": "pnpm exec typedoc src --out docs --plugin typedoc-plugin-markdown --searchInComments --excludeInternal --excludeProtected --excludePrivate --excludeReferences --excludeExternals --exclude src/v1.ts --readme none --includeVersion --cleanOutputDir false"
   },
   "devDependencies": {
-    "@arethetypeswrong/cli": "^0.15.4",
+    "@arethetypeswrong/cli": "^0.16.4",
     "@stylistic/eslint-plugin": "^2.6.4",
     "@types/jest": "^29.5.12",
     "@types/node": "^22.5.0",
