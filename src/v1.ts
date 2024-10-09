@@ -1533,7 +1533,7 @@ export interface paths {
           headers: Record<string, unknown>;
           content: {
             "application/json": {
-              /** @description Error number (When the result is not equal to zero, the request fails) */
+              /** @description Error number��When the result is not equal to zero, the request fails) */
               errno: number;
               result: {
                 /** @description Whether the first segment is enabled */
