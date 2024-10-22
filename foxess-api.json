@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "version": "1.0.6",
+    "version": "1.0.7",
     "title": "FoxESS OpenAPI"
   },
   "servers": [
@@ -2993,7 +2993,7 @@
           }
         }
       },
-      "description": "Obtain the device settings, which currently support the H3 series",
+      "description": "Obtain the device settings, which currently support the H3 series and H1 series",
       "parameters": [
         {
           "in": "header",
@@ -3105,7 +3105,7 @@
           }
         }
       },
-      "description": "Deliver device settings, which currently support the H3 series",
+      "description": "Deliver device settings, which currently support the H3 series and H1 series",
       "parameters": [
         {
           "in": "header",
