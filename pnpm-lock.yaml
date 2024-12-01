@@ -51,10 +51,10 @@ devDependencies:
     version: 3.2.1
   tsup:
     specifier: ^8.2.4
-    version: 8.2.4(tsx@4.19.0)(typescript@5.5.4)
+    version: 8.2.4(tsx@4.19.2)(typescript@5.5.4)
   tsx:
     specifier: ^4.18.0
-    version: 4.19.0
+    version: 4.19.2
   typedoc:
     specifier: ^0.26.6
     version: 0.26.6(typescript@5.5.4)
@@ -3663,7 +3663,7 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /postcss-load-config@6.0.1(tsx@4.19.0):
+  /postcss-load-config@6.0.1(tsx@4.19.2):
     resolution: {integrity: sha512-oPtTM4oerL+UXmx+93ytZVN82RrlY/wPUV8IeDxFrzIjXOLF1pN+EmKPLbubvKHT2HC20xXsCAH2Z+CKV6Oz/g==}
     engines: {node: '>= 18'}
     peerDependencies:
@@ -3682,7 +3682,7 @@ packages:
         optional: true
     dependencies:
       lilconfig: 3.1.2
-      tsx: 4.19.0
+      tsx: 4.19.2
     dev: true
 
   /prelude-ls@1.2.1:
@@ -4141,7 +4141,7 @@ packages:
       strip-ansi: 6.0.1
     dev: true
 
-  /tsup@8.2.4(tsx@4.19.0)(typescript@5.5.4):
+  /tsup@8.2.4(tsx@4.19.2)(typescript@5.5.4):
     resolution: {integrity: sha512-akpCPePnBnC/CXgRrcy72ZSntgIEUa1jN0oJbbvpALWKNOz1B7aM+UVDWGRGIO/T/PZugAESWDJUAb5FD48o8Q==}
     engines: {node: '>=18'}
     hasBin: true
@@ -4170,7 +4170,7 @@ packages:
       globby: 11.1.0
       joycon: 3.1.1
       picocolors: 1.0.1
-      postcss-load-config: 6.0.1(tsx@4.19.0)
+      postcss-load-config: 6.0.1(tsx@4.19.2)
       resolve-from: 5.0.0
       rollup: 4.22.4
       source-map: 0.8.0-beta.0
@@ -4184,8 +4184,8 @@ packages:
       - yaml
     dev: true
 
-  /tsx@4.19.0:
-    resolution: {integrity: sha512-bV30kM7bsLZKZIOCHeMNVMJ32/LuJzLVajkQI/qf92J2Qr08ueLQvW00PUZGiuLPP760UINwupgUj8qrSCPUKg==}
+  /tsx@4.19.2:
+    resolution: {integrity: sha512-pOUl6Vo2LUq/bSa8S5q7b91cgNSjctn9ugq/+Mvow99qW6x/UZYwzxy/3NmqoT66eHYfCVvFvACC58UBPFf28g==}
     engines: {node: '>=18.0.0'}
     hasBin: true
     dependencies:
