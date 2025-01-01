@@ -35,8 +35,8 @@ devDependencies:
     specifier: ^29.7.0
     version: 29.7.0(@types/node@22.10.1)
   node-html-parser:
-    specifier: ^6.1.13
-    version: 6.1.13
+    specifier: ^7.0.1
+    version: 7.0.1
   openapi-typescript:
     specifier: ^7.3.0
     version: 7.4.2(typescript@5.5.4)
@@ -3672,8 +3672,8 @@ packages:
       whatwg-url: 5.0.0
     dev: true
 
-  /node-html-parser@6.1.13:
-    resolution: {integrity: sha512-qIsTMOY4C/dAa5Q5vsobRpOOvPfC4pB61UVW2uSwZNUp0QU/jCekTal1vMmbO0DgdHeLUJpv/ARmDqErVxA3Sg==}
+  /node-html-parser@7.0.1:
+    resolution: {integrity: sha512-KGtmPY2kS0thCWGK0VuPyOS+pBKhhe8gXztzA2ilAOhbUbxa9homF1bOyKvhGzMLXUoRds9IOmr/v5lr/lqNmA==}
     dependencies:
       css-select: 5.1.0
       he: 1.2.0
