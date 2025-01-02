@@ -1827,6 +1827,162 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  "/op/v0/device/time/get": {
+    parameters: {
+      query?: never;
+      header: {
+        "Content-Type": string;
+        /** @description Generate apikey from the API management function of the platform */
+        token: string;
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+        signature: string;
+        /** @description Current timestamp */
+        timestamp: string;
+        /**
+                 * @description Language
+                 * @example en
+                 */
+        lang: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: {
+      parameters: {
+        query?: never;
+        header: {
+          "Content-Type": string;
+          /** @description Generate apikey from the API management function of the platform */
+          token: string;
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+          signature: string;
+          /** @description Current timestamp */
+          timestamp: string;
+          /**
+                     * @description Language
+                     * @example en
+                     */
+          lang: string;
+        };
+        path?: never;
+        cookie?: never;
+      };
+      requestBody: {
+        content: {
+          "application/json": {
+            /** @description Serial number of Inverter */
+            sn: string;
+          };
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          headers: Record<string, unknown>;
+          content: {
+            "application/json": {
+              errno: number;
+              result: {
+                year: string;
+                month: string;
+                day: string;
+                hour: string;
+                second: string;
+                minute: string;
+              };
+            };
+          };
+        };
+      };
+    };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/device/time/set": {
+    parameters: {
+      query?: never;
+      header: {
+        "Content-Type": string;
+        /** @description Generate apikey from the API management function of the platform */
+        token: string;
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+        signature: string;
+        /** @description Current timestamp */
+        timestamp: string;
+        /**
+                 * @description Language
+                 * @example en
+                 */
+        lang: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: {
+      parameters: {
+        query?: never;
+        header: {
+          "Content-Type": string;
+          /** @description Generate apikey from the API management function of the platform */
+          token: string;
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+          signature: string;
+          /** @description Current timestamp */
+          timestamp: string;
+          /**
+                     * @description Language
+                     * @example en
+                     */
+          lang: string;
+        };
+        path?: never;
+        cookie?: never;
+      };
+      requestBody: {
+        content: {
+          "application/json": {
+            /** @description Serial number of Inverter */
+            sn: string;
+            /** @description 0-99 */
+            year: string;
+            /** @description 1-12 */
+            second: string;
+            /** @description 1-31 */
+            minute: string;
+            /** @description 0-23 */
+            hour: string;
+            /** @description 0-59 */
+            day: string;
+            /** @description 0-59 */
+            month: string;
+          };
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          headers: Record<string, unknown>;
+          content: {
+            "application/json": {
+              errno: number;
+            };
+          };
+        };
+      };
+    };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   "/op/v0/device/scheduler/get/flag": {
     parameters: {
       query?: never;
