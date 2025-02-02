@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "version": "1.0.7",
+    "version": "1.0.9",
     "title": "FoxESS OpenAPI"
   },
   "servers": [
@@ -2993,7 +2993,7 @@
           }
         }
       },
-      "description": "Obtain the device settings, which currently support the H3 series and H1 series",
+      "description": "Obtain the device settings, which currently support the H3 series",
       "parameters": [
         {
           "in": "header",
@@ -3105,7 +3105,263 @@
           }
         }
       },
-      "description": "Deliver device settings, which currently support the H3 series and H1 series",
+      "description": "Deliver device settings, which currently support the H3 series",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\\\r\\\\n\\\" + token + \\\"\\\\r\\\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        }
+      ]
+    },
+    "/op/v0/device/time/get": {
+      "summary": "Get the device time",
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "result"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer"
+                    },
+                    "result": {
+                      "type": "object",
+                      "required": [
+                        "year",
+                        "month",
+                        "day",
+                        "hour",
+                        "second",
+                        "minute"
+                      ],
+                      "properties": {
+                        "year": {
+                          "type": "string"
+                        },
+                        "month": {
+                          "type": "string"
+                        },
+                        "day": {
+                          "type": "string"
+                        },
+                        "hour": {
+                          "type": "string"
+                        },
+                        "second": {
+                          "type": "string"
+                        },
+                        "minute": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#get20the20device20time0a3ca20id3dget20the20device20time4303e203ca3e"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "sn"
+                ],
+                "properties": {
+                  "sn": {
+                    "type": "string",
+                    "description": "Serial number of Inverter"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "Headers",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\\\r\\\\n\\\" + token + \\\"\\\\r\\\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        }
+      ]
+    },
+    "/op/v0/device/time/set": {
+      "summary": "Set the device time",
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#set20the20device20time0a3ca20id3dset20the20device20time4303e203ca3e"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "sn",
+                  "year",
+                  "second",
+                  "minute",
+                  "hour",
+                  "day",
+                  "month"
+                ],
+                "properties": {
+                  "sn": {
+                    "type": "string",
+                    "description": "Serial number of Inverter"
+                  },
+                  "year": {
+                    "type": "string",
+                    "description": "0-99"
+                  },
+                  "second": {
+                    "type": "string",
+                    "description": "1-12"
+                  },
+                  "minute": {
+                    "type": "string",
+                    "description": "1-31"
+                  },
+                  "hour": {
+                    "type": "string",
+                    "description": "0-23"
+                  },
+                  "day": {
+                    "type": "string",
+                    "description": "0-59"
+                  },
+                  "month": {
+                    "type": "string",
+                    "description": "0-59"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "Modify the device time",
       "parameters": [
         {
           "in": "header",
