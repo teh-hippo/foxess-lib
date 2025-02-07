@@ -1151,7 +1151,7 @@ export interface paths {
                 deviceSN: string;
                 datas: {
                   /** @description Variable name */
-                  variable: string;
+                  "\uFFFD\uFFFD\uFFFD\u2500 variable": string;
                   /** @description Unit of variable */
                   unit: string;
                   /** @description Name in English */

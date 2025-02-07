@@ -1926,13 +1926,13 @@
                             "items": {
                               "type": "object",
                               "required": [
-                                "variable",
+                                "���─ variable",
                                 "unit",
                                 "name",
                                 "data"
                               ],
                               "properties": {
-                                "variable": {
+                                "���─ variable": {
                                   "type": "string",
                                   "description": "Variable name"
                                 },
