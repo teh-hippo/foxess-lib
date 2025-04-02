@@ -654,6 +654,346 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  "/op/v1/device/scheduler/get/flag": {
+    parameters: {
+      query?: never;
+      header: {
+        "Content-Type": string;
+        /** @description Generate apikey from the API management function of the platform */
+        token: string;
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+        signature: string;
+        /** @description Current timestamp */
+        timestamp: string;
+        /**
+                 * @description Language
+                 * @example en
+                 */
+        lang: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: {
+      parameters: {
+        query?: never;
+        header: {
+          "Content-Type": string;
+          /** @description Generate apikey from the API management function of the platform */
+          token: string;
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+          signature: string;
+          /** @description Current timestamp */
+          timestamp: string;
+          /**
+                     * @description Language
+                     * @example en
+                     */
+          lang: string;
+        };
+        path?: never;
+        cookie?: never;
+      };
+      requestBody: {
+        content: {
+          "application/json": {
+            /** @description Serial number of device */
+            deviceSN: string;
+          };
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          headers: Record<string, unknown>;
+          content: {
+            "application/json": {
+              /** @description Error number (When the result is not equal to zero, the request fails) */
+              errno: number;
+              /** @description Error message */
+              msg: string;
+              result: {
+                /** @description Whether the timing function is supported(0:nonsupport 1:support) 0:nonsupport 1:support */
+                support: number;
+                /** @description Whether to enable the timing function(0:disable 1:enable) 0:disable 1:enable */
+                enable: number;
+              };
+            };
+          };
+        };
+      };
+    };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v1/device/scheduler/get": {
+    parameters: {
+      query?: never;
+      header: {
+        "Content-Type": string;
+        /** @description Generate apikey from the API management function of the platform */
+        token: string;
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+        signature: string;
+        /** @description Current timestamp */
+        timestamp: string;
+        /**
+                 * @description Language
+                 * @example en
+                 */
+        lang: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: {
+      parameters: {
+        query?: never;
+        header: {
+          "Content-Type": string;
+          /** @description Generate apikey from the API management function of the platform */
+          token: string;
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+          signature: string;
+          /** @description Current timestamp */
+          timestamp: string;
+          /**
+                     * @description Language
+                     * @example en
+                     */
+          lang: string;
+        };
+        path?: never;
+        cookie?: never;
+      };
+      requestBody: {
+        content: {
+          "application/json": {
+            /** @description Serial number of device */
+            deviceSN: string;
+          };
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          headers: Record<string, unknown>;
+          content: {
+            "application/json": {
+              /** @description error number (When the result is not equal to zero, the request fails) */
+              errno: number;
+              /** @description Error message */
+              msg: string;
+              result: {
+                /** @description State of master switch (0:off 1:on) */
+                enable: string;
+                groups: {
+                  /** @description Whether to enable this group setting(0:disable 1:enable) */
+                  enable: number;
+                  /** @description Start time - hour(The value is between 0 and 23) */
+                  startHour: number;
+                  /** @description Start time - minute(The value is between 0 and 59) */
+                  startMinute: number;
+                  /** @description Ending time - hour(The value is between 0 and 23) */
+                  endHour: number;
+                  /** @description Ending time - minute(The value is between 0 and 59) */
+                  endMinute: number;
+                  /** @description Working mode (SelfUse, Feedin, Backup, ForceCharge, ForceDischarge) */
+                  workMode: string;
+                  /** @description socThe minimum soc value of the offline battery */
+                  minSocOnGrid: number;
+                  /** @description Discharge soc value */
+                  fdSoc: number;
+                  /** @description The maximum discharge power value */
+                  fdPwr: number;
+                  /** @description Max soc value */
+                  maxSoc: string;
+                }[];
+              };
+            };
+          };
+        };
+      };
+    };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v1/device/scheduler/set/flag": {
+    parameters: {
+      query?: never;
+      header: {
+        "Content-Type": string;
+        /** @description Generate apikey from the API management function of the platform */
+        token: string;
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+        signature: string;
+        /** @description Current timestamp */
+        timestamp: string;
+        /**
+                 * @description Language
+                 * @example en
+                 */
+        lang: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: {
+      parameters: {
+        query?: never;
+        header: {
+          "Content-Type": string;
+          /** @description Generate apikey from the API management function of the platform */
+          token: string;
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+          signature: string;
+          /** @description Current timestamp */
+          timestamp: string;
+          /**
+                     * @description Language
+                     * @example en
+                     */
+          lang: string;
+        };
+        path?: never;
+        cookie?: never;
+      };
+      requestBody: {
+        content: {
+          "application/json": {
+            /** @description Serial number of device */
+            deviceSN: string;
+            /** @description Whether the switch is on 0:disable 1:enable */
+            enable: number;
+          };
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          headers: Record<string, unknown>;
+          content: {
+            "application/json": {
+              /** @description Error number (When the result is not equal to zero, the request fails) */
+              errno: number;
+              /** @description Error message */
+              msg: string;
+            };
+          };
+        };
+      };
+    };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v1/device/scheduler/enable": {
+    parameters: {
+      query?: never;
+      header: {
+        "Content-Type": string;
+        /** @description Generate apikey from the API management function of the platform */
+        token: string;
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+        signature: string;
+        /** @description Current timestamp */
+        timestamp: string;
+        /**
+                 * @description Language
+                 * @example en
+                 */
+        lang: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: {
+      parameters: {
+        query?: never;
+        header: {
+          "Content-Type": string;
+          /** @description Generate apikey from the API management function of the platform */
+          token: string;
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+          signature: string;
+          /** @description Current timestamp */
+          timestamp: string;
+          /**
+                     * @description Language
+                     * @example en
+                     */
+          lang: string;
+        };
+        path?: never;
+        cookie?: never;
+      };
+      requestBody: {
+        content: {
+          "application/json": {
+            /** @description Serial number of device */
+            deviceSN: string;
+            groups: {
+              /** @description Whether to enable this group setting(0:disable 1:enable) */
+              enable: number;
+              /** @description Start time - hour(The value is between 0 and 23) */
+              startHour: number;
+              /** @description Start time - minute(The value is between 0 and 59) */
+              startMinute: number;
+              /** @description Ending time - hour(The value is between 0 and 23) */
+              endHour: number;
+              /** @description Ending time - minute(The value is between 0 and 59) */
+              endMinute: number;
+              /** @description Working mode (SelfUse, Feedin, Backup, ForceCharge, ForceDischarge) */
+              workMode: string;
+              /** @description The minimum soc range of the offline battery is between 10 and 100 */
+              minSocOnGrid: number;
+              /** @description Discharge soc range between 0 and 100,value of fdsoc must be equal or greater than minSocOnGrid value of fdsoc must be equal or greater than minSocOnGrid */
+              fdSoc: number;
+              /** @description The maximum discharge power ranges between 0 and 6000 */
+              fdPwr: number;
+              /** @description The maximum soc ranges between 0 and 100 */
+              maxSoc?: number;
+            }[];
+          };
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          headers: Record<string, unknown>;
+          content: {
+            "application/json": {
+              /** @description Error number (When the result is not equal to zero, the request fails) */
+              errno: number;
+              /** @description Error message */
+              msg: string;
+            };
+          };
+        };
+      };
+    };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   "/op/v0/device/list": {
     parameters: {
       query?: never;
