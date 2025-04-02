@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "version": "1.0.9",
+    "version": "1.1.0",
     "title": "FoxESS OpenAPI"
   },
   "servers": [
@@ -1159,6 +1159,575 @@
         }
       ]
     },
+    "/op/v1/device/scheduler/get/flag": {
+      "summary": "Get the main switch status",
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "msg",
+                    "result"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer",
+                      "description": "Error number (When the result is not equal to zero, the request fails)"
+                    },
+                    "msg": {
+                      "type": "string",
+                      "description": "Error message"
+                    },
+                    "result": {
+                      "type": "object",
+                      "required": [
+                        "support",
+                        "enable"
+                      ],
+                      "properties": {
+                        "support": {
+                          "type": "integer",
+                          "description": "Whether the timing function is supported(0:nonsupport 1:support) 0:nonsupport 1:support"
+                        },
+                        "enable": {
+                          "type": "integer",
+                          "description": "Whether to enable the timing function(0:disable 1:enable) 0:disable 1:enable"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#get20the20main20switch20status0a3ca20id3dget20the20main20switch20status7193e203ca3e"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "deviceSN"
+                ],
+                "properties": {
+                  "deviceSN": {
+                    "type": "string",
+                    "description": "Serial number of device"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "Obtain the timing mode switch status",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\\\r\\\\n\\\" + token + \\\"\\\\r\\\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        }
+      ]
+    },
+    "/op/v1/device/scheduler/get": {
+      "summary": "Get the time segment information",
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "msg",
+                    "result"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer",
+                      "description": "error number (When the result is not equal to zero, the request fails)"
+                    },
+                    "msg": {
+                      "type": "string",
+                      "description": "Error message"
+                    },
+                    "result": {
+                      "type": "object",
+                      "required": [
+                        "enable",
+                        "groups"
+                      ],
+                      "properties": {
+                        "enable": {
+                          "type": "string",
+                          "description": "State of master switch (0:off 1:on)"
+                        },
+                        "groups": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "enable",
+                              "startHour",
+                              "startMinute",
+                              "endHour",
+                              "endMinute",
+                              "workMode",
+                              "minSocOnGrid",
+                              "fdSoc",
+                              "fdPwr",
+                              "maxSoc"
+                            ],
+                            "properties": {
+                              "enable": {
+                                "type": "integer",
+                                "description": "Whether to enable this group setting(0:disable 1:enable)"
+                              },
+                              "startHour": {
+                                "type": "integer",
+                                "description": "Start time - hour(The value is between 0 and 23)"
+                              },
+                              "startMinute": {
+                                "type": "integer",
+                                "description": "Start time - minute(The value is between 0 and 59)"
+                              },
+                              "endHour": {
+                                "type": "integer",
+                                "description": "Ending time - hour(The value is between 0 and 23)"
+                              },
+                              "endMinute": {
+                                "type": "integer",
+                                "description": "Ending time - minute(The value is between 0 and 59)"
+                              },
+                              "workMode": {
+                                "type": "string",
+                                "description": "Working mode (SelfUse, Feedin, Backup, ForceCharge, ForceDischarge)"
+                              },
+                              "minSocOnGrid": {
+                                "type": "integer",
+                                "description": "socThe minimum soc value of the offline battery"
+                              },
+                              "fdSoc": {
+                                "type": "integer",
+                                "description": "Discharge soc value"
+                              },
+                              "fdPwr": {
+                                "type": "integer",
+                                "description": "The maximum discharge power value"
+                              },
+                              "maxSoc": {
+                                "type": "string",
+                                "description": "Max soc value"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#get20the20time20segment20information0a3ca20id3dget20the20time20segment20information7193e203ca3e"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "deviceSN"
+                ],
+                "properties": {
+                  "deviceSN": {
+                    "type": "string",
+                    "description": "Serial number of device"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "Get timing mode segment information",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\\\r\\\\n\\\" + token + \\\"\\\\r\\\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        }
+      ]
+    },
+    "/op/v1/device/scheduler/set/flag": {
+      "summary": "Set the main switch status",
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "msg"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer",
+                      "description": "Error number (When the result is not equal to zero, the request fails)"
+                    },
+                    "msg": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#set20the20main20switch20status0a3ca20id3dset20the20main20switch20status7193e203ca3e"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "deviceSN",
+                  "enable"
+                ],
+                "properties": {
+                  "deviceSN": {
+                    "type": "string",
+                    "description": "Serial number of device"
+                  },
+                  "enable": {
+                    "type": "integer",
+                    "description": "Whether the switch is on 0:disable 1:enable"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "Set the timing mode switch",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\\\r\\\\n\\\" + token + \\\"\\\\r\\\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        }
+      ]
+    },
+    "/op/v1/device/scheduler/enable": {
+      "summary": "Set the time segment information",
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "msg"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer",
+                      "description": "Error number (When the result is not equal to zero, the request fails)"
+                    },
+                    "msg": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#set20the20time20segment20information0a3ca20id3dset20the20time20segment20information7193e203ca3e"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "deviceSN",
+                  "groups"
+                ],
+                "properties": {
+                  "deviceSN": {
+                    "type": "string",
+                    "description": "Serial number of device"
+                  },
+                  "groups": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "enable",
+                        "startHour",
+                        "startMinute",
+                        "endHour",
+                        "endMinute",
+                        "workMode",
+                        "minSocOnGrid",
+                        "fdSoc",
+                        "fdPwr"
+                      ],
+                      "properties": {
+                        "enable": {
+                          "type": "integer",
+                          "description": "Whether to enable this group setting(0:disable 1:enable)"
+                        },
+                        "startHour": {
+                          "type": "integer",
+                          "description": "Start time - hour(The value is between 0 and 23)"
+                        },
+                        "startMinute": {
+                          "type": "integer",
+                          "description": "Start time - minute(The value is between 0 and 59)"
+                        },
+                        "endHour": {
+                          "type": "integer",
+                          "description": "Ending time - hour(The value is between 0 and 23)"
+                        },
+                        "endMinute": {
+                          "type": "integer",
+                          "description": "Ending time - minute(The value is between 0 and 59)"
+                        },
+                        "workMode": {
+                          "type": "string",
+                          "description": "Working mode (SelfUse, Feedin, Backup, ForceCharge, ForceDischarge)"
+                        },
+                        "minSocOnGrid": {
+                          "type": "integer",
+                          "description": "The minimum soc range of the offline battery is between 10 and 100"
+                        },
+                        "fdSoc": {
+                          "type": "integer",
+                          "description": "Discharge soc range between 0 and 100,value of fdsoc must be equal or greater than minSocOnGrid value of fdsoc must be equal or greater than minSocOnGrid"
+                        },
+                        "fdPwr": {
+                          "type": "number",
+                          "description": "The maximum discharge power ranges between 0 and 6000"
+                        },
+                        "maxSoc": {
+                          "type": "integer",
+                          "description": "The maximum soc ranges between 0 and 100"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "Set the time segment information of the timing mode",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\\\r\\\\n\\\" + token + \\\"\\\\r\\\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        }
+      ]
+    },
     "/op/v0/device/list": {
       "summary": "Get device list",
       "post": {
@@ -2014,7 +2583,7 @@
           }
         }
       },
-      "description": "Obtain the historical data of the inverter, obtain the historical data of the last three days without specifying the time,and the time span must be less than or equal to 24 hours",
+      "description": "The historical data within the specified 24 hours can be obtained (The begin time and end time are required). If no time period is specified, you can obtain the historical data of the last three days.",
       "parameters": [
         {
           "in": "header",
