@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "version": "1.1.0",
+    "version": "1.1.1",
     "title": "FoxESS OpenAPI"
   },
   "servers": [
@@ -1308,7 +1308,8 @@
                       "type": "object",
                       "required": [
                         "enable",
-                        "groups"
+                        "groups",
+                        "properties"
                       ],
                       "properties": {
                         "enable": {
@@ -1338,27 +1339,27 @@
                               },
                               "startHour": {
                                 "type": "integer",
-                                "description": "Start time - hour(The value is between 0 and 23)"
+                                "description": "Start time - hour"
                               },
                               "startMinute": {
                                 "type": "integer",
-                                "description": "Start time - minute(The value is between 0 and 59)"
+                                "description": "Start time - minute"
                               },
                               "endHour": {
                                 "type": "integer",
-                                "description": "Ending time - hour(The value is between 0 and 23)"
+                                "description": "Ending time - hour"
                               },
                               "endMinute": {
                                 "type": "integer",
-                                "description": "Ending time - minute(The value is between 0 and 59)"
+                                "description": "Ending time - minute"
                               },
                               "workMode": {
                                 "type": "string",
-                                "description": "Working mode (SelfUse, Feedin, Backup, ForceCharge, ForceDischarge)"
+                                "description": "Working mode"
                               },
                               "minSocOnGrid": {
                                 "type": "integer",
-                                "description": "socThe minimum soc value of the offline battery"
+                                "description": "The minimum soc value of the offline battery"
                               },
                               "fdSoc": {
                                 "type": "integer",
@@ -1371,6 +1372,50 @@
                               "maxSoc": {
                                 "type": "string",
                                 "description": "Max soc value"
+                              }
+                            }
+                          }
+                        },
+                        "properties": {
+                          "type": "object",
+                          "description": "Range for each field in the group time period",
+                          "required": [
+                            "{field_name}"
+                          ],
+                          "properties": {
+                            "{field_name}": {
+                              "type": "object",
+                              "required": [
+                                "unit",
+                                "precision",
+                                "range"
+                              ],
+                              "properties": {
+                                "unit": {
+                                  "type": "string",
+                                  "description": "unit"
+                                },
+                                "precision": {
+                                  "type": "number",
+                                  "description": "precision"
+                                },
+                                "range": {
+                                  "type": "object",
+                                  "required": [
+                                    "min",
+                                    "max"
+                                  ],
+                                  "properties": {
+                                    "min": {
+                                      "type": "number",
+                                      "description": "minimum"
+                                    },
+                                    "max": {
+                                      "type": "number",
+                                      "description": "maximum"
+                                    }
+                                  }
+                                }
                               }
                             }
                           }
@@ -1634,39 +1679,39 @@
                         },
                         "startHour": {
                           "type": "integer",
-                          "description": "Start time - hour(The value is between 0 and 23)"
+                          "description": "Start time - hour"
                         },
                         "startMinute": {
                           "type": "integer",
-                          "description": "Start time - minute(The value is between 0 and 59)"
+                          "description": "Start time - minute"
                         },
                         "endHour": {
                           "type": "integer",
-                          "description": "Ending time - hour(The value is between 0 and 23)"
+                          "description": "Ending time - hour"
                         },
                         "endMinute": {
                           "type": "integer",
-                          "description": "Ending time - minute(The value is between 0 and 59)"
+                          "description": "Ending time - minute"
                         },
                         "workMode": {
                           "type": "string",
-                          "description": "Working mode (SelfUse, Feedin, Backup, ForceCharge, ForceDischarge)"
+                          "description": "Working mode"
                         },
                         "minSocOnGrid": {
                           "type": "integer",
-                          "description": "The minimum soc range of the offline battery is between 10 and 100"
+                          "description": "The minimum soc of the offline battery"
                         },
                         "fdSoc": {
                           "type": "integer",
-                          "description": "Discharge soc range between 0 and 100,value of fdsoc must be equal or greater than minSocOnGrid value of fdsoc must be equal or greater than minSocOnGrid"
+                          "description": "Discharge soc range value of fdsoc must be equal or greater than minSocOnGrid"
                         },
                         "fdPwr": {
                           "type": "number",
-                          "description": "The maximum discharge power ranges between 0 and 6000"
+                          "description": "The maximum discharge power"
                         },
                         "maxSoc": {
                           "type": "integer",
-                          "description": "The maximum soc ranges between 0 and 100"
+                          "description": "The maximum soc"
                         }
                       }
                     }

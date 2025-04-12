@@ -797,17 +797,17 @@ export interface paths {
                 groups: {
                   /** @description Whether to enable this group setting(0:disable 1:enable) */
                   enable: number;
-                  /** @description Start time - hour(The value is between 0 and 23) */
+                  /** @description Start time - hour */
                   startHour: number;
-                  /** @description Start time - minute(The value is between 0 and 59) */
+                  /** @description Start time - minute */
                   startMinute: number;
-                  /** @description Ending time - hour(The value is between 0 and 23) */
+                  /** @description Ending time - hour */
                   endHour: number;
-                  /** @description Ending time - minute(The value is between 0 and 59) */
+                  /** @description Ending time - minute */
                   endMinute: number;
-                  /** @description Working mode (SelfUse, Feedin, Backup, ForceCharge, ForceDischarge) */
+                  /** @description Working mode */
                   workMode: string;
-                  /** @description socThe minimum soc value of the offline battery */
+                  /** @description The minimum soc value of the offline battery */
                   minSocOnGrid: number;
                   /** @description Discharge soc value */
                   fdSoc: number;
@@ -816,6 +816,21 @@ export interface paths {
                   /** @description Max soc value */
                   maxSoc: string;
                 }[];
+                /** @description Range for each field in the group time period */
+                properties: {
+                  "{field_name}": {
+                    /** @description unit */
+                    unit: string;
+                    /** @description precision */
+                    precision: number;
+                    range: {
+                      /** @description minimum */
+                      min: number;
+                      /** @description maximum */
+                      max: number;
+                    };
+                  };
+                };
               };
             };
           };
@@ -951,23 +966,23 @@ export interface paths {
             groups: {
               /** @description Whether to enable this group setting(0:disable 1:enable) */
               enable: number;
-              /** @description Start time - hour(The value is between 0 and 23) */
+              /** @description Start time - hour */
               startHour: number;
-              /** @description Start time - minute(The value is between 0 and 59) */
+              /** @description Start time - minute */
               startMinute: number;
-              /** @description Ending time - hour(The value is between 0 and 23) */
+              /** @description Ending time - hour */
               endHour: number;
-              /** @description Ending time - minute(The value is between 0 and 59) */
+              /** @description Ending time - minute */
               endMinute: number;
-              /** @description Working mode (SelfUse, Feedin, Backup, ForceCharge, ForceDischarge) */
+              /** @description Working mode */
               workMode: string;
-              /** @description The minimum soc range of the offline battery is between 10 and 100 */
+              /** @description The minimum soc of the offline battery */
               minSocOnGrid: number;
-              /** @description Discharge soc range between 0 and 100,value of fdsoc must be equal or greater than minSocOnGrid value of fdsoc must be equal or greater than minSocOnGrid */
+              /** @description Discharge soc range value of fdsoc must be equal or greater than minSocOnGrid */
               fdSoc: number;
-              /** @description The maximum discharge power ranges between 0 and 6000 */
+              /** @description The maximum discharge power */
               fdPwr: number;
-              /** @description The maximum soc ranges between 0 and 100 */
+              /** @description The maximum soc */
               maxSoc?: number;
             }[];
           };
