@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "version": "1.1.1",
+    "version": "1.1.2",
     "title": "FoxESS OpenAPI"
   },
   "servers": [
@@ -1280,6 +1280,114 @@
         }
       ]
     },
+    "/op/v1/device/scheduler/set/flag": {
+      "summary": "Set the main switch status",
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "msg"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer",
+                      "description": "Error number (When the result is not equal to zero, the request fails)"
+                    },
+                    "msg": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#set20the20main20switch20status0a3ca20id3dset20the20main20switch20status7193e203ca3e"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "deviceSN",
+                  "enable"
+                ],
+                "properties": {
+                  "deviceSN": {
+                    "type": "string",
+                    "description": "Serial number of device"
+                  },
+                  "enable": {
+                    "type": "integer",
+                    "description": "Whether the switch is on 0:disable 1:enable"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "Set the timing mode switch",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\\\r\\\\n\\\" + token + \\\"\\\\r\\\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        }
+      ]
+    },
     "/op/v1/device/scheduler/get": {
       "summary": "Get the time segment information",
       "post": {
@@ -1452,114 +1560,6 @@
         }
       },
       "description": "Get timing mode segment information",
-      "parameters": [
-        {
-          "in": "header",
-          "name": "Content-Type",
-          "required": true,
-          "schema": {
-            "type": "string",
-            "default": "application/json"
-          },
-          "description": ""
-        },
-        {
-          "in": "header",
-          "name": "token",
-          "required": true,
-          "schema": {
-            "type": "string"
-          },
-          "description": "Generate apikey from the API management function of the platform"
-        },
-        {
-          "in": "header",
-          "name": "signature",
-          "required": true,
-          "schema": {
-            "type": "string"
-          },
-          "description": "Signature rule: Encrypt the string url + \\\"\\\\r\\\\n\\\" + token + \\\"\\\\r\\\\n\\\" + timestamp with md5"
-        },
-        {
-          "in": "header",
-          "name": "timestamp",
-          "required": true,
-          "schema": {
-            "type": "string"
-          },
-          "description": "Current timestamp"
-        },
-        {
-          "in": "header",
-          "name": "lang",
-          "required": true,
-          "example": "en",
-          "schema": {
-            "type": "string"
-          },
-          "description": "Language"
-        }
-      ]
-    },
-    "/op/v1/device/scheduler/set/flag": {
-      "summary": "Set the main switch status",
-      "post": {
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": [
-                    "errno",
-                    "msg"
-                  ],
-                  "properties": {
-                    "errno": {
-                      "type": "integer",
-                      "description": "Error number (When the result is not equal to zero, the request fails)"
-                    },
-                    "msg": {
-                      "type": "string",
-                      "description": "Error message"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "externalDocs": {
-          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#set20the20main20switch20status0a3ca20id3dset20the20main20switch20status7193e203ca3e"
-        },
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "deviceSN",
-                  "enable"
-                ],
-                "properties": {
-                  "deviceSN": {
-                    "type": "string",
-                    "description": "Serial number of device"
-                  },
-                  "enable": {
-                    "type": "integer",
-                    "description": "Whether the switch is on 0:disable 1:enable"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "description": "Set the timing mode switch",
       "parameters": [
         {
           "in": "header",
@@ -2352,7 +2352,7 @@
       ]
     },
     "/op/v0/device/real/query": {
-      "summary": "Get device real-time data",
+      "summary": "Get device real-time data (Deprecated)",
       "post": {
         "responses": {
           "200": {
@@ -2427,7 +2427,7 @@
           }
         },
         "externalDocs": {
-          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#get20device20real-time20data0a3ca20id3dget20device20real-time20data4303e203ca3e"
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#get20device20real-time20data2028deprecated290a3ca20id3dget20device20real-time20data2028deprecated294303e203ca3e"
         },
         "requestBody": {
           "required": true,
@@ -2719,7 +2719,12 @@
                           "values": {
                             "type": "array",
                             "items": {
-                              "type": "number"
+                              "type": "number",
+                              "properties": {
+                                "": {
+                                  "type": ""
+                                }
+                              }
                             },
                             "description": "Variable value"
                           }
@@ -3607,7 +3612,7 @@
           }
         }
       },
-      "description": "Obtain the device settings, which currently support the H3 series",
+      "description": "Obtain the device settings",
       "parameters": [
         {
           "in": "header",
@@ -3719,7 +3724,7 @@
           }
         }
       },
-      "description": "Deliver device settings, which currently support the H3 series",
+      "description": "Deliver device settings",
       "parameters": [
         {
           "in": "header",
@@ -4026,8 +4031,306 @@
         }
       ]
     },
+    "/op/v0/device/peakShaving/get": {
+      "summary": "Get the device peakshaving settings",
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "result"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer",
+                      "description": "Error number (When the result is not equal to zero, the request fails)"
+                    },
+                    "result": {
+                      "type": "object",
+                      "required": [
+                        "importLimit",
+                        "soc"
+                      ],
+                      "properties": {
+                        "importLimit": {
+                          "type": "object",
+                          "required": [
+                            "value",
+                            "unit",
+                            "precision",
+                            "range"
+                          ],
+                          "properties": {
+                            "value": {
+                              "type": "string",
+                              "description": "setting value"
+                            },
+                            "unit": {
+                              "type": "string",
+                              "description": "unit"
+                            },
+                            "precision": {
+                              "type": "number",
+                              "description": "precision"
+                            },
+                            "range": {
+                              "type": "object",
+                              "required": [
+                                "min",
+                                "max"
+                              ],
+                              "properties": {
+                                "min": {
+                                  "type": "number",
+                                  "description": "minimum"
+                                },
+                                "max": {
+                                  "type": "number",
+                                  "description": "maximum"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "soc": {
+                          "type": "object",
+                          "required": [
+                            "value",
+                            "unit",
+                            "precision",
+                            "range"
+                          ],
+                          "properties": {
+                            "value": {
+                              "type": "string",
+                              "description": "setting value"
+                            },
+                            "unit": {
+                              "type": "string",
+                              "description": "unit"
+                            },
+                            "precision": {
+                              "type": "number",
+                              "description": "precision"
+                            },
+                            "range": {
+                              "type": "object",
+                              "required": [
+                                "min",
+                                "max"
+                              ],
+                              "properties": {
+                                "min": {
+                                  "type": "number",
+                                  "description": "minimum"
+                                },
+                                "max": {
+                                  "type": "number",
+                                  "description": "maximum"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#get20the20device20peakshaving20settings0a3ca20id3dget20the20device20peakshaving20settings4303e203ca3e"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "sn"
+                ],
+                "properties": {
+                  "sn": {
+                    "type": "string",
+                    "description": "Serial number of Inverter"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "Headers",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\\\r\\\\n\\\" + token + \\\"\\\\r\\\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        }
+      ]
+    },
+    "/op/v0/device/peakShaving/set": {
+      "summary": "Set the device peakshaving settings",
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "result"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer",
+                      "description": "Error number (When the result is not equal to zero, the request fails)"
+                    },
+                    "result": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#set20the20device20peakshaving20settings0a3ca20id3dset20the20device20peakshaving20settings4303e203ca3e"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "sn",
+                  "importLimit",
+                  "soc"
+                ],
+                "properties": {
+                  "sn": {
+                    "type": "string",
+                    "description": "Serial number of Inverter"
+                  },
+                  "importLimit": {
+                    "type": "number"
+                  },
+                  "soc": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "Headers",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\\\r\\\\n\\\" + token + \\\"\\\\r\\\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        }
+      ]
+    },
     "/op/v0/device/scheduler/get/flag": {
-      "summary": "Get the main switch status",
+      "summary": "Get the main switch status (Deprecated)",
       "post": {
         "responses": {
           "200": {
@@ -4074,7 +4377,7 @@
           }
         },
         "externalDocs": {
-          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#get20the20main20switch20status0a3ca20id3dget20the20main20switch20status4313e203ca3e"
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#get20the20main20switch20status2028deprecated290a3ca20id3dget20the20main20switch20status2028deprecated294313e203ca3e"
         },
         "requestBody": {
           "required": true,
@@ -4148,7 +4451,7 @@
       ]
     },
     "/op/v0/device/scheduler/get": {
-      "summary": "Get the time segment information",
+      "summary": "Get the time segment information (Deprecated)",
       "post": {
         "responses": {
           "200": {
@@ -4246,7 +4549,7 @@
           }
         },
         "externalDocs": {
-          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#get20the20time20segment20information0a3ca20id3dget20the20time20segment20information4313e203ca3e"
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#get20the20time20segment20information2028deprecated290a3ca20id3dget20the20time20segment20information2028deprecated294313e203ca3e"
         },
         "requestBody": {
           "required": true,
@@ -4320,7 +4623,7 @@
       ]
     },
     "/op/v0/device/scheduler/set/flag": {
-      "summary": "Set the main switch status",
+      "summary": "Set the main switch status (Deprecated)",
       "post": {
         "responses": {
           "200": {
@@ -4349,7 +4652,7 @@
           }
         },
         "externalDocs": {
-          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#set20the20main20switch20status0a3ca20id3dset20the20main20switch20status4313e203ca3e"
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#set20the20main20switch20status2028deprecated290a3ca20id3dset20the20main20switch20status2028deprecated294313e203ca3e"
         },
         "requestBody": {
           "required": true,
@@ -4428,7 +4731,7 @@
       ]
     },
     "/op/v0/device/scheduler/enable": {
-      "summary": "Set the time segment information",
+      "summary": "Set the time segment information (Deprecated)",
       "post": {
         "responses": {
           "200": {
@@ -4457,7 +4760,7 @@
           }
         },
         "externalDocs": {
-          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#set20the20time20segment20information0a3ca20id3dset20the20time20segment20information4313e203ca3e"
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#set20the20time20segment20information2028deprecated290a3ca20id3dset20the20time20segment20information2028deprecated294313e203ca3e"
         },
         "requestBody": {
           "required": true,
@@ -4695,6 +4998,715 @@
         }
       },
       "description": "Obtain the collector list of this account",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\\\r\\\\n\\\" + token + \\\"\\\\r\\\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        }
+      ]
+    },
+    "/op/v0/gw/list": {
+      "summary": "Get meter list",
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "result"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer",
+                      "description": "Error number (When the result is not equal to zero, the request fails)"
+                    },
+                    "result": {
+                      "type": "object",
+                      "required": [
+                        "currentPage",
+                        "pageSize",
+                        "total",
+                        "data"
+                      ],
+                      "properties": {
+                        "currentPage": {
+                          "type": "integer",
+                          "description": "Current page number"
+                        },
+                        "pageSize": {
+                          "type": "integer",
+                          "description": "The amount of data presented per page"
+                        },
+                        "total": {
+                          "type": "integer",
+                          "description": "Data volume total"
+                        },
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "sn",
+                              "stationID",
+                              "stationName",
+                              "status"
+                            ],
+                            "properties": {
+                              "sn": {
+                                "type": "string",
+                                "description": "Serial number of the meter"
+                              },
+                              "stationID": {
+                                "type": "string",
+                                "description": "Id of power station"
+                              },
+                              "stationName": {
+                                "type": "string",
+                                "description": "Name of power station"
+                              },
+                              "status": {
+                                "type": "integer",
+                                "description": "Status of meter"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#get20meter20list0a3ca20id3dget20meter20list9603e203ca3e"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "currentPage",
+                  "pageSize"
+                ],
+                "properties": {
+                  "currentPage": {
+                    "type": "integer",
+                    "default": "1",
+                    "description": "Current page number"
+                  },
+                  "pageSize": {
+                    "type": "integer",
+                    "default": "10",
+                    "description": "The amount of data presented per page"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "Headers",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        }
+      ]
+    },
+    "/op/v0/gw/setting/get": {
+      "summary": "Get the device settings item",
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "result"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "number"
+                    },
+                    "result": {
+                      "type": "object",
+                      "required": [
+                        "mode",
+                        "feedinPower",
+                        "outputMaxCurrent",
+                        "inputMaxCurrent",
+                        "overVoltageMaxValue",
+                        "underVoltageMinValue",
+                        "sysOnOffPowerValue",
+                        "deviceQuantity"
+                      ],
+                      "properties": {
+                        "mode": {
+                          "type": "object",
+                          "required": [
+                            "value",
+                            "unit",
+                            "precision",
+                            "range",
+                            "enumList"
+                          ],
+                          "properties": {
+                            "value": {
+                              "type": "string"
+                            },
+                            "unit": {
+                              "type": "string"
+                            },
+                            "precision": {
+                              "type": "number"
+                            },
+                            "range": {
+                              "type": "object",
+                              "required": [
+                                "min",
+                                "max"
+                              ],
+                              "properties": {
+                                "min": {
+                                  "type": "number"
+                                },
+                                "max": {
+                                  "type": "number"
+                                }
+                              }
+                            },
+                            "enumList": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "": {
+                              "type": ""
+                            }
+                          }
+                        },
+                        "feedinPower": {
+                          "type": "object",
+                          "required": [
+                            "value",
+                            "unit",
+                            "precision",
+                            "range",
+                            "enumList"
+                          ],
+                          "properties": {
+                            "value": {
+                              "type": "string"
+                            },
+                            "unit": {
+                              "type": "string"
+                            },
+                            "precision": {
+                              "type": "number"
+                            },
+                            "range": {
+                              "type": "object",
+                              "required": [
+                                "min",
+                                "max"
+                              ],
+                              "properties": {
+                                "min": {
+                                  "type": "number"
+                                },
+                                "max": {
+                                  "type": "number"
+                                }
+                              }
+                            },
+                            "enumList": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "": {
+                              "type": ""
+                            }
+                          }
+                        },
+                        "outputMaxCurrent": {
+                          "type": "object",
+                          "required": [
+                            "value",
+                            "unit",
+                            "precision",
+                            "range",
+                            "enumList"
+                          ],
+                          "properties": {
+                            "value": {
+                              "type": "string"
+                            },
+                            "unit": {
+                              "type": "string"
+                            },
+                            "precision": {
+                              "type": "number"
+                            },
+                            "range": {
+                              "type": "object",
+                              "required": [
+                                "min",
+                                "max"
+                              ],
+                              "properties": {
+                                "min": {
+                                  "type": "number"
+                                },
+                                "max": {
+                                  "type": "number"
+                                }
+                              }
+                            },
+                            "enumList": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "": {
+                              "type": ""
+                            }
+                          }
+                        },
+                        "inputMaxCurrent": {
+                          "type": "object",
+                          "required": [
+                            "value",
+                            "unit",
+                            "precision",
+                            "range",
+                            "enumList"
+                          ],
+                          "properties": {
+                            "value": {
+                              "type": "string"
+                            },
+                            "unit": {
+                              "type": "string"
+                            },
+                            "precision": {
+                              "type": "number"
+                            },
+                            "range": {
+                              "type": "object",
+                              "required": [
+                                "min",
+                                "max"
+                              ],
+                              "properties": {
+                                "min": {
+                                  "type": "number"
+                                },
+                                "max": {
+                                  "type": "number"
+                                }
+                              }
+                            },
+                            "enumList": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        },
+                        "overVoltageMaxValue": {
+                          "type": "object",
+                          "required": [
+                            "value",
+                            "unit",
+                            "precision",
+                            "range",
+                            "enumList"
+                          ],
+                          "properties": {
+                            "value": {
+                              "type": "string"
+                            },
+                            "unit": {
+                              "type": "string"
+                            },
+                            "precision": {
+                              "type": "number"
+                            },
+                            "range": {
+                              "type": "object",
+                              "required": [
+                                "min",
+                                "max"
+                              ],
+                              "properties": {
+                                "min": {
+                                  "type": "number"
+                                },
+                                "max": {
+                                  "type": "number"
+                                }
+                              }
+                            },
+                            "enumList": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        },
+                        "underVoltageMinValue": {
+                          "type": "object",
+                          "required": [
+                            "value",
+                            "unit",
+                            "precision",
+                            "range",
+                            "enumList"
+                          ],
+                          "properties": {
+                            "value": {
+                              "type": "string"
+                            },
+                            "unit": {
+                              "type": "string"
+                            },
+                            "precision": {
+                              "type": "number"
+                            },
+                            "range": {
+                              "type": "object",
+                              "required": [
+                                "min",
+                                "max"
+                              ],
+                              "properties": {
+                                "min": {
+                                  "type": "number"
+                                },
+                                "max": {
+                                  "type": "number"
+                                }
+                              }
+                            },
+                            "enumList": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        },
+                        "sysOnOffPowerValue": {
+                          "type": "object",
+                          "required": [
+                            "value",
+                            "unit",
+                            "precision",
+                            "range",
+                            "enumList"
+                          ],
+                          "properties": {
+                            "value": {
+                              "type": "string"
+                            },
+                            "unit": {
+                              "type": "string"
+                            },
+                            "precision": {
+                              "type": "number"
+                            },
+                            "range": {
+                              "type": "object",
+                              "required": [
+                                "min",
+                                "max"
+                              ],
+                              "properties": {
+                                "min": {
+                                  "type": "number"
+                                },
+                                "max": {
+                                  "type": "number"
+                                }
+                              }
+                            },
+                            "enumList": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        },
+                        "deviceQuantity": {
+                          "type": "object",
+                          "required": [
+                            "value",
+                            "unit",
+                            "precision",
+                            "range",
+                            "enumList"
+                          ],
+                          "properties": {
+                            "value": {
+                              "type": "string"
+                            },
+                            "unit": {
+                              "type": "string"
+                            },
+                            "precision": {
+                              "type": "number"
+                            },
+                            "range": {
+                              "type": "object",
+                              "required": [
+                                "min",
+                                "max"
+                              ],
+                              "properties": {
+                                "min": {
+                                  "type": "number"
+                                },
+                                "max": {
+                                  "type": "number"
+                                }
+                              }
+                            },
+                            "enumList": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#get20the20device20settings20item0a3ca20id3dget20the20device20settings20item9603e203ca3e"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "sn"
+                ],
+                "properties": {
+                  "sn": {
+                    "type": "string",
+                    "description": "Serial number of Inverter"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "Headers",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\\\r\\\\n\\\" + token + \\\"\\\\r\\\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        }
+      ]
+    },
+    "/op/v0/gw/setting/set": {
+      "summary": "Set the device settings item",
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "result"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer",
+                      "description": "Error number (When the result is not equal to zero, the request fails)"
+                    },
+                    "result": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#set20the20device20settings20item0a3ca20id3dset20the20device20settings20item9603e203ca3e"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "sn",
+                  "mode"
+                ],
+                "properties": {
+                  "sn": {
+                    "type": "string"
+                  },
+                  "mode": {
+                    "type": "string"
+                  },
+                  "feedinPower": {
+                    "type": "string",
+                    "description": "Only available in non-normal mode"
+                  },
+                  "outputMaxCurrent": {
+                    "type": "string",
+                    "description": "Only available in G100mode"
+                  },
+                  "inputMaxCurrent": {
+                    "type": "string",
+                    "description": "Only available in G100mode"
+                  },
+                  "overVoltageMaxValue": {
+                    "type": "string",
+                    "description": "Only available in G100mode"
+                  },
+                  "underVoltageMinValue": {
+                    "type": "string",
+                    "description": "Only available in G100mode"
+                  },
+                  "sysOnOffPowerValue": {
+                    "type": "string",
+                    "description": "Only available in G100mode"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "Headers",
       "parameters": [
         {
           "in": "header",
