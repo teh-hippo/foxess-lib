@@ -731,6 +731,79 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  "/op/v1/device/scheduler/set/flag": {
+    parameters: {
+      query?: never;
+      header: {
+        "Content-Type": string;
+        /** @description Generate apikey from the API management function of the platform */
+        token: string;
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+        signature: string;
+        /** @description Current timestamp */
+        timestamp: string;
+        /**
+                 * @description Language
+                 * @example en
+                 */
+        lang: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: {
+      parameters: {
+        query?: never;
+        header: {
+          "Content-Type": string;
+          /** @description Generate apikey from the API management function of the platform */
+          token: string;
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+          signature: string;
+          /** @description Current timestamp */
+          timestamp: string;
+          /**
+                     * @description Language
+                     * @example en
+                     */
+          lang: string;
+        };
+        path?: never;
+        cookie?: never;
+      };
+      requestBody: {
+        content: {
+          "application/json": {
+            /** @description Serial number of device */
+            deviceSN: string;
+            /** @description Whether the switch is on 0:disable 1:enable */
+            enable: number;
+          };
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          headers: Record<string, unknown>;
+          content: {
+            "application/json": {
+              /** @description Error number (When the result is not equal to zero, the request fails) */
+              errno: number;
+              /** @description Error message */
+              msg: string;
+            };
+          };
+        };
+      };
+    };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   "/op/v1/device/scheduler/get": {
     parameters: {
       query?: never;
@@ -832,79 +905,6 @@ export interface paths {
                   };
                 };
               };
-            };
-          };
-        };
-      };
-    };
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/op/v1/device/scheduler/set/flag": {
-    parameters: {
-      query?: never;
-      header: {
-        "Content-Type": string;
-        /** @description Generate apikey from the API management function of the platform */
-        token: string;
-        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
-        signature: string;
-        /** @description Current timestamp */
-        timestamp: string;
-        /**
-                 * @description Language
-                 * @example en
-                 */
-        lang: string;
-      };
-      path?: never;
-      cookie?: never;
-    };
-    get?: never;
-    put?: never;
-    post: {
-      parameters: {
-        query?: never;
-        header: {
-          "Content-Type": string;
-          /** @description Generate apikey from the API management function of the platform */
-          token: string;
-          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
-          signature: string;
-          /** @description Current timestamp */
-          timestamp: string;
-          /**
-                     * @description Language
-                     * @example en
-                     */
-          lang: string;
-        };
-        path?: never;
-        cookie?: never;
-      };
-      requestBody: {
-        content: {
-          "application/json": {
-            /** @description Serial number of device */
-            deviceSN: string;
-            /** @description Whether the switch is on 0:disable 1:enable */
-            enable: number;
-          };
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          headers: Record<string, unknown>;
-          content: {
-            "application/json": {
-              /** @description Error number (When the result is not equal to zero, the request fails) */
-              errno: number;
-              /** @description Error message */
-              msg: string;
             };
           };
         };
@@ -2338,6 +2338,177 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  "/op/v0/device/peakShaving/get": {
+    parameters: {
+      query?: never;
+      header: {
+        "Content-Type": string;
+        /** @description Generate apikey from the API management function of the platform */
+        token: string;
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+        signature: string;
+        /** @description Current timestamp */
+        timestamp: string;
+        /**
+                 * @description Language
+                 * @example en
+                 */
+        lang: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: {
+      parameters: {
+        query?: never;
+        header: {
+          "Content-Type": string;
+          /** @description Generate apikey from the API management function of the platform */
+          token: string;
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+          signature: string;
+          /** @description Current timestamp */
+          timestamp: string;
+          /**
+                     * @description Language
+                     * @example en
+                     */
+          lang: string;
+        };
+        path?: never;
+        cookie?: never;
+      };
+      requestBody: {
+        content: {
+          "application/json": {
+            /** @description Serial number of Inverter */
+            sn: string;
+          };
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          headers: Record<string, unknown>;
+          content: {
+            "application/json": {
+              /** @description Error number (When the result is not equal to zero, the request fails) */
+              errno: number;
+              result: {
+                importLimit: {
+                  /** @description setting value */
+                  value: string;
+                  /** @description unit */
+                  unit: string;
+                  /** @description precision */
+                  precision: number;
+                  range: {
+                    /** @description minimum */
+                    min: number;
+                    /** @description maximum */
+                    max: number;
+                  };
+                };
+                soc: {
+                  /** @description setting value */
+                  value: string;
+                  /** @description unit */
+                  unit: string;
+                  /** @description precision */
+                  precision: number;
+                  range: {
+                    /** @description minimum */
+                    min: number;
+                    /** @description maximum */
+                    max: number;
+                  };
+                };
+              };
+            };
+          };
+        };
+      };
+    };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/device/peakShaving/set": {
+    parameters: {
+      query?: never;
+      header: {
+        "Content-Type": string;
+        /** @description Generate apikey from the API management function of the platform */
+        token: string;
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+        signature: string;
+        /** @description Current timestamp */
+        timestamp: string;
+        /**
+                 * @description Language
+                 * @example en
+                 */
+        lang: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: {
+      parameters: {
+        query?: never;
+        header: {
+          "Content-Type": string;
+          /** @description Generate apikey from the API management function of the platform */
+          token: string;
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+          signature: string;
+          /** @description Current timestamp */
+          timestamp: string;
+          /**
+                     * @description Language
+                     * @example en
+                     */
+          lang: string;
+        };
+        path?: never;
+        cookie?: never;
+      };
+      requestBody: {
+        content: {
+          "application/json": {
+            /** @description Serial number of Inverter */
+            sn: string;
+            importLimit: number;
+            soc: number;
+          };
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          headers: Record<string, unknown>;
+          content: {
+            "application/json": {
+              /** @description Error number (When the result is not equal to zero, the request fails) */
+              errno: number;
+              result: Record<string, never>;
+            };
+          };
+        };
+      };
+    };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   "/op/v0/device/scheduler/get/flag": {
     parameters: {
       query?: never;
@@ -2758,6 +2929,314 @@ export interface paths {
                   signal: number;
                 }[];
               };
+            };
+          };
+        };
+      };
+    };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/gw/list": {
+    parameters: {
+      query?: never;
+      header: {
+        "Content-Type": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: {
+      parameters: {
+        query?: never;
+        header: {
+          "Content-Type": string;
+        };
+        path?: never;
+        cookie?: never;
+      };
+      requestBody: {
+        content: {
+          "application/json": {
+            /**
+                         * @description Current page number
+                         * @default 1
+                         */
+            currentPage: number;
+            /**
+                         * @description The amount of data presented per page
+                         * @default 10
+                         */
+            pageSize: number;
+          };
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          headers: Record<string, unknown>;
+          content: {
+            "application/json": {
+              /** @description Error number (When the result is not equal to zero, the request fails) */
+              errno: number;
+              result: {
+                /** @description Current page number */
+                currentPage: number;
+                /** @description The amount of data presented per page */
+                pageSize: number;
+                /** @description Data volume total */
+                total: number;
+                data: {
+                  /** @description Serial number of the meter */
+                  sn: string;
+                  /** @description Id of power station */
+                  stationID: string;
+                  /** @description Name of power station */
+                  stationName: string;
+                  /** @description Status of meter */
+                  status: number;
+                }[];
+              };
+            };
+          };
+        };
+      };
+    };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/gw/setting/get": {
+    parameters: {
+      query?: never;
+      header: {
+        "Content-Type": string;
+        /** @description Generate apikey from the API management function of the platform */
+        token: string;
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+        signature: string;
+        /** @description Current timestamp */
+        timestamp: string;
+        /**
+                 * @description Language
+                 * @example en
+                 */
+        lang: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: {
+      parameters: {
+        query?: never;
+        header: {
+          "Content-Type": string;
+          /** @description Generate apikey from the API management function of the platform */
+          token: string;
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+          signature: string;
+          /** @description Current timestamp */
+          timestamp: string;
+          /**
+                     * @description Language
+                     * @example en
+                     */
+          lang: string;
+        };
+        path?: never;
+        cookie?: never;
+      };
+      requestBody: {
+        content: {
+          "application/json": {
+            /** @description Serial number of Inverter */
+            sn: string;
+          };
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          headers: Record<string, unknown>;
+          content: {
+            "application/json": {
+              errno: number;
+              result: {
+                mode: {
+                  value: string;
+                  unit: string;
+                  precision: number;
+                  range: {
+                    min: number;
+                    max: number;
+                  };
+                  enumList: string[];
+                  ""?: Record<string, never>;
+                };
+                feedinPower: {
+                  value: string;
+                  unit: string;
+                  precision: number;
+                  range: {
+                    min: number;
+                    max: number;
+                  };
+                  enumList: string[];
+                  ""?: Record<string, never>;
+                };
+                outputMaxCurrent: {
+                  value: string;
+                  unit: string;
+                  precision: number;
+                  range: {
+                    min: number;
+                    max: number;
+                  };
+                  enumList: string[];
+                  ""?: Record<string, never>;
+                };
+                inputMaxCurrent: {
+                  value: string;
+                  unit: string;
+                  precision: number;
+                  range: {
+                    min: number;
+                    max: number;
+                  };
+                  enumList: string[];
+                };
+                overVoltageMaxValue: {
+                  value: string;
+                  unit: string;
+                  precision: number;
+                  range: {
+                    min: number;
+                    max: number;
+                  };
+                  enumList: string[];
+                };
+                underVoltageMinValue: {
+                  value: string;
+                  unit: string;
+                  precision: number;
+                  range: {
+                    min: number;
+                    max: number;
+                  };
+                  enumList: string[];
+                };
+                sysOnOffPowerValue: {
+                  value: string;
+                  unit: string;
+                  precision: number;
+                  range: {
+                    min: number;
+                    max: number;
+                  };
+                  enumList: string[];
+                };
+                deviceQuantity: {
+                  value: string;
+                  unit: string;
+                  precision: number;
+                  range: {
+                    min: number;
+                    max: number;
+                  };
+                  enumList: string[];
+                };
+              };
+            };
+          };
+        };
+      };
+    };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/gw/setting/set": {
+    parameters: {
+      query?: never;
+      header: {
+        "Content-Type": string;
+        /** @description Generate apikey from the API management function of the platform */
+        token: string;
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+        signature: string;
+        /** @description Current timestamp */
+        timestamp: string;
+        /**
+                 * @description Language
+                 * @example en
+                 */
+        lang: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: {
+      parameters: {
+        query?: never;
+        header: {
+          "Content-Type": string;
+          /** @description Generate apikey from the API management function of the platform */
+          token: string;
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+          signature: string;
+          /** @description Current timestamp */
+          timestamp: string;
+          /**
+                     * @description Language
+                     * @example en
+                     */
+          lang: string;
+        };
+        path?: never;
+        cookie?: never;
+      };
+      requestBody: {
+        content: {
+          "application/json": {
+            sn: string;
+            mode: string;
+            /** @description Only available in non-normal mode */
+            feedinPower?: string;
+            /** @description Only available in G100mode */
+            outputMaxCurrent?: string;
+            /** @description Only available in G100mode */
+            inputMaxCurrent?: string;
+            /** @description Only available in G100mode */
+            overVoltageMaxValue?: string;
+            /** @description Only available in G100mode */
+            underVoltageMinValue?: string;
+            /** @description Only available in G100mode */
+            sysOnOffPowerValue?: string;
+          };
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          headers: Record<string, unknown>;
+          content: {
+            "application/json": {
+              /** @description Error number (When the result is not equal to zero, the request fails) */
+              errno: number;
+              result: Record<string, never>;
             };
           };
         };
