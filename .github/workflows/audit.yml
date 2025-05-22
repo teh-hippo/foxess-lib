@@ -3,6 +3,9 @@
 
 name: Audit
 
+permissions:
+  contents: read
+
 on:
   
   schedule:
