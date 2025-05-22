@@ -147,7 +147,7 @@ function indent(table: HTMLElement, path: string): FoxESSField[] {
       if (itemJ === undefined) throw new Error("Unable to find itemJ");
       if (itemJ.index <= p.index) return;
       if (p.index + 1 === itemJ.index) {
-        if (p.child === undefined) p.child = [];
+        p.child ??= [];
         p.child.push(itemJ);
       }
     }
@@ -196,8 +196,8 @@ function indent(table: HTMLElement, path: string): FoxESSField[] {
     };
 
     // Basics
-    pathItem.summary = element.childNodes[0]?.textContent?.trim() ?? orErr("name");
-    const path = (getNextElement("P", 1)).childNodes[1]?.textContent?.trim() ?? orErr("path");
+    pathItem.summary = element.childNodes[0]?.textContent.trim() ?? orErr("name");
+    const path = (getNextElement("P", 1)).childNodes[1]?.textContent.trim() ?? orErr("path");
     doc.paths[path] = pathItem;
     const operation: OpenAPIV3.OperationObject = {
       responses: {
@@ -215,14 +215,14 @@ function indent(table: HTMLElement, path: string): FoxESSField[] {
       }
     };
 
-    const method = ((getNextElement("P")).childNodes[1]?.textContent?.trim() ?? orErr("method")).toLowerCase() as OpenAPIV3.HttpMethods;
+    const method = ((getNextElement("P")).childNodes[1]?.textContent.trim() ?? orErr("method")).toLowerCase() as OpenAPIV3.HttpMethods;
     pathItem[method] = operation;
 
     const description = getNextElement("P", 1).childNodes[0]?.textContent.replace("request body example:", "").tidy().trimToUndefined();
     if (description !== undefined) pathItem.description = description;
     pathItem.parameters = addParameters(getNextElement("TABLE"), path, "header", { count: 5, name: 0, default: 1, required: 2, example: 3, description: 4 });
 
-    if (getNextElement("P").childNodes[0]?.textContent?.trim() === "Query") {
+    if (getNextElement("P").childNodes[0]?.textContent.trim() === "Query") {
       pathItem.parameters = pathItem.parameters.concat(addParameters(getNextElement("TABLE"), path, "query", { count: 4, name: 0, required: 1, example: 2, description: 3 }));
     }
 
@@ -232,11 +232,11 @@ function indent(table: HTMLElement, path: string): FoxESSField[] {
 
     function processParam(field: FoxESSField, parent: OpenAPIV3.SchemaObject): void {
       if (field.required) {
-        if (parent.required === undefined) parent.required = [];
+        parent.required ??= [];
         parent.required.push(field.name);
       }
 
-      if (parent.properties === undefined) parent.properties = {};
+      parent.properties ??= {};
       if (field.isArray) {
         const schema: OpenAPIV3.SchemaObject = {
           type: field.type as OpenAPIV3.ArraySchemaObjectType,
