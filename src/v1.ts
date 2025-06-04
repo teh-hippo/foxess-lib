@@ -1097,9 +1097,9 @@ export interface paths {
                   hasPV: boolean;
                   /** @description Is there a battery available */
                   hasBattery: boolean;
-                  /** @description Type of device */
+                  /** @description Model of device */
                   deviceType: string;
-                  /** @description Type of product */
+                  /** @description Series of product */
                   productType: string;
                 }[];
               };
