@@ -44,7 +44,7 @@ jobs:
 
     - run: mv docs/README.md docs/Home.md
 
-    - uses: stefanzweifel/git-auto-commit-action@v5
+    - uses: stefanzweifel/git-auto-commit-action@v6
       with:
         commit_message: Updating documentation for v${{ steps.version-after.outputs.current-version }}
         repository: docs
