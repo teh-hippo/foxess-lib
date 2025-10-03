@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "version": "1.1.3",
+    "version": "1.1.5",
     "title": "FoxESS OpenAPI"
   },
   "servers": [
@@ -4329,6 +4329,240 @@
         }
       ]
     },
+    "/op/v0/device/getMeterReader": {
+      "summary": "Get the Meter Reader",
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "result"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer",
+                      "description": "Error number (When the result is not equal to zero, the request fails)"
+                    },
+                    "result": {
+                      "type": "object",
+                      "required": [
+                        "readerType",
+                        "readerStatus"
+                      ],
+                      "properties": {
+                        "readerType": {
+                          "type": "number",
+                          "description": "Electric meter reader type"
+                        },
+                        "readerStatus": {
+                          "type": "number",
+                          "description": "Electric meter reader status"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#get20the20meter20reader0a3ca20id3dget20the20meter20reader4303e203ca3e"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "sn"
+                ],
+                "properties": {
+                  "sn": {
+                    "type": "string",
+                    "description": "Serial number"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "Headers",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\\\r\\\\n\\\" + token + \\\"\\\\r\\\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        }
+      ]
+    },
+    "/op/v0/device/setMeterReader": {
+      "summary": "Set the Meter Reader",
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "result"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer",
+                      "description": "Error number (When the result is not equal to zero, the request fails)"
+                    },
+                    "result": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#set20the20meter20reader0a3ca20id3dset20the20meter20reader4303e203ca3e"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "sn",
+                  "readerType",
+                  "readerInfo"
+                ],
+                "properties": {
+                  "sn": {
+                    "type": "string",
+                    "description": "Serial number"
+                  },
+                  "readerType": {
+                    "type": "number",
+                    "description": "Electric meter reader type"
+                  },
+                  "readerInfo": {
+                    "type": "object",
+                    "description": "Electric meter reader info",
+                    "properties": {
+                      "key": {
+                        "type": "string",
+                        "description": "Select SolarmanPV when passing this field"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "Headers",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\\\r\\\\n\\\" + token + \\\"\\\\r\\\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        }
+      ]
+    },
     "/op/v0/device/scheduler/get/flag": {
       "summary": "Get the main switch status (Deprecated)",
       "post": {
@@ -4839,6 +5073,121 @@
         }
       },
       "description": "Set the time segment information of the timing mode",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        },
+        {
+          "in": "header",
+          "name": "token",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Generate apikey from the API management function of the platform"
+        },
+        {
+          "in": "header",
+          "name": "signature",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Signature rule: Encrypt the string url + \\\"\\\\r\\\\n\\\" + token + \\\"\\\\r\\\\n\\\" + timestamp with md5"
+        },
+        {
+          "in": "header",
+          "name": "timestamp",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Current timestamp"
+        },
+        {
+          "in": "header",
+          "name": "lang",
+          "required": true,
+          "example": "en",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Language"
+        }
+      ]
+    },
+    "/op/v0/module/getSignal": {
+      "summary": "Get Data Logger Signal",
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "result"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer",
+                      "description": "Error number (When the result is not equal to zero, the request fails)"
+                    },
+                    "result": {
+                      "type": "object",
+                      "required": [
+                        "timestamp",
+                        "signal"
+                      ],
+                      "properties": {
+                        "timestamp": {
+                          "type": "integer",
+                          "description": "Data recording timestamp"
+                        },
+                        "signal": {
+                          "type": "integer",
+                          "description": "Signal strength in dBm"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#get20data20logger20signal0a3ca20id3dget20data20logger20signal4403e203ca3e"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "sn"
+                ],
+                "properties": {
+                  "sn": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "Headers",
       "parameters": [
         {
           "in": "header",
@@ -5754,6 +6103,277 @@
             "type": "string"
           },
           "description": "Language"
+        }
+      ]
+    },
+    "/op/v0/heat/register": {
+      "summary": "Heat Pump Register",
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "result"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer",
+                      "description": "Error number (When the result is not equal to zero, the request fails)"
+                    },
+                    "result": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#heat20pump20register0a3ca20id3dheat20pump20register13613e203ca3e"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "sn"
+                ],
+                "properties": {
+                  "sn": {
+                    "type": "string",
+                    "description": "Outdoor Unit of Heat Pump SN"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "Headers",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        }
+      ]
+    },
+    "/op/v0/heat/register/list": {
+      "summary": "Heat Pump Register List",
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "result"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer",
+                      "description": "Error number (When the result is not equal to zero, the request fails)"
+                    },
+                    "result": {
+                      "type": "object",
+                      "required": [
+                        "currentPage",
+                        "pageSize",
+                        "total",
+                        "data"
+                      ],
+                      "properties": {
+                        "currentPage": {
+                          "type": "integer",
+                          "description": "Current page number"
+                        },
+                        "pageSize": {
+                          "type": "integer",
+                          "description": "The amount of data presented per page"
+                        },
+                        "total": {
+                          "type": "integer",
+                          "description": "Data volume total"
+                        },
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "heatSN",
+                              "moduleSN",
+                              "registerStatus",
+                              "runningStatus",
+                              "masterVersion",
+                              "deviceType"
+                            ],
+                            "properties": {
+                              "heatSN": {
+                                "type": "string",
+                                "description": "Serial number of the Heat"
+                              },
+                              "moduleSN": {
+                                "type": "string",
+                                "description": "Module Serial number"
+                              },
+                              "registerStatus": {
+                                "type": "string",
+                                "description": "Register Status"
+                              },
+                              "runningStatus": {
+                                "type": "integer",
+                                "description": "Status of Heat(1、online;2、error;3 offline))"
+                              },
+                              "masterVersion": {
+                                "type": "string",
+                                "description": "version"
+                              },
+                              "deviceType": {
+                                "type": "string",
+                                "description": "deviceType of The Heat"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#heat20pump20register20list0a3ca20id3dheat20pump20register20list13613e203ca3e"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "currentPage",
+                  "pageSize",
+                  "sn"
+                ],
+                "properties": {
+                  "currentPage": {
+                    "type": "integer",
+                    "default": "1",
+                    "description": "Current page number"
+                  },
+                  "pageSize": {
+                    "type": "integer",
+                    "default": "10",
+                    "description": "The amount of data presented per page"
+                  },
+                  "sn": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "Headers",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
+        }
+      ]
+    },
+    "/op/v0/heat/register/status/change": {
+      "summary": "Heat Pump Register Status Change",
+      "post": {
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "errno",
+                    "result"
+                  ],
+                  "properties": {
+                    "errno": {
+                      "type": "integer",
+                      "description": "Error number (When the result is not equal to zero, the request fails)"
+                    },
+                    "result": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "externalDocs": {
+          "url": "https://www.foxesscloud.com/public/i18n/en/OpenApiDocument.html#heat20pump20register20status20change0a3ca20id3dheat20pump20register20status20change13613e203ca3e"
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "sn",
+                  "status"
+                ],
+                "properties": {
+                  "sn": {
+                    "type": "string",
+                    "description": "Outdoor Unit of Heat Pump SN"
+                  },
+                  "status": {
+                    "type": "string",
+                    "description": "pending、approved、revoked"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "Headers",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Content-Type",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "default": "application/json"
+          },
+          "description": ""
         }
       ]
     },
