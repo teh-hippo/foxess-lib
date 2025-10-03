@@ -2509,6 +2509,158 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  "/op/v0/device/getMeterReader": {
+    parameters: {
+      query?: never;
+      header: {
+        "Content-Type": string;
+        /** @description Generate apikey from the API management function of the platform */
+        token: string;
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+        signature: string;
+        /** @description Current timestamp */
+        timestamp: string;
+        /**
+                 * @description Language
+                 * @example en
+                 */
+        lang: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: {
+      parameters: {
+        query?: never;
+        header: {
+          "Content-Type": string;
+          /** @description Generate apikey from the API management function of the platform */
+          token: string;
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+          signature: string;
+          /** @description Current timestamp */
+          timestamp: string;
+          /**
+                     * @description Language
+                     * @example en
+                     */
+          lang: string;
+        };
+        path?: never;
+        cookie?: never;
+      };
+      requestBody: {
+        content: {
+          "application/json": {
+            /** @description Serial number */
+            sn: string;
+          };
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          headers: Record<string, unknown>;
+          content: {
+            "application/json": {
+              /** @description Error number (When the result is not equal to zero, the request fails) */
+              errno: number;
+              result: {
+                /** @description Electric meter reader type */
+                readerType: number;
+                /** @description Electric meter reader status */
+                readerStatus: number;
+              };
+            };
+          };
+        };
+      };
+    };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/device/setMeterReader": {
+    parameters: {
+      query?: never;
+      header: {
+        "Content-Type": string;
+        /** @description Generate apikey from the API management function of the platform */
+        token: string;
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+        signature: string;
+        /** @description Current timestamp */
+        timestamp: string;
+        /**
+                 * @description Language
+                 * @example en
+                 */
+        lang: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: {
+      parameters: {
+        query?: never;
+        header: {
+          "Content-Type": string;
+          /** @description Generate apikey from the API management function of the platform */
+          token: string;
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+          signature: string;
+          /** @description Current timestamp */
+          timestamp: string;
+          /**
+                     * @description Language
+                     * @example en
+                     */
+          lang: string;
+        };
+        path?: never;
+        cookie?: never;
+      };
+      requestBody: {
+        content: {
+          "application/json": {
+            /** @description Serial number */
+            sn: string;
+            /** @description Electric meter reader type */
+            readerType: number;
+            /** @description Electric meter reader info */
+            readerInfo: {
+              /** @description Select SolarmanPV when passing this field */
+              key?: string;
+            };
+          };
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          headers: Record<string, unknown>;
+          content: {
+            "application/json": {
+              /** @description Error number (When the result is not equal to zero, the request fails) */
+              errno: number;
+              result: Record<string, never>;
+            };
+          };
+        };
+      };
+    };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   "/op/v0/device/scheduler/get/flag": {
     parameters: {
       query?: never;
@@ -2834,6 +2986,80 @@ export interface paths {
               errno: number;
               /** @description Error message */
               msg: string;
+            };
+          };
+        };
+      };
+    };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/module/getSignal": {
+    parameters: {
+      query?: never;
+      header: {
+        "Content-Type": string;
+        /** @description Generate apikey from the API management function of the platform */
+        token: string;
+        /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+        signature: string;
+        /** @description Current timestamp */
+        timestamp: string;
+        /**
+                 * @description Language
+                 * @example en
+                 */
+        lang: string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: {
+      parameters: {
+        query?: never;
+        header: {
+          "Content-Type": string;
+          /** @description Generate apikey from the API management function of the platform */
+          token: string;
+          /** @description Signature rule: Encrypt the string url + \"\\r\\n\" + token + \"\\r\\n\" + timestamp with md5 */
+          signature: string;
+          /** @description Current timestamp */
+          timestamp: string;
+          /**
+                     * @description Language
+                     * @example en
+                     */
+          lang: string;
+        };
+        path?: never;
+        cookie?: never;
+      };
+      requestBody: {
+        content: {
+          "application/json": {
+            sn: string;
+          };
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          headers: Record<string, unknown>;
+          content: {
+            "application/json": {
+              /** @description Error number (When the result is not equal to zero, the request fails) */
+              errno: number;
+              result: {
+                /** @description Data recording timestamp */
+                timestamp: number;
+                /** @description Signal strength in dBm */
+                signal: number;
+              };
             };
           };
         };
@@ -3225,6 +3451,182 @@ export interface paths {
             underVoltageMinValue?: string;
             /** @description Only available in G100mode */
             sysOnOffPowerValue?: string;
+          };
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          headers: Record<string, unknown>;
+          content: {
+            "application/json": {
+              /** @description Error number (When the result is not equal to zero, the request fails) */
+              errno: number;
+              result: Record<string, never>;
+            };
+          };
+        };
+      };
+    };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/heat/register": {
+    parameters: {
+      query?: never;
+      header: {
+        "Content-Type": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: {
+      parameters: {
+        query?: never;
+        header: {
+          "Content-Type": string;
+        };
+        path?: never;
+        cookie?: never;
+      };
+      requestBody: {
+        content: {
+          "application/json": {
+            /** @description Outdoor Unit of Heat Pump SN */
+            sn: string;
+          };
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          headers: Record<string, unknown>;
+          content: {
+            "application/json": {
+              /** @description Error number (When the result is not equal to zero, the request fails) */
+              errno: number;
+              result: Record<string, never>;
+            };
+          };
+        };
+      };
+    };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/heat/register/list": {
+    parameters: {
+      query?: never;
+      header: {
+        "Content-Type": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: {
+      parameters: {
+        query?: never;
+        header: {
+          "Content-Type": string;
+        };
+        path?: never;
+        cookie?: never;
+      };
+      requestBody: {
+        content: {
+          "application/json": {
+            /**
+                         * @description Current page number
+                         * @default 1
+                         */
+            currentPage: number;
+            /**
+                         * @description The amount of data presented per page
+                         * @default 10
+                         */
+            pageSize: number;
+            sn: string;
+          };
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          headers: Record<string, unknown>;
+          content: {
+            "application/json": {
+              /** @description Error number (When the result is not equal to zero, the request fails) */
+              errno: number;
+              result: {
+                /** @description Current page number */
+                currentPage: number;
+                /** @description The amount of data presented per page */
+                pageSize: number;
+                /** @description Data volume total */
+                total: number;
+                data: {
+                  /** @description Serial number of the Heat */
+                  heatSN: string;
+                  /** @description Module Serial number */
+                  moduleSN: string;
+                  /** @description Register Status */
+                  registerStatus: string;
+                  /** @description Status of Heat(1、online;2、error;3 offline)) */
+                  runningStatus: number;
+                  /** @description version */
+                  masterVersion: string;
+                  /** @description deviceType of The Heat */
+                  deviceType: string;
+                }[];
+              };
+            };
+          };
+        };
+      };
+    };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/op/v0/heat/register/status/change": {
+    parameters: {
+      query?: never;
+      header: {
+        "Content-Type": string;
+      };
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: {
+      parameters: {
+        query?: never;
+        header: {
+          "Content-Type": string;
+        };
+        path?: never;
+        cookie?: never;
+      };
+      requestBody: {
+        content: {
+          "application/json": {
+            /** @description Outdoor Unit of Heat Pump SN */
+            sn: string;
+            /** @description pending、approved、revoked */
+            status: string;
           };
         };
       };
